@@ -6,7 +6,6 @@
     // bomberman on nö namespace, mille küljes asuvad
     // kõik mänguga seotud objektid, funktsioonid, ressursid jne.
     window.bomberman = {};
-
     // Mängu vajaminevate ressursside massiiv.
     // Leveli map ise on TMX formaadis, vt lisaks https://github.com/bjorn/tiled/wiki/TMX-Map-Format
     // Leveli mapi redigeerimiseks on vajalik Tiled Map Editor, vt http://www.mapeditor.org/
@@ -53,6 +52,8 @@
         // Kui mäng on laetud, käivitab loader siinse funktsiooni,
         // sest omistasime selle eelnevalt me.loader.onload'ile:
         loaded: function () {
+	    // Teeb framecounteri nähtavaks kui JS on enabled.
+	    framecounter.setAttribute('style', 'visibility: visible');
             // Defineerime mängu state'ile vastavad vaated
             me.state.set(me.state.PLAY, new window.bomberman.playScreen());
             me.state.set(me.state.SCORE, new window.bomberman.playScreen());
