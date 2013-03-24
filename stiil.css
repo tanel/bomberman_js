@@ -1,0 +1,12 @@
+body { 
+  background-color: "black";
+}
+#info {
+  width: 640px;
+}
+#framecounter {
+  position: absolute; 
+  font-size: 10px; 
+  font-family: Courier New;
+  color:red;
+}
