@@ -18,6 +18,10 @@
         name: "level1",
         type: "tmx",
         src: "data/level1.tmx"
+    }, {
+        name: "main_character",
+        type: "image",
+        src: "data/sprite/main_character.png"
     }];
 
     // Mäng ise
@@ -56,6 +60,16 @@
             // Defineerime mängu state'ile vastavad vaated
             me.state.set(me.state.PLAY, new window.bomberman.playScreen());
             me.state.set(me.state.SCORE, new window.bomberman.playScreen());
+
+            // add our player entity in the entity pool
+            me.entityPool.add("mainPlayer", PlayerEntity);
+
+            // enable the keyboard
+            me.input.bindKey(me.input.KEY.LEFT,  "left");
+            me.input.bindKey(me.input.KEY.RIGHT, "right");
+            //me.input.bindKey(me.input.KEY.UP, "up");
+            //me.input.bindKey(me.input.KEY.DOWN, "down");
+            //me.input.bindKey(me.input.KEY.X,     "setBomb", true);
 
             // Määrame mängu state'iks PLAY.
             me.state.change(me.state.PLAY);
