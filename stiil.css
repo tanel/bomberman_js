@@ -9,4 +9,5 @@ body {
   font-size: 10px; 
   font-family: Courier New;
   color: red;
+  visibility:hidden; /* See on selleks, et framecounter ei jääks noscripti teatisele ette. */
 }
