@@ -8,12 +8,14 @@
     window.bomberman = {};
 
     // Mängu vajaminevate ressursside massiiv.
+    // Leveli map ise on TMX formaadis, vt lisaks https://github.com/bjorn/tiled/wiki/TMX-Map-Format
+    // Leveli mapi redigeerimiseks on vajalik Tiled Map Editor, vt http://www.mapeditor.org/
     window.bomberman.resources = [{
-        name: "level1_tiles",
+        name: "level1_tileset", // NB! oluline, et oleks sama nimega, mis TMX failis
         type: "image",
         src: "data/level1_tileset.png"
     }, {
-        name: "level1_map",
+        name: "level1",
         type: "tmx",
         src: "data/level1.tmx"
     }];
@@ -67,7 +69,10 @@
         // Mängu state'i haldus kutsub seda funktsiooni välja,
         // kui mängu state muutub.
         onResetEvent: function () {
-            // FIXME: mängu state muutus.. lae uus level vms vajalik
+            // levelDirector tegeleb leveli jaoks vajalike ressursside
+            // laadimise ning haldamisega. Käseme tal level1 sisse laadida:
+            // (vt http://www.melonjs.org/docs/symbols/me.levelDirector.html)
+            me.levelDirector.loadLevel("level1");
         },
 
         onDestroyEvent: function () {
