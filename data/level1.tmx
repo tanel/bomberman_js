@@ -9,9 +9,9 @@
   </data>
  </layer>
  <objectgroup name="entities" width="20" height="15"/>
-    <object name="mainPlayer" x="47" y="369" width="31" height="30"> 
+    <object name="mainPlayer" x="47" y="169" width="31" height="30"> 
        <properties> 
-          <property name="image" value="gripe_run_right"/> 
+          <property name="image" value="main_character"/> 
           <property name="spritewidth" value="64"/> 
           <property name="transparency" value="#FF00FF"/> 
        </properties> 
