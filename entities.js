@@ -43,19 +43,6 @@ var PlayerEntity = me.ObjectEntity.extend({
         } else {
             this.vel.y = 0;
         }
-
-
-        if (me.input.isKeyPressed('jump')) {
-            // make sure we are not already jumping or falling
-            if (!this.jumping && !this.falling) {
-                // set current vel to the maximum defined value
-                // gravity will then do the rest
-                this.vel.y = -this.maxVel.y * me.timer.tick;
-                // set the jumping flag
-                this.jumping = true;
-            }
- 
-        }
  
         // check & update player movement
         this.updateMovement();
