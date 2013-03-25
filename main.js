@@ -67,11 +67,11 @@
             me.entityPool.add("mainPlayer", PlayerEntity);
 
             // enable the keyboard
-            me.input.bindKey(me.input.KEY.LEFT,  "left");
-            me.input.bindKey(me.input.KEY.RIGHT, "right");
-            //me.input.bindKey(me.input.KEY.UP, "up");
-            //me.input.bindKey(me.input.KEY.DOWN, "down");
-            //me.input.bindKey(me.input.KEY.X,     "setBomb", true);
+            me.input.bindKey(me.input.KEY.A, "a");
+            me.input.bindKey(me.input.KEY.S, "s");
+            me.input.bindKey(me.input.KEY.W, "w");
+            me.input.bindKey(me.input.KEY.D, "d");
+            me.input.bindKey(me.input.KEY.X, "setBomb", true);
 
             // Määrame mängu state'iks PLAY.
             me.state.change(me.state.PLAY);
