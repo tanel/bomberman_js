@@ -64,7 +64,7 @@
             me.state.set(me.state.SCORE, new window.bomberman.playScreen());
 
             // add our player entity in the entity pool
-            me.entityPool.add("player", PlayerEntity);
+            me.entityPool.add("mainPlayer", PlayerEntity);
 
             // enable the keyboard
             me.input.bindKey(me.input.KEY.LEFT,  "left");

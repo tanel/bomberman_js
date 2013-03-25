@@ -9,6 +9,11 @@
   </data>
  </layer>
  <objectgroup name="entities" width="20" height="15">
-  <object name="player" x="579" y="37" width="24" height="23"/>
+  <object name="mainPlayer" x="579" y="37" width="32" height="32">
+   <properties>
+    <property name="image" value="gripe_run_right"/>
+    <property name="spritewidth" value="64"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
