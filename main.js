@@ -18,7 +18,7 @@
         type: "tmx",
         src: "data/level1.tmx"
     }, {
-        name: "main_character",
+        name: "player",
         type: "image",
         src: "data/sprite/main_character.png"
     }];
@@ -56,14 +56,15 @@
         // Kui mäng on laetud, käivitab loader siinse funktsiooni,
         // sest omistasime selle eelnevalt me.loader.onload'ile:
         loaded: function () {
-	    // Teeb framecounteri nähtavaks kui JS on enabled.
-	    framecounter.setAttribute('style', 'visibility: visible');
+            // Teeb framecounteri nähtavaks kui JS on enabled.
+            framecounter.setAttribute('style', 'visibility: visible');
+
             // Defineerime mängu state'ile vastavad vaated
             me.state.set(me.state.PLAY, new window.bomberman.playScreen());
             me.state.set(me.state.SCORE, new window.bomberman.playScreen());
 
             // add our player entity in the entity pool
-            me.entityPool.add("mainPlayer", PlayerEntity);
+            me.entityPool.add("player", PlayerEntity);
 
             // enable the keyboard
             me.input.bindKey(me.input.KEY.LEFT,  "left");
