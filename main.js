@@ -18,9 +18,9 @@
         type: "tmx",
         src: "data/level1.tmx"
     }, {
-        name: "player",
+        name: "gripe_run_right",
         type: "image",
-        src: "data/sprite/main_character.png"
+        src: "data/sprite/gripe_run_right.png"
     }];
 
     // Mäng ise
