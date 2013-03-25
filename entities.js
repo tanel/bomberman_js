@@ -1,5 +1,5 @@
 
-// Peategelase ehk mängija nn entity
+// Peategelase ehk mängija nn entity PlayerEntity
 var PlayerEntity = me.ObjectEntity.extend({
  
     init: function(x, y, settings) {
