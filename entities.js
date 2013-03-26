@@ -16,12 +16,12 @@ var PlayerEntity = me.ObjectEntity.extend({
  
     update: function() {
  
-        if (me.input.isKeyPressed('a')) {
+        if (me.input.isKeyPressed('left')) {
             // flip the sprite on horizontal axis
             this.flipX(true);
             // update the entity velocity
             this.vel.x -= this.accel.x * me.timer.tick;
-        } else if (me.input.isKeyPressed('d')) {
+        } else if (me.input.isKeyPressed('right')) {
             // unflip the sprite
             this.flipX(false);
             // update the entity velocity
@@ -30,12 +30,12 @@ var PlayerEntity = me.ObjectEntity.extend({
             this.vel.x = 0;
         }
 
-        if (me.input.isKeyPressed('w')) {
+        if (me.input.isKeyPressed('up')) {
             // flip the sprite on horizontal axis
             this.flipY(true);
             // update the entity velocity
             this.vel.y -= this.accel.y * me.timer.tick;
-        } else if (me.input.isKeyPressed('s')) {
+        } else if (me.input.isKeyPressed('down')) {
             // unflip the sprite
             this.flipY(false);
             // update the entity velocity
