@@ -73,8 +73,9 @@
             me.state.set(me.state.PLAY, new window.bomberman.playScreen());
             me.state.set(me.state.SCORE, new window.bomberman.playScreen());
 
-            // add our player entity in the entity pool
+            // Lisame entity pooli playeri ja vaenlase
             me.entityPool.add("mainPlayer", PlayerEntity);
+            me.entityPool.add("enemyentity", EnemyEntity);
 
             // Nullime default gravitatsiooni
             me.sys.gravity = 0;
