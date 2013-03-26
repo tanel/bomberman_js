@@ -14,7 +14,7 @@ var PlayerEntity = me.ObjectEntity.extend({
         this.maxVel.y = 2;
 
         // eemaldame whitespace'i playeri tile'i ümbert
-        this.updateColRect(8, 20, 10, 22);
+        this.updateColRect(8, 20, 10, 18);
  
         // set the display to follow our position on both axis
         me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
