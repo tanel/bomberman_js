@@ -27,6 +27,10 @@
         name: "gripe_run_right",
         type: "image",
         src: "data/sprite/gripe_run_right.png"
+    }, {
+        name: "wheelie_right",
+        type: "image",
+        src: "data/sprite/wheelie_right.png"
     }];
 
     // Mäng ise
