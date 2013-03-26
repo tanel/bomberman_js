@@ -9,6 +9,10 @@ var PlayerEntity = me.ObjectEntity.extend({
         // set the default horizontal & vertical speed (accel vector)
         this.setVelocity(1, 1);
 	
+	// alternatiiv tiledis defineerimisele.
+	settings.image = "gripe_run_right";
+        settings.spritewidth = 32;
+	
 	// maksimumkiirus
 	this.maxVel.x = 2;
 	this.maxVel.y = 2;
