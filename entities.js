@@ -9,13 +9,12 @@ var PlayerEntity = me.ObjectEntity.extend({
         // set the default horizontal & vertical speed (accel vector)
         this.setVelocity(1, 1);
 	
-	// alternatiiv tiledis defineerimisele.
-	settings.image = "gripe_run_right";
-        settings.spritewidth = 32;
-	
-	// maksimumkiirus
-	this.maxVel.x = 2;
-	this.maxVel.y = 2;
+        // maksimumkiirus
+        this.maxVel.x = 2;
+        this.maxVel.y = 2;
+
+        // eemaldame whitespace'i playeri tile'i ümbert
+        this.updateColRect(8, 20, 10, 22);
  
         // set the display to follow our position on both axis
         me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
