@@ -14,6 +14,10 @@
         type: "image",
         src: "data/level1_tileset.png"
     }, {
+        name: "metatiles32x32", // NB! oluline, et oleks sama nimega, mis TMX failis
+        type: "image",
+        src: "data/metatiles32x32.png"
+    }, {
         name: "level1",
         type: "tmx",
         src: "data/level1.tmx"
