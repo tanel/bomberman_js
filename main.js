@@ -65,6 +65,9 @@
 
             // add our player entity in the entity pool
             me.entityPool.add("mainPlayer", PlayerEntity);
+	    
+	    // Nullime default gravitatsiooni
+	    me.sys.gravity=0;
 
             // enable the keyboard
             me.input.bindKey(me.input.KEY.LEFT, "left");
