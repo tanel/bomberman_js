@@ -8,6 +8,10 @@ var PlayerEntity = me.ObjectEntity.extend({
  
         // set the default horizontal & vertical speed (accel vector)
         this.setVelocity(1, 1);
+	
+	// maksimumkiirus
+	this.maxVel.x = 2;
+	this.maxVel.y = 2;
  
         // set the display to follow our position on both axis
         me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
