@@ -54,6 +54,11 @@ var PlayerEntity = me.ObjectEntity.extend({
         } else {
             this.vel.y = 0;
         }
+        
+        if (me.input.isKeyPressed('setbomb')) {
+	   var bomb = me.entityPool.newInstanceOf("bombentity", x, y); 
+	}
+     
  
         // check & update player movement
         this.updateMovement();
@@ -165,3 +170,14 @@ var EnemyEntity = me.ObjectEntity.extend({
         return false;
     }
 });
+var bombentity = me.ObjectEntity.extend({
+    init: function(x, y) {
+        // define this here instead of tiled
+        settings.image = "valipilt";
+        settings.spritewidth = 64;
+
+        // call the parent constructor
+        this.parent(x, y);
+    }
+});
+	
