@@ -56,7 +56,7 @@ var PlayerEntity = me.ObjectEntity.extend({
         }
         
         if (me.input.isKeyPressed('setbomb')) {
-	   var bomb = me.entityPool.newInstanceOf("bombentity", x, y); 
+	   var bomb = me.entityPool.newInstanceOf("bombentity", x, y, settings); 
 	}
      
  
@@ -171,9 +171,9 @@ var EnemyEntity = me.ObjectEntity.extend({
     }
 });
 var bombentity = me.ObjectEntity.extend({
-    init: function(x, y) {
+    init: function(x, y, settings) {
         // define this here instead of tiled
-        settings.image = "valipilt";
+        settings.image = "gripe_run_right";
         settings.spritewidth = 64;
 
         // call the parent constructor
