@@ -9,6 +9,12 @@ var PlayerEntity = me.ObjectEntity.extend({
         settings.spritewidth = 32;
 
         this.parent(x, y, settings);
+	
+	//Nimi pommide omaja eristamiseks ja highscoreiks tulevikus
+	this.playername = 'mainPlayer'
+	
+	//Pommiraadius
+	this.pbombradius = 2;
  
         // set the default horizontal & vertical speed (accel vector)
         this.setVelocity(1, 1);
@@ -177,7 +183,11 @@ var bombentity = me.ObjectEntity.extend({
         settings.spritewidth = 64;
 
         // call the parent constructor
-        this.parent(x, y);
+        this.parent(x, y, settings);
+	// Pommiomaja (vajalik, highscorei arvutusteks)
+	this.bombowner = this.playername;
+	// mängija pommiplahvatusraadius hetkel kui pomm pandi
+	this.bombradius = this.pbombradius;
     }
 });
 	
