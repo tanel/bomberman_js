@@ -27,6 +27,14 @@
         name: "gripe_run_right",
         type: "image",
         src: "data/sprite/gripe_run_right.png"
+    }, {
+        name: "pomm_mini",
+        type: "image",
+        src: "data/sprite/pomm_mini.png"
+    }, {
+        name: "evil_run_right",
+        type: "image",
+        src: "data/sprite/evil_run_right.png"
     }];
 
     // Mäng ise

@@ -111,7 +111,7 @@ var PlayerEntity = me.ObjectEntity.extend({
 var EnemyEntity = me.ObjectEntity.extend({
     init: function(x, y, settings) {
         // define this here instead of tiled
-        settings.image = "gripe_run_right";
+        settings.image = "evil_run_right";
         settings.spritewidth = 32;
 
         // call the parent constructor
@@ -188,7 +188,7 @@ var BombEntity = me.ObjectEntity.extend({
 
     init: function(x, y, settings) {
         // define this here instead of tiled
-        settings.image = "gripe_run_right";
+        settings.image = "pomm_mini.png";
         settings.spritewidth = 64;
 
         // call the parent constructor
