@@ -186,13 +186,11 @@ var BombEntity = me.ObjectEntity.extend({
         this.visible = true;
 
         // make it collidable
-	this.collidable = false;
-	setTimeout(function(){collision()},2000);
-	function collision() {
-	    this.collidable = true;
-	    console.log('Bomb is now active!');
-        }
-	
+        this.collidable = false;
+        setTimeout(function() {
+            this.collidable = true;
+            console.log('Bomb is now active!');
+        }, 2000);
     }
 });
 	
