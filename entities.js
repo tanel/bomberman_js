@@ -62,8 +62,9 @@ var PlayerEntity = me.ObjectEntity.extend({
         }
         
         if (me.input.isKeyPressed('setBomb')) {
-            console.log('A bomb set');
-            var bomb = me.entityPool.newInstanceOf("BombEntity", this.pos.x, this.pos.y, {});
+            var bomb = new BombEntity(this.pos.x, this.pos.y, {});
+            me.game.add(bomb, 1000);
+            me.game.sort(); // ensure the object is properly displayed, vt http://www.melonjs.org/docs/symbols/me.game.html#add
         }
  
         // check & update player movement
@@ -193,8 +194,6 @@ var BombEntity = me.ObjectEntity.extend({
 
         // make it collidable
         this.collidable = false;
-
-        console.dir(this);
     }
 });
 	
