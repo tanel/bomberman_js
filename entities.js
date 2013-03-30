@@ -32,7 +32,7 @@ var PlayerEntity = me.ObjectEntity.extend({
     },
  
     update: function() {
- 
+
         if (me.input.isKeyPressed('left')) {
             // flip the sprite on horizontal axis
             this.flipX(true);
@@ -62,7 +62,7 @@ var PlayerEntity = me.ObjectEntity.extend({
         }
         
         if (me.input.isKeyPressed('setBomb')) {
-            var bomb = new BombEntity(this.pos.x, this.pos.y, {});
+            var bomb = new BombEntity(this.pos.x, this.pos.y, {player: this});
             me.game.add(bomb, 1000);
             me.game.sort(); // ensure the object is properly displayed, vt http://www.melonjs.org/docs/symbols/me.game.html#add
         }
@@ -187,6 +187,11 @@ var BombEntity = me.ObjectEntity.extend({
         settings.image = "pomm_mini";
         settings.spritewidth = 32;
         settings.spriteheight = 32;
+        if (!settings.player) {
+            throw("Must set player with bomb settings!");
+        }
+        this.player = settings.player;
+        this.bombradius = this.player.bombradius;
 
         this.parent(x, y, settings);
 
