@@ -76,6 +76,7 @@
             // Lisame entity pooli playeri ja vaenlase
             me.entityPool.add("mainPlayer", PlayerEntity);
             me.entityPool.add("enemyentity", EnemyEntity);
+            me.entityPool.add("bombEntity", BombEntity);
 
             // Nullime default gravitatsiooni
             me.sys.gravity = 0;
