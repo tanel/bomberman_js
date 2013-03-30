@@ -1,6 +1,12 @@
 
 // Peategelase ehk mängija nn entity PlayerEntity
 var PlayerEntity = me.ObjectEntity.extend({
+
+    // Nimi pommide omaja eristamiseks ja highscoreiks tulevikus
+    name: '',
+
+    // Pommiraadius, ruutudes
+    bombradius: 2,
  
     init: function(x, y, settings) {
         // call the constructor
@@ -10,12 +16,6 @@ var PlayerEntity = me.ObjectEntity.extend({
 
         this.parent(x, y, settings);
 	
-	//Nimi pommide omaja eristamiseks ja highscoreiks tulevikus
-	this.playername = 'mainPlayer'
-	
-	//Pommiraadius
-	this.pbombradius = 2;
- 
         // set the default horizontal & vertical speed (accel vector)
         this.setVelocity(1, 1);
 	
@@ -61,10 +61,10 @@ var PlayerEntity = me.ObjectEntity.extend({
             this.vel.y = 0;
         }
         
-        if (me.input.isKeyPressed('setbomb')) {
-	   var bomb = me.entityPool.newInstanceOf("bombentity", x, y, settings); 
-	}
-     
+        if (me.input.isKeyPressed('setBomb')) {
+            console.log('A bomb set');
+            var bomb = me.entityPool.newInstanceOf("BombEntity", x, y, settings);
+        }
  
         // check & update player movement
         this.updateMovement();
@@ -103,9 +103,7 @@ var PlayerEntity = me.ObjectEntity.extend({
  
 });
 
-/* --------------------------
-an enemy Entity
------------------------- */
+// Vaenlase entityu
 var EnemyEntity = me.ObjectEntity.extend({
     init: function(x, y, settings) {
         // define this here instead of tiled
@@ -176,7 +174,14 @@ var EnemyEntity = me.ObjectEntity.extend({
         return false;
     }
 });
-var bombentity = me.ObjectEntity.extend({
+
+var BombEntity = me.ObjectEntity.extend({
+    // Mängija, kes pommi pani (vajalik, highscorei arvutusteks)
+    player: null,
+
+    // Pommi raadius, muutub, kuna powerupid on mängus. Ühik on ruutudes.
+    bombradius: 0,
+
     init: function(x, y, settings) {
         // define this here instead of tiled
         settings.image = "gripe_run_right";
@@ -184,10 +189,6 @@ var bombentity = me.ObjectEntity.extend({
 
         // call the parent constructor
         this.parent(x, y, settings);
-	// Pommiomaja (vajalik, highscorei arvutusteks)
-	this.bombowner = this.playername;
-	// mängija pommiplahvatusraadius hetkel kui pomm pandi
-	this.bombradius = this.pbombradius;
     }
 });
 	
