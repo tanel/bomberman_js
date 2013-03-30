@@ -191,9 +191,17 @@ var BombEntity = me.ObjectEntity.extend({
         this.parent(x, y, settings);
 
         this.visible = true;
+	// Kui see juba maas on siis ta sõpru ei tea ja pealegi on vaja collisionit :)
+	this.type = me.game.ENEMY_OBJECT;
 
         // make it collidable
-        this.collidable = false;
+	this.collidable = false;
+	setTimeout(function(){collision()},2000);
+	function collision() {
+	    this.collidable = true;
+	    console.log('Bomb is now active!');
+        }
+	
     }
 });
 	
