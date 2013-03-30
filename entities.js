@@ -188,9 +188,9 @@ var BombEntity = me.ObjectEntity.extend({
 
     init: function(x, y, settings) {
         // define this here instead of tiled
-        settings.image = "pomm_mini.png";
+        settings.image = "pomm_mini";
         settings.spritewidth = 32;
-	settings.spriteheight = 32;
+        settings.spriteheight = 32;
 
         // call the parent constructor
         this.parent(x, y, settings);
