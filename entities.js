@@ -187,8 +187,9 @@ var BombEntity = me.ObjectEntity.extend({
 
         // make it collidable
         this.collidable = false;
+        var bomb = this;
         setTimeout(function() {
-            this.collidable = true;
+            bomb.collidable = true;
             console.log('Bomb is now active!');
         }, 2000);
     }
