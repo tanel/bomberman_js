@@ -76,17 +76,10 @@ var PlayerEntity = me.ObjectEntity.extend({
         if (res) {
             // if we collide with an enemy
             if (res.obj.type == me.game.ENEMY_OBJECT) {
-                // check if we jumped on it
-                if ((res.y > 0) && ! this.jumping) {
-                    // bounce (force jump)
-                    this.falling = false;
-                    this.vel.y = -this.maxVel.y * me.timer.tick;
-                    // set the jumping flag
-                    this.jumping = true;
-                } else {
-                    // let's flicker in case we touched an enemy
-                    this.flicker(45);
-                }
+                // Vaenlase puudutamine paneb flickerdama
+                this.flicker(45);
+            } else {
+                // FIXME: powerupi puudumine peaks selle üles korjama ning powerupi sisse lülitama
             }
         }
 
@@ -114,16 +107,14 @@ var EnemyEntity = me.ObjectEntity.extend({
         // call the parent constructor
         this.parent(x, y, settings);
 
-        this.startX = x;
-        this.endX = x + settings.width - settings.spritewidth;
-        // size of sprite
+        console.log(x);
 
         // make him start from the right
-        this.pos.x = x + settings.width - settings.spritewidth;
+        this.pos.x = x;
         this.walkLeft = true;
 
         // walking & jumping speed
-        this.setVelocity(4, 6);
+        this.setVelocity(1, 1);
 
         // make it collidable
         this.collidable = true;
@@ -134,10 +125,7 @@ var EnemyEntity = me.ObjectEntity.extend({
     // call by the engine when colliding with another object
     // obj parameter corresponds to the other object (typically the player) touching this one
     onCollision: function(res, obj) {
-
-        // res.y >0 means touched by something on the bottom
-        // which mean at top position for this one
-        if (this.alive && (res.y > 0) && obj.falling) {
+        if (this.alive) {
             this.flicker(45);
         }
     },
