@@ -63,7 +63,7 @@ var PlayerEntity = me.ObjectEntity.extend({
         
         if (me.input.isKeyPressed('setBomb')) {
             console.log('A bomb set');
-            var bomb = me.entityPool.newInstanceOf("BombEntity", this.vel.x, this.vel.y, {});
+            var bomb = me.entityPool.newInstanceOf("BombEntity", this.pos.x, this.pos.y, {});
         }
  
         // check & update player movement
@@ -128,7 +128,6 @@ var EnemyEntity = me.ObjectEntity.extend({
         this.collidable = true;
         // make it a enemy object
         this.type = me.game.ENEMY_OBJECT;
-
     },
 
     // call by the engine when colliding with another object
@@ -188,8 +187,14 @@ var BombEntity = me.ObjectEntity.extend({
         settings.spritewidth = 32;
         settings.spriteheight = 32;
 
-        // call the parent constructor
         this.parent(x, y, settings);
+
+        this.visible = true;
+
+        // make it collidable
+        this.collidable = false;
+
+        console.dir(this);
     }
 });
 	
