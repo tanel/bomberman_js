@@ -63,11 +63,7 @@ var PlayerEntity = me.ObjectEntity.extend({
         
         if (me.input.isKeyPressed('setBomb')) {
             console.log('A bomb set');
-            // FIXME: kust need x ja y tulevad?
-            var x = 1,
-            y = 1,
-            settings = {};
-            var bomb = me.entityPool.newInstanceOf("BombEntity", x, y, settings);
+            var bomb = me.entityPool.newInstanceOf("BombEntity", this.vel.x, this.vel.y, {});
         }
  
         // check & update player movement
