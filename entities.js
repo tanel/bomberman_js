@@ -1,4 +1,7 @@
 
+// Max lubatud pommide arv kaardil
+var MaxAllowedBombs = 3;
+
 // Peategelase ehk mängija nn entity PlayerEntity
 var PlayerEntity = me.ObjectEntity.extend({
 
@@ -7,6 +10,9 @@ var PlayerEntity = me.ObjectEntity.extend({
 
     // Pommiraadius, ruutudes
     bombradius: 2,
+
+    // Aktiivsete pommide arv kaardil
+    bombs: 0,
  
     init: function(x, y, settings) {
         // call the constructor
@@ -18,11 +24,6 @@ var PlayerEntity = me.ObjectEntity.extend({
 	
         // set the default horizontal & vertical speed (accel vector)
         this.setVelocity(1, 1);
-	
-	// Pommidearv
-        this.nrofbombs = 3;
-        // Pommidearv kaardil
-        this.bombsonmap = 0;
 	
         // maksimumkiirus
         this.maxVel.x = 2;
@@ -66,11 +67,13 @@ var PlayerEntity = me.ObjectEntity.extend({
             this.vel.y = 0;
         }
         
-        if (me.input.isKeyPressed('setBomb') && this.bombsonmap < this.nrofbombs) {
-            this.nrofbombs = this.nrofboms++;
-	    var bomb = new BombEntity(this.pos.x, this.pos.y, {player: this});
-            me.game.add(bomb, 1000);
-            me.game.sort(); // ensure the object is properly displayed, vt http://www.melonjs.org/docs/symbols/me.game.html#add
+        if (me.input.isKeyPressed('setBomb')) {
+            if (this.bombs < MaxAllowedBombs) {
+                this.bombs = this.bombs + 1;
+                var bomb = new BombEntity(this.pos.x, this.pos.y, {player: this});
+                me.game.add(bomb, 1000);
+                me.game.sort(); // ensure the object is properly displayed, vt http://www.melonjs.org/docs/symbols/me.game.html#add
+            }
         }
  
         // check & update player movement
