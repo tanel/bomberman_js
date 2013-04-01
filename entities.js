@@ -1,7 +1,3 @@
-
-// Max lubatud pommide arv kaardil
-var MaxAllowedBombs = 3;
-
 // Peategelase ehk mängija nn entity PlayerEntity
 var PlayerEntity = me.ObjectEntity.extend({
 
@@ -13,6 +9,9 @@ var PlayerEntity = me.ObjectEntity.extend({
 
     // Aktiivsete pommide arv kaardil
     bombs: 0,
+    
+    // Max lubatud pommide arv kaardil
+    MaxAllowedBombs: 3,
  
     init: function(x, y, settings) {
         // call the constructor
@@ -68,7 +67,7 @@ var PlayerEntity = me.ObjectEntity.extend({
         }
         
         if (me.input.isKeyPressed('setBomb')) {
-            if (this.bombs < MaxAllowedBombs) {
+            if (this.bombs < this.MaxAllowedBombs) {
                 this.bombs = this.bombs + 1;
                 var bomb = new BombEntity(this.pos.x, this.pos.y, {player: this});
                 me.game.add(bomb, 1000);
