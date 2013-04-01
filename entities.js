@@ -133,6 +133,15 @@ var EnemyEntity = me.ObjectEntity.extend({
     onCollision: function(res, obj) {
         if (this.alive) {
             this.flicker(45);
+            
+                if (this.dir == 0)
+	   	{
+		    this.dir = 1;
+		}
+	 	else
+		{
+		    this.dir = 0;
+	   	}
         }
     },
 
@@ -149,8 +158,17 @@ var EnemyEntity = me.ObjectEntity.extend({
                 this.walkLeft = true;
             }
             // make it walk
-            this.flipX(this.walkLeft);
-            this.vel.x += (this.walkLeft) ? -this.accel.x * me.timer.tick : this.accel.x * me.timer.tick;
+            
+	    if ( this.dir == 0 )
+	    {
+		this.flipX(this.walkLeft);
+		this.vel.x += (this.walkLeft) ? -this.accel.x * me.timer.tick : this.accel.x * me.timer.tick;
+	    }
+	    else
+	    {
+		this.flipX(0);
+		this.vel.x += (this.walkLeft) ? this.accel.x * me.timer.tick : this.accel.x * me.timer.tick;
+	    }
 
         } else {
             this.vel.x = 0;
