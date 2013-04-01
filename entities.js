@@ -116,8 +116,6 @@ var EnemyEntity = me.ObjectEntity.extend({
         // call the parent constructor
         this.parent(x, y, settings);
 
-        console.log(x);
-
         // make him start from the right
         this.pos.x = x;
         this.walkLeft = true;
@@ -179,6 +177,9 @@ var BombEntity = me.ObjectEntity.extend({
     // Pommi raadius, muutub, kuna powerupid on mängus. Ühik on ruutudes.
     bombradius: 0,
 
+    // Millal pomm plahvatab
+    explodeAt: 0,
+
     init: function(x, y, settings) {
         // define this here instead of tiled
         settings.image = "pomm_mini";
@@ -190,17 +191,27 @@ var BombEntity = me.ObjectEntity.extend({
         this.player = settings.player;
         this.bombradius = this.player.bombradius;
 
-        this.parent(x, y, settings);
-
         this.visible = true;
 
-        // make it collidable
-        this.collidable = false;
-        var bomb = this;
-        setTimeout(function() {
-            bomb.collidable = true;
-            console.log('Bomb is now active!');
-        }, 2000);
+        // Paneme pommi 2 sek pärast plahvatama
+        this.explodeAt = me.timer.getTime() + 2 * 1000;
+
+        this.parent(x, y, settings);
+    },
+
+    update: function() {
+        // do nothing if not visible
+        if (! this.visible)
+            return false;
+
+        if (this.explodeAt < me.timer.getTime()) {
+            console.log('kabuumm!');
+            this.visible = false;
+            this.parent();
+            return true;
+        }
+
+        return false;
     }
 });
 	
