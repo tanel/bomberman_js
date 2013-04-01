@@ -7,6 +7,11 @@ var PlayerEntity = me.ObjectEntity.extend({
 
     // Pommiraadius, ruutudes
     bombradius: 2,
+    
+    // Pommidearv
+    nrofbombs: 3,
+    // Pommidearv kaardil
+    bombsonmap: 0,
  
     init: function(x, y, settings) {
         // call the constructor
@@ -61,8 +66,9 @@ var PlayerEntity = me.ObjectEntity.extend({
             this.vel.y = 0;
         }
         
-        if (me.input.isKeyPressed('setBomb')) {
-            var bomb = new BombEntity(this.pos.x, this.pos.y, {player: this});
+        if (me.input.isKeyPressed('setBomb') && bombsonmap != nrofbombs) {
+            nrofbombs = nrofboms++;
+	    var bomb = new BombEntity(this.pos.x, this.pos.y, {player: this});
             me.game.add(bomb, 1000);
             me.game.sort(); // ensure the object is properly displayed, vt http://www.melonjs.org/docs/symbols/me.game.html#add
         }
