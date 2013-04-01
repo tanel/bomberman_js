@@ -11,7 +11,7 @@ var PlayerEntity = me.ObjectEntity.extend({
     bombs: 0,
     
     // Max lubatud pommide arv kaardil
-    MaxAllowedBombs: 3,
+    maxAllowedBombs: 3,
  
     init: function(x, y, settings) {
         // call the constructor
@@ -67,7 +67,7 @@ var PlayerEntity = me.ObjectEntity.extend({
         }
         
         if (me.input.isKeyPressed('setBomb')) {
-            if (this.bombs < this.MaxAllowedBombs) {
+            if (this.bombs < this.maxAllowedBombs) {
                 this.bombs = this.bombs + 1;
                 var bomb = new BombEntity(this.pos.x, this.pos.y, {player: this});
                 me.game.add(bomb, 1000);
@@ -214,7 +214,7 @@ var BombEntity = me.ObjectEntity.extend({
             return false;
 
         if (this.explodeAt < me.timer.getTime()) {
-            console.log('kabuumm!');
+            me.game.remove(this);
             this.visible = false;
             this.parent();
             return true;
