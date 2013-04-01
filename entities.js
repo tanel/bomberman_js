@@ -77,6 +77,19 @@ var PlayerEntity = me.ObjectEntity.extend({
  
         // check & update player movement
         this.updateMovement();
+        
+        // if enemy collides with wall, it starts moving in other direction
+        if (this.vel.x == 0)
+	{
+            if (this.dir == 0)
+            {
+	        this.dir = 1;
+	    }
+	    else
+	    {
+    	        this.dir = 0;
+	    }
+	}
 
         // check for collision
         var res = me.game.collide(this);
