@@ -228,7 +228,6 @@ var BombEntity = me.ObjectEntity.extend({
 
         if (this.explodeAt < me.timer.getTime()) {
             me.game.remove(this);
-            this.visible = false;
             this.parent();
             return true;
         }
