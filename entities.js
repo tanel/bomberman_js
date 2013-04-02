@@ -170,17 +170,14 @@ var EnemyEntity = me.ObjectEntity.extend({
         this.updateMovement();
         
         // if enemy collides with wall, it starts moving in other direction
-        if (this.vel.x === 0) // X-telje kontroll
-	{
-            if (this.dir === 0)
-            {
-	        this.dir = 1; // Muudetakse vastase liikumise suunda
-	    }
-	    else
-	    {
-    	        this.dir = 0;
-	    }
-	}
+        // X-telje kontroll
+        if (this.vel.x === 0) {
+            if (this.dir === 0) {
+                this.dir = 1; // Muudetakse vastase liikumise suunda
+            } else {
+                this.dir = 0;
+            }
+        }
 
         // update animation if necessary
         if (this.vel.x !== 0 || this.vel.y !== 0) {
@@ -193,6 +190,7 @@ var EnemyEntity = me.ObjectEntity.extend({
 });
 
 var BombEntity = me.ObjectEntity.extend({
+
     // Mängija, kes pommi pani (vajalik, highscorei arvutusteks)
     player: null,
 
