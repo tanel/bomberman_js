@@ -227,6 +227,7 @@ var BombEntity = me.ObjectEntity.extend({
             return false;
 
         if (this.explodeAt < me.timer.getTime()) {
+	    this.player.bombs = this.player.bombs - 1;
             me.game.remove(this);
             this.parent();
             return true;
