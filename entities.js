@@ -170,11 +170,11 @@ var EnemyEntity = me.ObjectEntity.extend({
         this.updateMovement();
         
         // if enemy collides with wall, it starts moving in other direction
-        if (this.vel.x === 0)
+        if (this.vel.x === 0) // X-telje kontroll
 	{
             if (this.dir === 0)
             {
-	        this.dir = 1;
+	        this.dir = 1; // Muudetakse vastase liikumise suunda
 	    }
 	    else
 	    {
