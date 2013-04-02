@@ -77,26 +77,13 @@ var PlayerEntity = me.ObjectEntity.extend({
  
         // check & update player movement
         this.updateMovement();
-        
-        // if enemy collides with wall, it starts moving in other direction
-        if (this.vel.x == 0)
-	{
-            if (this.dir == 0)
-            {
-	        this.dir = 1;
-	    }
-	    else
-	    {
-    	        this.dir = 0;
-	    }
-	}
 
         // check for collision
         var res = me.game.collide(this);
 
         if (res) {
             // if we collide with an enemy
-            if (res.obj.type == me.game.ENEMY_OBJECT) {
+            if (res.obj.type === me.game.ENEMY_OBJECT) {
                 // Vaenlase puudutamine paneb flickerdama
                 this.flicker(45);
             } else {
@@ -181,6 +168,19 @@ var EnemyEntity = me.ObjectEntity.extend({
 
         // check and update movement
         this.updateMovement();
+        
+        // if enemy collides with wall, it starts moving in other direction
+        if (this.vel.x === 0)
+	{
+            if (this.dir === 0)
+            {
+	        this.dir = 1;
+	    }
+	    else
+	    {
+    	        this.dir = 0;
+	    }
+	}
 
         // update animation if necessary
         if (this.vel.x !== 0 || this.vel.y !== 0) {
