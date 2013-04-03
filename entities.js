@@ -231,7 +231,6 @@ var BombEntity = me.ObjectEntity.extend({
         this.player = settings.player;
         this.bombradius = this.player.bombradius;
         this.visible = true;
-	this.alive = false;
 
         // Paneme pommi n sek pärast plahvatama
         this.explodeAt = me.timer.getTime() + 5 * 1000;
