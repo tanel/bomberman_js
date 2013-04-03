@@ -162,7 +162,7 @@ var EnemyEntity = me.ObjectEntity.extend({
             } else if (this.dir === 1  &&  this.vel.y === 0) {
                 this.flipX(0);
                 this.vel.x += (this.walkLeft) ? this.accel.x * me.timer.tick : this.accel.x * me.timer.tick;
-			} else if (this.dir === 2) {
+            } else if (this.dir === 2) {
                 this.vel.y += (this.walkLeft) ? this.accel.y * me.timer.tick : this.accel.y * me.timer.tick; // alla
             } else if (this.dir === 3) {
                 this.vel.y += (this.walkLeft) ? -this.accel.y * me.timer.tick : this.accel.y * me.timer.tick; // yles
@@ -178,7 +178,7 @@ var EnemyEntity = me.ObjectEntity.extend({
         // X-telje ja Y-telje kontrollid
         if (this.vel.x === 0  &&  this.vel.y === 0) {
 
-            if (this.dir === 0) {
+            if (this.dir === 0  ||  this.dir === 1) {
                 this.dir =  Math.floor(Math.random() * 3) + 1; // Muudetakse vastase liikumise suunda
             } else {
                 this.dir = 0;
