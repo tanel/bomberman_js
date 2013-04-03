@@ -139,6 +139,8 @@ var EnemyEntity = me.ObjectEntity.extend({
     onCollision: function(res, obj) {
         if (this.alive) {
             this.flicker(45);
+	    this.setOpacity(0.5);
+	    this.setVelocity(2,2);
             if (this.dir === 0) {
                 this.dir = 1;
             } else {
@@ -218,7 +220,6 @@ var BombEntity = me.ObjectEntity.extend({
         settings.spriteheight = 32;
         settings.type = me.game.ACTION_OBJECT;
         settings.collidable = true;
-
         // this.parent() kutsub päritud init() funktsiooni 
         // välja, ning tolle sees võetakse mitmed väärtused
         // just settings objektilt. vt melonJS lähtekoodi.
