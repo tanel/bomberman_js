@@ -144,7 +144,7 @@ var EnemyEntity = me.ObjectEntity.extend({
             } else {
                 this.dir = 0;
             }
-        }
+        } 
     },
 
     // manage the enemy movement
@@ -231,6 +231,7 @@ var BombEntity = me.ObjectEntity.extend({
         this.player = settings.player;
         this.bombradius = this.player.bombradius;
         this.visible = true;
+	this.alive = false;
 
         // Paneme pommi n sek pärast plahvatama
         this.explodeAt = me.timer.getTime() + 5 * 1000;
@@ -242,6 +243,8 @@ var BombEntity = me.ObjectEntity.extend({
         // do nothing if not visible
         if (! this.visible)
             return false;
+
+	var res = me.game.collide(this); // Et ka pommil checkiks collisionit
 
         if (this.explodeAt < me.timer.getTime()) {
             this.player.bombs = this.player.bombs - 1;
