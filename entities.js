@@ -86,6 +86,9 @@ var PlayerEntity = me.ObjectEntity.extend({
             if (res.obj.type === me.game.ENEMY_OBJECT) {
                 // Vaenlase puudutamine paneb flickerdama
                 this.flicker(45);
+	    }
+	    else if (res.obj.type === me.game.BOMB) {
+	      this.flicker(45);
             } else {
                 // FIXME: powerupi puudumine peaks selle üles korjama ning powerupi sisse lülitama
             }
@@ -209,9 +212,14 @@ var BombEntity = me.ObjectEntity.extend({
             throw("Must set player with bomb settings!");
         }
         this.player = settings.player;
+	
         this.bombradius = this.player.bombradius;
+	
+	this.type = me.game.BOMB;
 
         this.visible = true;
+	
+	this.collidable = true;
 
         // Paneme pommi 2 sek pärast plahvatama
         this.explodeAt = me.timer.getTime() + 2 * 1000;
