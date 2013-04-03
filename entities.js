@@ -43,6 +43,7 @@ var PlayerEntity = me.ObjectEntity.extend({
             this.flipX(true);
             // update the entity velocity
             this.vel.x -= this.accel.x * me.timer.tick;
+			//this.vel.y -= this.accel.y * me.timer.tick;
         } else if (me.input.isKeyPressed('right')) {
             // unflip the sprite
             this.flipX(false);
@@ -155,12 +156,16 @@ var EnemyEntity = me.ObjectEntity.extend({
             }
             
             // make it walk
-            if (this.dir === 0) {
+            if (this.dir === 0  &&  this.vel.y === 0) {
                 this.flipX(this.walkLeft);
                 this.vel.x += (this.walkLeft) ? -this.accel.x * me.timer.tick : this.accel.x * me.timer.tick;
-            } else {
+            } else if (this.dir === 1  &&  this.vel.y === 0) {
                 this.flipX(0);
                 this.vel.x += (this.walkLeft) ? this.accel.x * me.timer.tick : this.accel.x * me.timer.tick;
+			} else if (this.dir === 2) {
+                this.vel.y += (this.walkLeft) ? this.accel.y * me.timer.tick : this.accel.y * me.timer.tick; // alla
+            } else if (this.dir === 3) {
+                this.vel.y += (this.walkLeft) ? -this.accel.y * me.timer.tick : this.accel.y * me.timer.tick; // yles
             }
         } else {
             this.vel.x = 0;
@@ -170,10 +175,11 @@ var EnemyEntity = me.ObjectEntity.extend({
         this.updateMovement();
         
         // if enemy collides with wall, it starts moving in other direction
-        // X-telje kontroll
-        if (this.vel.x === 0) {
+        // X-telje ja Y-telje kontrollid
+        if (this.vel.x === 0  &&  this.vel.y === 0) {
+
             if (this.dir === 0) {
-                this.dir = 1; // Muudetakse vastase liikumise suunda
+                this.dir =  Math.floor(Math.random() * 3) + 1; // Muudetakse vastase liikumise suunda
             } else {
                 this.dir = 0;
             }
