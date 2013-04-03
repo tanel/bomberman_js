@@ -85,11 +85,14 @@ var PlayerEntity = me.ObjectEntity.extend({
         if (res) {
             // if we collide with an enemy
             if (res.obj.type === me.game.ENEMY_OBJECT) {
+                console.log('collision with enemy');
                 // Vaenlase puudutamine paneb flickerdama
                 this.flicker(45);
-            } else if (res.obj.type === me.game.BOMB) {
+            } else if (res.obj.type === me.game.ACTION_OBJECT) {
+                console.log('collision with action object');
                 this.flicker(45);
             } else {
+                console.log('collision with unknown object :)');
                 // FIXME: powerupi puudumine peaks selle üles korjama ning powerupi sisse lülitama
             }
         }
@@ -179,9 +182,9 @@ var EnemyEntity = me.ObjectEntity.extend({
         // if enemy collides with wall, it starts moving in other direction
         // X-telje ja Y-telje kontrollid
         if (this.vel.x === 0  &&  this.vel.y === 0) {
-
             if (this.dir === 0  ||  this.dir === 1) {
-                this.dir =  Math.floor(Math.random() * 3) + 1; // Muudetakse vastase liikumise suunda
+                // Muudetakse vastase liikumise suunda
+                this.dir =  Math.floor(Math.random() * 3) + 1;
             } else {
                 this.dir = 0;
             }
@@ -213,23 +216,26 @@ var BombEntity = me.ObjectEntity.extend({
         settings.image = "pomm_mini";
         settings.spritewidth = 32;
         settings.spriteheight = 32;
+        settings.type = me.game.ACTION_OBJECT;
+        settings.collidable = true;
+
+        // this.parent() kutsub päritud init() funktsiooni 
+        // välja, ning tolle sees võetakse mitmed väärtused
+        // just settings objektilt. vt melonJS lähtekoodi.
+        this.parent(x, y, settings);
+
         if (!settings.player) {
             throw("Must set player with bomb settings!");
         }
+        
         this.player = settings.player;
-	
         this.bombradius = this.player.bombradius;
-	
-	this.type = me.game.BOMB;
-
         this.visible = true;
-	
-	this.collidable = true;
 
-        // Paneme pommi 2 sek pärast plahvatama
-        this.explodeAt = me.timer.getTime() + 2 * 1000;
+        // Paneme pommi n sek pärast plahvatama
+        this.explodeAt = me.timer.getTime() + 5 * 1000;
 
-        this.parent(x, y, settings);
+        console.log(this.type);
     },
 
     update: function() {
