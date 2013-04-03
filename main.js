@@ -70,8 +70,10 @@
         // Kui mäng on laetud, käivitab loader siinse funktsiooni,
         // sest omistasime selle eelnevalt me.loader.onload'ile:
         loaded: function () {
-	    // Ultracool üleminek mängu
-	    me.state.transition("fade","#000000", 200);
+
+            // Ultracool üleminek mängu
+            me.state.transition("fade","#000000", 200);
+
             // Teeb framecounteri nähtavaks kui JS on enabled.
             framecounter.setAttribute('style', 'visibility: visible');
 
