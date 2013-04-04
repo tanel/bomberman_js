@@ -14,10 +14,10 @@ var PlayerEntity = me.ObjectEntity.extend({
     maxAllowedBombs: 3,
     
     // Elud
-    lives: 3;
+    lives: 3,
     
     // Score
-    score: 0;
+    score: 0,
  
     init: function(x, y, settings) {
         // call the constructor
