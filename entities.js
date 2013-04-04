@@ -154,6 +154,8 @@ var EnemyEntity = me.ObjectEntity.extend({
         // do nothing if not visible
         if (!this.visible)
             return false;
+	
+	var res = me.game.collide(this); // Et ka enemy checkiks collisionit
 
         if (this.alive) {
             if (this.walkLeft && this.pos.x <= this.startX) {
@@ -243,8 +245,6 @@ var BombEntity = me.ObjectEntity.extend({
         // do nothing if not visible
         if (! this.visible)
             return false;
-
-	var res = me.game.collide(this); // Et ka pommil checkiks collisionit
 
         if (this.explodeAt < me.timer.getTime()) {
             this.player.bombs = this.player.bombs - 1;
