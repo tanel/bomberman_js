@@ -160,8 +160,6 @@ var EnemyEntity = me.ObjectEntity.extend({
         // do nothing if not visible
         if (!this.visible)
             return false;
-	
-	var res = me.game.collide(this); // Et ka enemy checkiks collisionit
 
         if (this.alive) {
             if (this.walkLeft && this.pos.x <= this.startX) {
@@ -188,6 +186,8 @@ var EnemyEntity = me.ObjectEntity.extend({
 
         // check and update movement
         this.updateMovement();
+	
+	var res = me.game.collide(this); // Et ka enemy checkiks collisionit
         
         // if enemy collides with wall, it starts moving in other direction
         // X-telje ja Y-telje kontrollid
