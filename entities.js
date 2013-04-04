@@ -12,6 +12,12 @@ var PlayerEntity = me.ObjectEntity.extend({
     
     // Max lubatud pommide arv kaardil
     maxAllowedBombs: 3,
+    
+    // Elud
+    lives: 3;
+    
+    // Score
+    score: 0;
  
     init: function(x, y, settings) {
         // call the constructor
