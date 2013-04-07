@@ -32,6 +32,10 @@
         type: "image",
         src: "data/sprite/pomm_mini.png"
     }, {
+        name: "boom",
+        type: "image",
+        src: "data/sprite/prim_plahvatus.png" // Ajutine, teise plahvatuse pildiga on komplikatsioone
+    }, {
         name: "evil_run_right",
         type: "image",
         src: "data/sprite/evil_run_right.png"

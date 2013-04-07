@@ -254,6 +254,9 @@ var BombEntity = me.ObjectEntity.extend({
 
         if (this.explodeAt < me.timer.getTime()) {
             this.player.bombs = this.player.bombs - 1;
+	    var boom = new Explosion(this.pos.x, this.pos.y, {player: this});
+	    me.game.add(boom, 1000);
+	    me.game.sort();
             me.game.remove(this);
             this.parent();
             return true;
@@ -262,4 +265,22 @@ var BombEntity = me.ObjectEntity.extend({
         return false;
     }
 });
-	
+var Explosion = me.ObjectEntity.extend({
+    init: function(x, y, settings) {
+        settings.image = "boom";
+        settings.spritewidth = 32;
+        settings.spriteheight = 32;
+        settings.type = me.game.ACTION_OBJECT;
+	this.parent(x, y, settings);
+	this.player = settings.player;
+        this.bombradius = this.player.bombradius;
+	// Kustutame selle n seki pärast
+	this.explodeAt = me.timer.getTime() + 2 * 1000;
+    },
+    update: function() {
+	if (this.explodeAt < me.timer.getTime()) {
+	    me.game.remove(this);
+	    return true;
+	}
+    }
+});
