@@ -5,6 +5,7 @@ var Explosion = me.ObjectEntity.extend({
         settings.spritewidth = 32;
         settings.spriteheight = 32;
         settings.type = me.game.ACTION_OBJECT;
+        settings.collidable = true;
         this.parent(x, y, settings);
 
         this.bomb = settings.bomb;
@@ -14,6 +15,13 @@ var Explosion = me.ObjectEntity.extend({
     },
     
     update: function() {
+        // Otsime entiteete, mis jäävad plahvatuse alasse.
+        // Leitud entiteedid võib nö sodiks lasta.
+        var mres = me.game.collide(this, true);
+        if (mres && mres.length > 0) {
+            console.dir(mres);
+        }
+
         if (this.explodeAt < me.timer.getTime()) {
             me.game.remove(this);
             return true;

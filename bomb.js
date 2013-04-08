@@ -17,7 +17,6 @@ var BombEntity = me.ObjectEntity.extend({
         settings.spritewidth = 32;
         settings.spriteheight = 32;
         settings.type = me.game.ACTION_OBJECT;
-        settings.collidable = true;
         // this.parent() kutsub päritud init() funktsiooni 
         // välja, ning tolle sees võetakse mitmed väärtused
         // just settings objektilt. vt melonJS lähtekoodi.
