@@ -145,13 +145,13 @@ var EnemyEntity = me.ObjectEntity.extend({
     onCollision: function(res, obj) {
 
         if (obj.type === me.game.ACTION_OBJECT) {
-			this.flicker(45); // Kui vastane p6rkub pommi objectiga
-	    }
+            this.flicker(45); // Kui vastane p6rkub pommi objectiga
+        }
 
         if (this.alive) {
             //this.flicker(45);
-			//this.setOpacity(0.5);
-			//this.setVelocity(2,2);
+            //this.setOpacity(0.5);
+            //this.setVelocity(2,2);
 
             if (this.dir === 0) {
                 this.dir = 1;
@@ -217,7 +217,7 @@ var EnemyEntity = me.ObjectEntity.extend({
 
 var BombEntity = me.ObjectEntity.extend({
 
-	// Nimi
+    // Nimi
     name: "bomb",
     
     // Mängija, kes pommi pani (vajalik, highscorei arvutusteks)
@@ -231,8 +231,8 @@ var BombEntity = me.ObjectEntity.extend({
 
     init: function(x, y, settings) {
         // define this here instead of tiled
-		settings.name = "bomb";
-		settings.image = "pomm_mini";
+        settings.name = "bomb";
+        settings.image = "pomm_mini";
         settings.spritewidth = 32;
         settings.spriteheight = 32;
         settings.type = me.game.ACTION_OBJECT;
@@ -260,10 +260,10 @@ var BombEntity = me.ObjectEntity.extend({
     // obj parameter corresponds to the other object (typically the player) touching this one
     onCollision: function(res, obj) {
         if (this.alive) {
-        	//this.flicker(45);
-        	//this.setOpacity(0.5);
-        	//this.setVelocity(2,2);
-        	
+            //this.flicker(45);
+            //this.setOpacity(0.5);
+            //this.setVelocity(2,2);
+	    
             if (this.dir === 0) {
                 this.dir = 1;
             } else {
@@ -275,10 +275,10 @@ var BombEntity = me.ObjectEntity.extend({
     update: function() {
         // do nothing if not visible
 
-    	var res2 = me.game.collide(this);
-    	
-		if (res2) {
-			this.flicker(45);
+        var res2 = me.game.collide(this);
+        
+        if (res2) {
+            this.flicker(45);
             // if we collide with the bomb
             if (res2.obj.type === me.game.ENEMY_OBJECT) {
                 console.log('collision with enemy');
