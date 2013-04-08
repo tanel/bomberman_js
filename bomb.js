@@ -31,7 +31,7 @@ var BombEntity = me.ObjectEntity.extend({
         this.visible = true;
 
         // Paneme pommi n sek pärast plahvatama
-        this.explodeAt = me.timer.getTime() + 5 * 1000;
+        this.explodeAt = me.timer.getTime() + 2 * 1000;
     },
     
     update: function() {
