@@ -275,19 +275,18 @@ var BombEntity = me.ObjectEntity.extend({
     update: function() {
         // do nothing if not visible
 
-	    var res2 = me.game.collide(this);
+		var res2 = me.game.collide(this);
 
-        if (res2) {
-	
-		this.flicker(45);
-            // if we collide with an enemy
+		if (res2) {
+			this.flicker(45);
+            // if we collide with the bomb
             if (res2.obj.type === me.game.ENEMY_OBJECT) {
                 console.log('collision with enemy');
-                // Vaenlase puudutamine paneb flickerdama
+                // Pommi puudutamine paneb flickerdama
                 this.flicker(45);
             } else if (res2.obj.type === me.game.ACTION_OBJECT) {
                 console.log('collision with action object');
-                //this.flicker(45); // SEE KOOD TOIMIB
+                //this.flicker(45); // 
             } else {
                 console.log('collision with unknown object :)');
                 // FIXME: powerupi puudumine peaks selle üles korjama ning powerupi sisse lülitama
