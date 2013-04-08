@@ -311,7 +311,7 @@ var Explosion = me.ObjectEntity.extend({
         this.bomb = settings.bomb;
 	
         // Kustutame selle n seki pärast
-        this.explodeAt = me.timer.getTime() + 2 * 1000;
+        this.explodeAt = me.timer.getTime() + 500;
     },
     
     update: function() {
