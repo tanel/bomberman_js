@@ -288,8 +288,8 @@ var BombEntity = me.ObjectEntity.extend({
 
         if (this.explodeAt < me.timer.getTime()) {
             this.player.bombs = this.player.bombs - 1;
-            var boom = new Explosion(this.pos.x, this.pos.y, {player: this});
-            me.game.add(boom, 1000);
+            var explosion = new Explosion(this.pos.x, this.pos.y, {bomb: this});
+            me.game.add(explosion, 1000);
             me.game.sort();
             me.game.remove(this);
             this.parent();
@@ -299,6 +299,7 @@ var BombEntity = me.ObjectEntity.extend({
         return false;
     }
 });
+
 var Explosion = me.ObjectEntity.extend({
     init: function(x, y, settings) {
         settings.image = "boom";
@@ -307,8 +308,7 @@ var Explosion = me.ObjectEntity.extend({
         settings.type = me.game.ACTION_OBJECT;
         this.parent(x, y, settings);
 
-        this.player = settings.player;
-        this.bombradius = this.player.bombradius;
+        this.bomb = settings.bomb;
 	
         // Kustutame selle n seki pärast
         this.explodeAt = me.timer.getTime() + 2 * 1000;
