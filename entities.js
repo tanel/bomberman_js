@@ -87,19 +87,12 @@ var PlayerEntity = me.ObjectEntity.extend({
 
         // check for collision
         var res = me.game.collide(this);
-
         if (res) {
-            // if we collide with an enemy
+            // Vaenlase puudutamine paneb flickerdama
             if (res.obj.type === me.game.ENEMY_OBJECT) {
-                console.log('collision with enemy');
-                // Vaenlase puudutamine paneb flickerdama
                 this.flicker(45);
             } else if (res.obj.type === me.game.ACTION_OBJECT) {
-                console.log('collision with action object');
-                this.flicker(45); // SEE KOOD TOIMIB
-            } else {
-                console.log('collision with unknown object :)');
-                // FIXME: powerupi puudumine peaks selle üles korjama ning powerupi sisse lülitama
+                // FIXME: powerupi puutumine peaks selle üles korjama ning powerupi sisse lülitama
             }
         }
 
@@ -143,16 +136,7 @@ var EnemyEntity = me.ObjectEntity.extend({
     // call by the engine when colliding with another object
     // obj parameter corresponds to the other object (typically the player) touching this one
     onCollision: function(res, obj) {
-
-        if (obj.type === me.game.ACTION_OBJECT) {
-            this.flicker(45); // Kui vastane p6rkub pommi objectiga
-        }
-
         if (this.alive) {
-            //this.flicker(45);
-            //this.setOpacity(0.5);
-            //this.setVelocity(2,2);
-
             if (this.dir === 0) {
                 this.dir = 1;
             } else {
@@ -211,6 +195,7 @@ var EnemyEntity = me.ObjectEntity.extend({
             this.parent();
             return true;
         }
+
         return false;
     }
 });
@@ -252,39 +237,12 @@ var BombEntity = me.ObjectEntity.extend({
 
         // Paneme pommi n sek pärast plahvatama
         this.explodeAt = me.timer.getTime() + 5 * 1000;
-
-        console.log(this.type);
     },
     
-    // call by the engine when colliding with another object
-    // obj parameter corresponds to the other object (typically the player) touching this one
-    onCollision: function(res, obj) {
-        if (this.alive) {
-            if (this.dir === 0) {
-                this.dir = 1;
-            } else {
-                this.dir = 0;
-            }
-        } 
-    },
-
     update: function() {
         // do nothing if not visible
         if (! this.visible)
             return false;
-
-        var res = me.game.collide(this);
-        if (res) {
-            this.flicker(45);
-            if (res.obj.type === me.game.ENEMY_OBJECT) {
-                console.log('collision with enemy');
-                this.flicker(45);
-            } else if (res.obj.type === me.game.ACTION_OBJECT) {
-                console.log('collision with action object');
-            } else {
-                console.log('collision with unknown object :)');
-            }
-        }
 
         if (this.explodeAt < me.timer.getTime()) {
             this.player.bombs = this.player.bombs - 1;
