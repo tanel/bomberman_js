@@ -232,7 +232,7 @@ var BombEntity = me.ObjectEntity.extend({
     init: function(x, y, settings) {
         // define this here instead of tiled
 		settings.name = "bomb";
-        settings.image = "pomm_mini";
+		settings.image = "pomm_mini";
         settings.spritewidth = 32;
         settings.spriteheight = 32;
         settings.type = me.game.ACTION_OBJECT;
@@ -260,10 +260,10 @@ var BombEntity = me.ObjectEntity.extend({
     // obj parameter corresponds to the other object (typically the player) touching this one
     onCollision: function(res, obj) {
         if (this.alive) {
-            //this.flicker(45);
-			//this.setOpacity(0.5);
-			//this.setVelocity(2,2);
-	    
+        	//this.flicker(45);
+        	//this.setOpacity(0.5);
+        	//this.setVelocity(2,2);
+        	
             if (this.dir === 0) {
                 this.dir = 1;
             } else {
@@ -275,8 +275,8 @@ var BombEntity = me.ObjectEntity.extend({
     update: function() {
         // do nothing if not visible
 
-		var res2 = me.game.collide(this);
-
+    	var res2 = me.game.collide(this);
+    	
 		if (res2) {
 			this.flicker(45);
             // if we collide with the bomb
@@ -295,7 +295,7 @@ var BombEntity = me.ObjectEntity.extend({
 	
         if (! this.visible)
             return false;
-
+		
         if (this.explodeAt < me.timer.getTime()) {
             this.player.bombs = this.player.bombs - 1;
 	    var boom = new Explosion(this.pos.x, this.pos.y, {player: this});
