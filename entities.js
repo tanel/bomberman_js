@@ -4,9 +4,6 @@ var PlayerEntity = me.ObjectEntity.extend({
     // Nimi pommide omaja eristamiseks ja highscoreiks tulevikus
     name: '',
 
-    // Pommiraadius, ruutudes
-    bombradius: 2,
-
     // Aktiivsete pommide arv kaardil
     bombs: 0,
     
@@ -208,9 +205,6 @@ var BombEntity = me.ObjectEntity.extend({
     // Mängija, kes pommi pani (vajalik, highscorei arvutusteks)
     player: null,
 
-    // Pommi raadius, muutub, kuna powerupid on mängus. Ühik on ruutudes.
-    bombradius: 0,
-
     // Millal pomm plahvatab
     explodeAt: 0,
 
@@ -232,7 +226,6 @@ var BombEntity = me.ObjectEntity.extend({
         }
         
         this.player = settings.player;
-        this.bombradius = this.player.bombradius;
         this.visible = true;
 
         // Paneme pommi n sek pärast plahvatama
