@@ -96,7 +96,7 @@ var PlayerEntity = me.ObjectEntity.extend({
                 this.flicker(45);
             } else if (res.obj.type === me.game.ACTION_OBJECT) {
                 console.log('collision with action object');
-                this.flicker(45);
+                this.flicker(45); // SEE KOOD TOIMIB
             } else {
                 console.log('collision with unknown object :)');
                 // FIXME: powerupi puudumine peaks selle üles korjama ning powerupi sisse lülitama
@@ -143,10 +143,16 @@ var EnemyEntity = me.ObjectEntity.extend({
     // call by the engine when colliding with another object
     // obj parameter corresponds to the other object (typically the player) touching this one
     onCollision: function(res, obj) {
+
+        if (obj.type === me.game.ACTION_OBJECT) {
+			this.flicker(45); // Kui vastane p6rkub pommi objectiga
+	    }
+
         if (this.alive) {
-            this.flicker(45);
-            this.setOpacity(0.5);
-            this.setVelocity(2,2);
+            //this.flicker(45);
+			//this.setOpacity(0.5);
+			//this.setVelocity(2,2);
+
             if (this.dir === 0) {
                 this.dir = 1;
             } else {
@@ -157,6 +163,7 @@ var EnemyEntity = me.ObjectEntity.extend({
 
     // manage the enemy movement
     update: function() {
+
         // do nothing if not visible
         if (!this.visible)
             return false;
@@ -187,8 +194,6 @@ var EnemyEntity = me.ObjectEntity.extend({
         // check and update movement
         this.updateMovement();
 	
-	var res = me.game.collide(this); // Et ka enemy checkiks collisionit
-        
         // if enemy collides with wall, it starts moving in other direction
         // X-telje ja Y-telje kontrollid
         if (this.vel.x === 0  &&  this.vel.y === 0) {
@@ -212,6 +217,9 @@ var EnemyEntity = me.ObjectEntity.extend({
 
 var BombEntity = me.ObjectEntity.extend({
 
+	// Nimi
+    name: "bomb",
+    
     // Mängija, kes pommi pani (vajalik, highscorei arvutusteks)
     player: null,
 
@@ -223,6 +231,7 @@ var BombEntity = me.ObjectEntity.extend({
 
     init: function(x, y, settings) {
         // define this here instead of tiled
+		settings.name = "bomb";
         settings.image = "pomm_mini";
         settings.spritewidth = 32;
         settings.spriteheight = 32;
@@ -246,17 +255,53 @@ var BombEntity = me.ObjectEntity.extend({
 
         console.log(this.type);
     },
+    
+    // call by the engine when colliding with another object
+    // obj parameter corresponds to the other object (typically the player) touching this one
+    onCollision: function(res, obj) {
+        if (this.alive) {
+            //this.flicker(45);
+			//this.setOpacity(0.5);
+			//this.setVelocity(2,2);
+	    
+            if (this.dir === 0) {
+                this.dir = 1;
+            } else {
+                this.dir = 0;
+            }
+        } 
+    },
 
     update: function() {
         // do nothing if not visible
+
+	    var res2 = me.game.collide(this);
+
+        if (res2) {
+	
+		this.flicker(45);
+            // if we collide with an enemy
+            if (res2.obj.type === me.game.ENEMY_OBJECT) {
+                console.log('collision with enemy');
+                // Vaenlase puudutamine paneb flickerdama
+                this.flicker(45);
+            } else if (res2.obj.type === me.game.ACTION_OBJECT) {
+                console.log('collision with action object');
+                //this.flicker(45); // SEE KOOD TOIMIB
+            } else {
+                console.log('collision with unknown object :)');
+                // FIXME: powerupi puudumine peaks selle üles korjama ning powerupi sisse lülitama
+            }
+        }
+	
         if (! this.visible)
             return false;
 
         if (this.explodeAt < me.timer.getTime()) {
             this.player.bombs = this.player.bombs - 1;
-            var boom = new Explosion(this.pos.x, this.pos.y, {player: this});
-            me.game.add(boom, 1000);
-            me.game.sort();
+	    var boom = new Explosion(this.pos.x, this.pos.y, {player: this});
+	    me.game.add(boom, 1000);
+	    me.game.sort();
             me.game.remove(this);
             this.parent();
             return true;
@@ -265,25 +310,23 @@ var BombEntity = me.ObjectEntity.extend({
         return false;
     }
 });
-
 var Explosion = me.ObjectEntity.extend({
-
     init: function(x, y, settings) {
         settings.image = "boom";
         settings.spritewidth = 32;
         settings.spriteheight = 32;
         settings.type = me.game.ACTION_OBJECT;
-        this.parent(x, y, settings);
-        this.player = settings.player;
+	this.parent(x, y, settings);
+	this.player = settings.player;
         this.bombradius = this.player.bombradius;
-        // Kustutame selle n seki pärast
-        this.explodeAt = me.timer.getTime() + 2 * 1000;
+	// Kustutame selle n seki pärast
+	this.explodeAt = me.timer.getTime() + 2 * 1000;
     },
-
+    
     update: function() {
-        if (this.explodeAt < me.timer.getTime()) {
-            me.game.remove(this);
-            return true;
-        }
+	if (this.explodeAt < me.timer.getTime()) {
+	    me.game.remove(this);
+	    return true;
+	}
     }
 });
