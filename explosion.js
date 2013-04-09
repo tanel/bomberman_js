@@ -7,8 +7,8 @@ var Explosion = me.ObjectEntity.extend({
         settings.type = me.game.ACTION_OBJECT;
         settings.collidable = true;
         this.parent(x, y, settings);
-
         this.bomb = settings.bomb;
+        this.updateColRect(-40, 120, -1); // Collisionboxi laiendamine X teljel
 	
         // Kustutame selle n seki pärast
         this.explodeAt = me.timer.getTime() + 300;
