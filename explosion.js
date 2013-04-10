@@ -8,7 +8,7 @@ var Explosion = me.ObjectEntity.extend({
         settings.collidable = true;
         this.parent(x, y, settings);
         this.bomb = settings.bomb;
-	this.bombRadius = 4;
+	this.bombRadius = 3;
 	this.x = x;
 	
         // Kustutame selle n seki pärast
@@ -19,9 +19,9 @@ var Explosion = me.ObjectEntity.extend({
         // Collisionboxi laiendamine X teljel
         console.log(this.x);
 	console.log(this.bombRadius);
-        this.updateColRect(this.x, 32*this.bombRadius, -1);
-        // Otsime entiteete, mis jäävad plahvatuse alasse.
-        // Leitud entiteedid võib nö sodiks lasta.
+        this.updateColRect(-16*this.bombRadius + 16, 32*this.bombRadius, -1); // Selgitus: mäng ühtlaselt jaotab laienemist saates algpunkti 16p tagasi
+        // Otsime entiteete, mis jäävad plahvatuse alasse.                       ja kokku laiendades 32p. +16p on vaja selleks, et esimese ruuduga
+        // Leitud entiteedid võib nö sodiks lasta.                               algpunkti tagasisaatmist ei toimuks.
         var mres = me.game.collide(this, true);
         if (mres && mres.length > 0) {
             console.dir(mres);
