@@ -8,13 +8,18 @@ var Explosion = me.ObjectEntity.extend({
         settings.collidable = true;
         this.parent(x, y, settings);
         this.bomb = settings.bomb;
-        this.updateColRect(-40, 120, -1); // Collisionboxi laiendamine X teljel
+	this.bombRadius = 4;
+	this.x = x;
 	
         // Kustutame selle n seki pärast
         this.explodeAt = me.timer.getTime() + 300;
     },
     
     update: function() {
+        // Collisionboxi laiendamine X teljel
+        console.log(this.x);
+	console.log(this.bombRadius);
+        this.updateColRect(this.x, 32*this.bombRadius, -1);
         // Otsime entiteete, mis jäävad plahvatuse alasse.
         // Leitud entiteedid võib nö sodiks lasta.
         var mres = me.game.collide(this, true);
