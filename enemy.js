@@ -61,7 +61,7 @@ var EnemyEntity = me.ObjectEntity.extend({
                 this.vel.y += (this.walkLeft) ? -this.accel.y * me.timer.tick : this.accel.y * me.timer.tick; // yles
             }
         } else {
-            this.vel.x = 0;
+            this.setVelocity(0, 0);
         }
 
         // check and update movement
