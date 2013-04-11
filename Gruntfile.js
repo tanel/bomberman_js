@@ -3,7 +3,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     jshint: {
-      files: ['gruntfile.js', 'main.js', 'entities.js']
+      files: ['gruntfile.js', 'main.js', 'enemy.js', 'explosion.js', 'player.js', 'bomb.js']
     }
   });
 
