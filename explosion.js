@@ -29,7 +29,7 @@ var Explosion = me.ObjectEntity.extend({
             // if we collide with the bomb
             if (res.obj.type === me.game.ENEMY_OBJECT) {
                 console.log('collision with enemy');
-                res.obj.alive = false; // Vastase objekt
+                res.obj.doomed(); // Vastase objekt
             } else if (res.obj.type === me.game.ACTION_OBJECT) {
                 console.log('collision with action object');
             } else {
