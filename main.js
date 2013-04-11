@@ -39,6 +39,10 @@
         name: "evil_run_right",
         type: "image",
         src: "data/sprite/evil_run_right.png"
+    }, {    
+	name: "evil_death",
+        type: "audio",
+        src: "data/audio/Zombie_Moan-SoundBible.com-565291980.mp3"
     }];
 
     // Mäng ise
