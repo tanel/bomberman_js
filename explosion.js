@@ -16,12 +16,15 @@ var Explosion = me.ObjectEntity.extend({
     
     update: function() {
         // Collisionboxi laiendamine X teljel
-        this.updateColRect(-16*this.bombRadius + 16, 32*this.bombRadius, -1); // Selgitus: mäng ühtlaselt jaotab laienemist saates algpunkti 16p tagasi
-        // Otsime entiteete, mis jäävad plahvatuse alasse.                       ja kokku laiendades 32p. +16p on vaja selleks, et esimese ruuduga
-        // Leitud entiteedid võib nö sodiks lasta.                               algpunkti tagasisaatmist ei toimuks.
-        
+
+	// Selgitus: mäng ühtlaselt jaotab laienemist saates algpunkti 16p tagasi
+        // ja kokku laiendades 32p. +16p on vaja selleks, et esimese ruuduga
+        // algpunkti tagasisaatmist ei toimuks.
+        this.updateColRect(-16*this.bombRadius + 16, 32*this.bombRadius, -1); 
+
+        // Otsime entiteete, mis jäävad plahvatuse alasse.                       
+        // Leitud entiteedid võib nö sodiks lasta.
         var res = me.game.collide(this);
-    	
         if (res) {
             // if we collide with the bomb
             if (res.obj.type === me.game.ENEMY_OBJECT) {
