@@ -88,7 +88,7 @@ var PlayerEntity = me.ObjectEntity.extend({
         if (res) {
             // Vaenlase puudutamine paneb flickerdama
             if (res.obj.type === me.game.ENEMY_OBJECT) {
-                this.flicker(45);
+		if (res.obj.alive) this.flicker(45); // Halvatud vastased ei tee haiget
             } else if (res.obj.type === me.game.ACTION_OBJECT) {
                 // FIXME: powerupi puutumine peaks selle üles korjama ning powerupi sisse lülitama
             }
