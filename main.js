@@ -61,7 +61,7 @@
             // MelonJS loader proovib audiofaile laadida sellest järjekorras: mp3, ogg.
             // Kui veebilehitsejal puuduvad sobivad audio codec'id, siis mängul heli puudub
             // (vt http://www.melonjs.org/docs/symbols/me.audio.html#init)
-            me.audio.init("mp3");
+            me.audio.init("mp3,ogg");
 
             // loader tegeleb mängu ressursside laadimisega. Kui ta on laadimisega
             // valmis saanud, siis tahame, et ta käivitaks meie funktsiooni "loaded":
