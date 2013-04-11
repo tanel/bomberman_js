@@ -87,4 +87,8 @@ var EnemyEntity = me.ObjectEntity.extend({
 
         return false;
     }
+    doomed: function() {
+	me.audio.play("moan");
+	this.alive = false;
+    }
 });
