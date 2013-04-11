@@ -62,7 +62,6 @@ var EnemyEntity = me.ObjectEntity.extend({
             }
         } else {
             this.vel.x = 0;
-	    me.audio.play("moan");
         }
 
         // check and update movement
