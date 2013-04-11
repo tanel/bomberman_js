@@ -43,6 +43,14 @@
 	name: "moan",
         type: "audio",
         src: "data/audio/", channel: 1
+    }, {    
+	name: "fuse",
+        type: "audio",
+        src: "data/audio/", channel: 1
+    }, {    
+	name: "bomb",
+        type: "audio",
+        src: "data/audio/", channel: 1
     }];
 
     // Mäng ise
