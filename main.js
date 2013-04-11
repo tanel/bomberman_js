@@ -40,7 +40,7 @@
         type: "image",
         src: "data/sprite/evil_run_right.png"
     }, {    
-	name: "Moan",
+	name: "moan",
         type: "audio",
         src: "data/audio/", channel: 1
     }];
