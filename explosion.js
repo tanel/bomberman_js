@@ -56,6 +56,8 @@ var Explosion = me.ObjectEntity.extend({
         // ja kokku laiendades 32p. +16p on vaja selleks, et esimese ruuduga
         // algpunkti tagasisaatmist ei toimuks.
 	this.updateColRect(-16*this.currentRadius + 16, 32 * this.currentRadius, -1);
-	this.currentRadius++;
+	if (this.currentRadius < this.bombRadius) {
+	    this.currentRadius++;
+	}
     } 
 });
