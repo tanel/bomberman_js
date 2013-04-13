@@ -9,19 +9,22 @@ var Explosion = me.ObjectEntity.extend({
         settings.collidable = true;
         this.parent(x, y, settings);
         this.bomb = settings.bomb;
-	this.bombRadius = 3;
+	this.extTime = 50;
+	this.bombRadius = 6;
+	this.currentRadius = 1;
+	
+	// Laienemishetk
+	this.extTime = me.timer.getTime() + 50 * this.currentRadius;
 	
         // Kustutame selle n seki pärast
-        this.explodeAt = me.timer.getTime() + 300;
+        this.expTime = me.timer.getTime() + 50 * this.bombRadius;
     },
     
     update: function() {
-        // Collisionboxi laiendamine X teljel
-
-	// Selgitus: mäng ühtlaselt jaotab laienemist saates algpunkti 16p tagasi
-        // ja kokku laiendades 32p. +16p on vaja selleks, et esimese ruuduga
-        // algpunkti tagasisaatmist ei toimuks.
-        this.updateColRect(-16*this.bombRadius + 16, 32*this.bombRadius, -1); 
+        // Collisionboxi laiendamine ajaliselt
+	if (this.extTime <= me.timer.getTime()) {
+	    this.extendingExp();
+	}
 
         // Otsime entiteete, mis jäävad plahvatuse alasse.                       
         // Leitud entiteedid võib nö sodiks lasta.
@@ -41,11 +44,18 @@ var Explosion = me.ObjectEntity.extend({
             }
         }
 
-        if (this.explodeAt < me.timer.getTime()) {
+        if (this.expTime < me.timer.getTime()) {
             me.game.remove(this);
             return true;
         }
 
         return false;
-    }
+    },
+    extendingExp: function() {
+	// Selgitus: mäng ühtlaselt jaotab laienemist saates algpunkti 16p tagasi
+        // ja kokku laiendades 32p. +16p on vaja selleks, et esimese ruuduga
+        // algpunkti tagasisaatmist ei toimuks.
+	this.updateColRect(-16*this.currentRadius + 16, 32 * this.currentRadius, -1);
+	this.currentRadius++;
+    } 
 });
