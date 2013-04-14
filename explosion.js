@@ -9,15 +9,15 @@ var Explosion = me.ObjectEntity.extend({
         settings.collidable = true;
         this.parent(x, y, settings);
         this.bomb = settings.bomb;
-	this.extTime = 100; // Laienemisaeg
+	this.extTime = 400; // Laienemisaeg
 	this.bombRadius = 6;
 	this.currentRadius = 1; // Hetkel kui palju plahvatus laienend on
 	
-	// Laienemishetk
+	// Ajaarvamise algus :)
 	this.startMoment = me.timer.getTime();
 	
         // Kustutame selle n seki pärast
-        this.endTime = me.timer.getTime() + (this.extTime * this.bombRadius);
+        this.endTime = this.startMoment + (this.extTime * (this.bombRadius + 1));
     },
     
     update: function() {
@@ -44,7 +44,7 @@ var Explosion = me.ObjectEntity.extend({
             }
         }
 
-        if (this.endTime < me.timer.getTime()) {
+        if (this.endTime <= me.timer.getTime()) {
             me.game.remove(this);
             return true;
         }
