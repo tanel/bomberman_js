@@ -9,12 +9,12 @@ var Explosion = me.ObjectEntity.extend({
         settings.collidable = true;
         this.parent(x, y, settings);
         this.bomb = settings.bomb;
-	this.extTime = 50; // Laienemisaeg
+	this.extTime = 100; // Laienemisaeg
 	this.bombRadius = 6;
 	this.currentRadius = 1; // Hetkel kui palju plahvatus laienend on
 	
 	// Laienemishetk
-	this.expNow = me.timer.getTime() + (this.extTime * this.currentRadius);
+	this.startMoment = me.timer.getTime();
 	
         // Kustutame selle n seki pärast
         this.endTime = me.timer.getTime() + (this.extTime * this.bombRadius);
@@ -22,7 +22,7 @@ var Explosion = me.ObjectEntity.extend({
     
     update: function() {
         // Collisionboxi laiendamine ajaliselt
-	if (this.expNow <= me.timer.getTime()) {
+	if ((this.startMoment + this.extTime * this.currentRadius) <= me.timer.getTime()) {
 	    this.extendingExp();
 	}
 
