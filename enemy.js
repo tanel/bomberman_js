@@ -61,8 +61,8 @@ var EnemyEntity = me.ObjectEntity.extend({
                 this.vel.y += (this.walkLeft) ? -this.accel.y * me.timer.tick : this.accel.y * me.timer.tick; // yles
             }
         } else {
-            this.setVelocity(0, 0);
-        }
+	  // Empty
+            }
 
         // check and update movement
         this.updateMovement();
@@ -91,5 +91,7 @@ var EnemyEntity = me.ObjectEntity.extend({
     doomed: function() {
 	me.audio.play("moan");
 	this.alive = false;
+	this.setOpacity(0.4);
+	this.setVelocity(0, 0);
     }
 });
