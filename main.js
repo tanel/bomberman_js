@@ -71,13 +71,13 @@
             // (vt http://www.melonjs.org/docs/symbols/me.audio.html#init)
             try 
 		{
-                var start = me.audio.init("ogg").value;
-		if (x==false)    throw "Loading ogg failed!";
+                me.audio.init("mp3");
+		if (me.audio.getSupportedAudioFormat.value == false)    throw "Loading ogg failed!";
 	        }
 	    catch(err)
 		{
 		console.log("there was an error loading audio in ogg format!")
-		me.audio.init("mp3");
+		me.audio.init("ogg");
 		}
             // loader tegeleb mängu ressursside laadimisega. Kui ta on laadimisega
             // valmis saanud, siis tahame, et ta käivitaks meie funktsiooni "loaded":
