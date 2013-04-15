@@ -12,6 +12,6 @@ body {
   position: absolute; 
   font-size: 20px; 
   font-family: Cursive;
-  color: cyan;
+  color: #00FFFF; /* cyan */
   visibility:hidden; /* See on selleks, et framecounter ei jääks noscripti teatisele ette. */
 }
