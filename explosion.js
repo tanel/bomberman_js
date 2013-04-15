@@ -1,6 +1,6 @@
 
 var Explosion = me.ObjectEntity.extend({
-    init: function(x, y, settings) {
+    init: function(x, y, settings, dir) {
         settings.image = "boom";
 	me.audio.play("bomb", false, null, 0.6);
         settings.spritewidth = 32;
@@ -9,9 +9,10 @@ var Explosion = me.ObjectEntity.extend({
         settings.collidable = true;
         this.parent(x, y, settings);
         this.bomb = settings.bomb;
-	this.extTime = 400; // Laienemisaeg
+	this.extTime = 70; // Laienemisaeg
 	this.bombRadius = 6;
 	this.currentRadius = 1; // Hetkel kui palju plahvatus laienend on
+	this.dir = dir;
 	
 	// Ajaarvamise algus :)
 	this.startMoment = me.timer.getTime();
@@ -55,9 +56,20 @@ var Explosion = me.ObjectEntity.extend({
 	// Selgitus: mäng ühtlaselt jaotab laienemist saates algpunkti 16p tagasi
         // ja kokku laiendades 32p. +16p on vaja selleks, et esimese ruuduga
         // algpunkti tagasisaatmist ei toimuks.
-	this.updateColRect(-16*this.currentRadius + 16, 32 * this.currentRadius, -1);
-	if (this.currentRadius < this.bombRadius) {
-	    this.currentRadius++;
+	if (this.dir === 0)
+	{
+		this.updateColRect(-16*this.currentRadius + 16, 32 * this.currentRadius, -1);
+		if (this.currentRadius < this.bombRadius) {
+		    this.currentRadius++;
+		}
 	}
+	if (this.dir === 1)
+	{
+		this.updateColRect(1, 32, -16*this.currentRadius + 16, 32 * this.currentRadius);
+		if (this.currentRadius < this.bombRadius) {
+		    this.currentRadius++;
+		}
+	}
+
     } 
 });
