@@ -71,8 +71,6 @@
             // (vt http://www.melonjs.org/docs/symbols/me.audio.html#init)
             try {
                 me.audio.init("ogg");
-                if (me.audio.getSupportedAudioFormat.value === false)
-                    throw "Loading ogg failed!";
             } catch(err) {
                 console.log("there was an error loading audio in ogg format!");
                 me.audio.init("mp3");
