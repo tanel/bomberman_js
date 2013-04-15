@@ -52,6 +52,7 @@ var Explosion = me.ObjectEntity.extend({
 
         return false;
     },
+
     extendingExp: function() {
         // Selgitus: mäng ühtlaselt jaotab laienemist saates algpunkti 16p tagasi
         // ja kokku laiendades 32p. +16p on vaja selleks, et esimese ruuduga
