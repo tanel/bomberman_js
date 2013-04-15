@@ -14,7 +14,6 @@ var BombEntity = me.ObjectEntity.extend({
         // define this here instead of tiled
         settings.name = "bomb";
         settings.image = "pomm_mini";
-	me.audio.play("fuse", false, null, 0.6);
         settings.spritewidth = 32;
         settings.spriteheight = 32;
         settings.type = me.game.ACTION_OBJECT;
@@ -30,8 +29,10 @@ var BombEntity = me.ObjectEntity.extend({
         this.player = settings.player;
         this.visible = true;
 
+        me.audio.play("fuse", false, null, 0.6);
+
         // Paneme pommi n sek pärast plahvatama
-        this.explodeAt = me.timer.getTime() + 2.5 * 1000;
+        this.explodeAt = me.timer.getTime() + 1.5 * 1000;
     },
     
     update: function() {
