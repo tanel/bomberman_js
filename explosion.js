@@ -2,20 +2,20 @@
 var Explosion = me.ObjectEntity.extend({
     init: function(x, y, settings, dir) {
         settings.image = "boom";
-	me.audio.play("bomb", false, null, 0.6);
+        me.audio.play("bomb", false, null, 0.6);
         settings.spritewidth = 32;
         settings.spriteheight = 32;
         settings.type = me.game.ACTION_OBJECT;
         settings.collidable = true;
         this.parent(x, y, settings);
         this.bomb = settings.bomb;
-	this.extTime = 70; // Laienemisaeg
-	this.bombRadius = 6;
-	this.currentRadius = 1; // Hetkel kui palju plahvatus laienend on
-	this.dir = dir;
+        this.extTime = 70; // Laienemisaeg
+        this.bombRadius = 6;
+        this.currentRadius = 1; // Hetkel kui palju plahvatus laienend on
+        this.dir = dir;
 	
-	// Ajaarvamise algus :)
-	this.startMoment = me.timer.getTime();
+        // Ajaarvamise algus :)
+        this.startMoment = me.timer.getTime();
 	
         // Kustutame selle n seki pärast
         this.endTime = this.startMoment + (this.extTime * (this.bombRadius + 1));
@@ -23,9 +23,9 @@ var Explosion = me.ObjectEntity.extend({
     
     update: function() {
         // Collisionboxi laiendamine ajaliselt
-	if ((this.startMoment + this.extTime * this.currentRadius) <= me.timer.getTime()) {
-	    this.extendingExp();
-	}
+        if ((this.startMoment + this.extTime * this.currentRadius) <= me.timer.getTime()) {
+            this.extendingExp();
+        }
 
         // Otsime entiteete, mis jäävad plahvatuse alasse.                       
         // Leitud entiteedid võib nö sodiks lasta.
@@ -34,9 +34,9 @@ var Explosion = me.ObjectEntity.extend({
             // if we collide with the bomb
             if (res.obj.type === me.game.ENEMY_OBJECT) {
                 console.log('collision with enemy');
-		if (res.obj.alive) {  // surnud ei karju
+                if (res.obj.alive) {  // surnud ei karju
                     res.obj.doomed(); // Vastase objekt
-		}
+                }
             } else if (res.obj.type === me.game.ACTION_OBJECT) {
                 console.log('collision with action object');
             } else {
@@ -53,23 +53,19 @@ var Explosion = me.ObjectEntity.extend({
         return false;
     },
     extendingExp: function() {
-	// Selgitus: mäng ühtlaselt jaotab laienemist saates algpunkti 16p tagasi
+        // Selgitus: mäng ühtlaselt jaotab laienemist saates algpunkti 16p tagasi
         // ja kokku laiendades 32p. +16p on vaja selleks, et esimese ruuduga
         // algpunkti tagasisaatmist ei toimuks.
-	if (this.dir === 0)
-	{
-		this.updateColRect(-16*this.currentRadius + 16, 32 * this.currentRadius, -1);
-		if (this.currentRadius < this.bombRadius) {
-		    this.currentRadius++;
-		}
-	}
-	if (this.dir === 1)
-	{
-		this.updateColRect(1, 32, -16*this.currentRadius + 16, 32 * this.currentRadius);
-		if (this.currentRadius < this.bombRadius) {
-		    this.currentRadius++;
-		}
-	}
-
+        if (this.dir === 0) {
+            this.updateColRect(-16*this.currentRadius + 16, 32 * this.currentRadius, -1);
+            if (this.currentRadius < this.bombRadius) {
+                this.currentRadius++;
+            }
+        } else if (this.dir === 1) {
+            this.updateColRect(1, 32, -16*this.currentRadius + 16, 32 * this.currentRadius);
+            if (this.currentRadius < this.bombRadius) {
+                this.currentRadius++;
+            }
+        }
     } 
 });

@@ -69,16 +69,14 @@
             // MelonJS loader proovib audiofaile laadida sellest järjekorras: mp3, ogg.
             // Kui veebilehitsejal puuduvad sobivad audio codec'id, siis mängul heli puudub
             // (vt http://www.melonjs.org/docs/symbols/me.audio.html#init)
-            try 
-		{
+            try {
                 me.audio.init("ogg");
-		if (me.audio.getSupportedAudioFormat.value == false)    throw "Loading ogg failed!";
-	        }
-	    catch(err)
-		{
-		console.log("there was an error loading audio in ogg format!")
-		me.audio.init("mp3");
-		}
+                if (me.audio.getSupportedAudioFormat.value === false)
+                    throw "Loading ogg failed!";
+            } catch(err) {
+                console.log("there was an error loading audio in ogg format!");
+                me.audio.init("mp3");
+            }
             // loader tegeleb mängu ressursside laadimisega. Kui ta on laadimisega
             // valmis saanud, siis tahame, et ta käivitaks meie funktsiooni "loaded":
             // (vt http://www.melonjs.org/docs/symbols/me.loader.html)

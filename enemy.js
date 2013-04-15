@@ -60,9 +60,7 @@ var EnemyEntity = me.ObjectEntity.extend({
             } else if (this.dir === 3) {
                 this.vel.y += (this.walkLeft) ? -this.accel.y * me.timer.tick : this.accel.y * me.timer.tick; // yles
             }
-        } else {
-	  // Empty
-            }
+        }
 
         // check and update movement
         this.updateMovement();
