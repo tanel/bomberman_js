@@ -81,7 +81,7 @@ var Explosion = me.ObjectEntity.extend({
 	else if (this.stopRight == true && this.dir === 0) {
 	    var laiendusX = laiendusX - 16;
 	}
-	if (this.stopDown == true && this.dir === 1) {
+	else if (this.stopDown == true && this.dir === 1) {
 	    var algusX = algusX + 16;
 	    var laiendusX = laiendusX - 16;
 	}
