@@ -76,15 +76,15 @@ var Explosion = me.ObjectEntity.extend({
     grow: function() {
         // Conditionid mis väljakutsumisel peatavad leegi laienemise teatud suunas
 	if (this.stopLeft == true && this.dir === 0) {
-	    var this.algusX = this.algusX + 16;
-	    var this.laiendusX = this.laiendusX - 16;
+	    this.algusX = this.algusX + 16;
+	    this.laiendusX = this.laiendusX - 16;
 	}
 	else if (this.stopRight == true && this.dir === 0) {
-	    var this.laiendusX = this.laiendusX - 16;
+	    this.laiendusX = this.laiendusX - 16;
 	}
 	else if (this.stopDown == true && this.dir === 1) {
-	    var this.algusY = this.algusY + 16;
-	    var this.laiendusY = this.laiendusY - 16;
+	    this.algusY = this.algusY + 16;
+	    this.laiendusY = this.laiendusY - 16;
 	}
 	else if (this.stopUp == true && this.dir === 1) {
 	    var this.laiendusY = this.laiendusY - 16;
