@@ -88,17 +88,17 @@ var Explosion = me.ObjectEntity.extend({
 	}
 	else if (this.stopUp == true && this.dir === 1) {
 	    var this.laiendusY = this.laiendusY - 16;
-	}
+	} else console.log('nothing stops the flame!');
         // Selgitus: mäng ühtlaselt jaotab laienemist saates algpunkti 16p tagasi
         // ja kokku laiendades 32p. +16p on vaja selleks, et esimese ruuduga
         // algpunkti tagasisaatmist ei toimuks.
         if (this.dir === 0) {
-            this.updateColRect(algusX * this.currentRadius + 16, laiendusX * this.currentRadius, -1);
+            this.updateColRect(this.algusX * this.currentRadius + 16, this.laiendusX * this.currentRadius, -1);
             if (this.currentRadius < this.bombRadius) {
                 this.currentRadius++;
             }
         } else if (this.dir === 1) {
-            this.updateColRect(1, 32, algusY * this.currentRadius + 16, laiendusY * this.currentRadius);
+            this.updateColRect(1, 32, this.algusY * this.currentRadius + 16, this.laiendusY * this.currentRadius);
             if (this.currentRadius < this.bombRadius) {
                 this.currentRadius++;
             }
