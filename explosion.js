@@ -82,11 +82,11 @@ var Explosion = me.ObjectEntity.extend({
 	    var laiendusX = laiendusX - 16;
 	}
 	else if (this.stopDown == true && this.dir === 1) {
-	    var algusX = algusX + 16;
-	    var laiendusX = laiendusX - 16;
+	    var algusY = algusY + 16;
+	    var laiendusY = laiendusY - 16;
 	}
 	else if (this.stopUp == true && this.dir === 1) {
-	    var laiendusX = laiendusX - 16;
+	    var laiendusY = laiendusY - 16;
 	}
         // Selgitus: mäng ühtlaselt jaotab laienemist saates algpunkti 16p tagasi
         // ja kokku laiendades 32p. +16p on vaja selleks, et esimese ruuduga
