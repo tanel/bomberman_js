@@ -18,6 +18,10 @@ var Explosion = me.ObjectEntity.extend({
 	this.stopRight = false;
 	this.stopDown = false;
 	this.stopUp = false;
+	this.algusX = -16;
+	this.laiendusX = 32;
+	this.algusY = -16;
+	this.laiendusY = 32;
 	
 	
         // Ajaarvamise algus :)
@@ -70,23 +74,20 @@ var Explosion = me.ObjectEntity.extend({
     },
 
     grow: function() {
-        var algusX = -16;
-	var laiendusX = 32;
-	var algusY = -16;
-	var laiendusY = 32;
+        // Conditionid mis väljakutsumisel peatavad leegi laienemise teatud suunas
 	if (this.stopLeft == true && this.dir === 0) {
-	    var algusX = algusX + 16;
-	    var laiendusX = laiendusX - 16;
+	    var this.algusX = this.algusX + 16;
+	    var this.laiendusX = this.laiendusX - 16;
 	}
 	else if (this.stopRight == true && this.dir === 0) {
-	    var laiendusX = laiendusX - 16;
+	    var this.laiendusX = this.laiendusX - 16;
 	}
 	else if (this.stopDown == true && this.dir === 1) {
-	    var algusY = algusY + 16;
-	    var laiendusY = laiendusY - 16;
+	    var this.algusY = this.algusY + 16;
+	    var this.laiendusY = this.laiendusY - 16;
 	}
 	else if (this.stopUp == true && this.dir === 1) {
-	    var laiendusY = laiendusY - 16;
+	    var this.laiendusY = this.laiendusY - 16;
 	}
         // Selgitus: mäng ühtlaselt jaotab laienemist saates algpunkti 16p tagasi
         // ja kokku laiendades 32p. +16p on vaja selleks, et esimese ruuduga
