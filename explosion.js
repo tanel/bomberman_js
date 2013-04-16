@@ -75,19 +75,19 @@ var Explosion = me.ObjectEntity.extend({
 
     grow: function() {
         // Conditionid mis väljakutsumisel peatavad leegi laienemise teatud suunas
-	if (this.stopLeft == true && this.dir === 0) {
+	if (this.stopLeft === true && this.dir === 0) {
 	    this.algusX = this.algusX + 16;
 	    this.laiendusX = this.laiendusX - 16;
 	}
-	else if (this.stopRight == true && this.dir === 0) {
+	else if (this.stopRight === true && this.dir === 0) {
 	    this.laiendusX = this.laiendusX - 16;
 	}
-	else if (this.stopDown == true && this.dir === 1) {
+	else if (this.stopDown === true && this.dir === 1) {
 	    this.algusY = this.algusY + 16;
 	    this.laiendusY = this.laiendusY - 16;
 	}
-	else if (this.stopUp == true && this.dir === 1) {
-	    var this.laiendusY = this.laiendusY - 16;
+	else if (this.stopUp === true && this.dir === 1) {
+	    this.laiendusY = this.laiendusY - 16;
 	} else console.log('nothing stops the flame!');
         // Selgitus: mäng ühtlaselt jaotab laienemist saates algpunkti 16p tagasi
         // ja kokku laiendades 32p. +16p on vaja selleks, et esimese ruuduga
