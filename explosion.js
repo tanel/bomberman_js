@@ -1,4 +1,3 @@
-
 var Explosion = me.ObjectEntity.extend({
     init: function(x, y, settings, dir) {
         settings.image = "boom";
@@ -7,6 +6,8 @@ var Explosion = me.ObjectEntity.extend({
         settings.spriteheight = 32;
         settings.type = me.game.ACTION_OBJECT;
         settings.collidable = true;
+        this.x = x;
+        this.y = y;
         this.parent(x, y, settings);
         this.bomb = settings.bomb;
         this.extTime = 70; // Laienemisaeg
@@ -29,18 +30,26 @@ var Explosion = me.ObjectEntity.extend({
 
         // Otsime entiteete, mis jäävad plahvatuse alasse.                       
         // Leitud entiteedid võib nö sodiks lasta.
+        // tilewidth="32" tileheight="32"
+        // width="512" height="480"/>
         var res = me.game.collide(this);
         if (res) {
-            // if we collide with the bomb
+
             if (res.obj.type === me.game.ENEMY_OBJECT) {
                 console.log('collision with enemy');
-                // surnud ei karju
-                // Vastase objekt
-                if (res.obj.alive) {
-                    res.obj.doomed();
+                if (res.obj.alive) {  // surnud ei karju
+                    res.obj.doomed(); // Vastase objekt
                 }
-            } else if (res.obj.type === me.game.ACTION_OBJECT) {
+            } if (res.obj.type === me.game.ACTION_OBJECT) {
                 console.log('collision with action object');
+            } if (res.obj.type === 1) {
+                console.log('collision with 1 object');
+                console.log('row: ' + parseInt((res.x + this.pos.x) / 32) + ' --- col: ' + parseInt((res.y + this.pos.y) / 32) );
+                me.game.currentLevel.clearTile(parseInt((res.x + this.pos.x) / 32), parseInt((res.y + this.pos.y) / 32));
+            } if (res.obj.type === 3) {
+                console.log('collision with 3 object');
+                console.log('row: ' + Math.round(res.x / 32) + ' --- col: ' + Math.round(res.y / 32) );
+                me.game.currentLevel.clearTile(parseInt((res.x + this.pos.x) / 32), parseInt((res.y + this.pos.y) / 32));
             } else {
                 console.log('collision with unknown object :)');
                 // FIXME: powerupi puudumine peaks selle üles korjama ning powerupi sisse lülitama
