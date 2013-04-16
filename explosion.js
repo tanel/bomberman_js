@@ -14,6 +14,11 @@ var Explosion = me.ObjectEntity.extend({
         this.bombRadius = 6;
         this.currentRadius = 1; // Hetkel kui palju plahvatus laienend on
         this.dir = dir;
+	this.stopLeft = false;
+	this.stopRight = false;
+	this.stopDown = false;
+	this.stopUp = false;
+	
 	
         // Ajaarvamise algus :)
         this.startMoment = me.timer.getTime();
@@ -65,16 +70,34 @@ var Explosion = me.ObjectEntity.extend({
     },
 
     grow: function() {
+        var algusX = -16;
+	var laiendusX = 32;
+	var algusY = -16;
+	var laiendusY = 32;
+	if (this.stopLeft == true && this.dir === 0) {
+	    var algusX = algusX + 16;
+	    var laiendusX = laiendusX - 16;
+	}
+	else if (this.stopRight == true && this.dir === 0) {
+	    var laiendusX = laiendusX - 16;
+	}
+	if (this.stopDown == true && this.dir === 1) {
+	    var algusX = algusX + 16;
+	    var laiendusX = laiendusX - 16;
+	}
+	else if (this.stopUp == true && this.dir === 1) {
+	    var laiendusX = laiendusX - 16;
+	}
         // Selgitus: mäng ühtlaselt jaotab laienemist saates algpunkti 16p tagasi
         // ja kokku laiendades 32p. +16p on vaja selleks, et esimese ruuduga
         // algpunkti tagasisaatmist ei toimuks.
         if (this.dir === 0) {
-            this.updateColRect(-16*this.currentRadius + 16, 32 * this.currentRadius, -1);
+            this.updateColRect(algusX * this.currentRadius + 16, laiendusX * this.currentRadius, -1);
             if (this.currentRadius < this.bombRadius) {
                 this.currentRadius++;
             }
         } else if (this.dir === 1) {
-            this.updateColRect(1, 32, -16*this.currentRadius + 16, 32 * this.currentRadius);
+            this.updateColRect(1, 32, algusY * this.currentRadius + 16, laiendusY * this.currentRadius);
             if (this.currentRadius < this.bombRadius) {
                 this.currentRadius++;
             }
