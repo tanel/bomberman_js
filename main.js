@@ -3,7 +3,7 @@
 (function () {
     "use strict";
 
-    me.debug.renderHitBox = true;
+    //me.debug.renderHitBox = true;
 
     // bomberman on nö namespace, mille küljes asuvad
     // kõik mänguga seotud objektid, funktsioonid, ressursid jne.

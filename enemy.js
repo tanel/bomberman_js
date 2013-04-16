@@ -49,10 +49,10 @@ var EnemyEntity = me.ObjectEntity.extend({
             }
             
             // make it walk
-            if (this.dir === 0  &&  this.vel.y === 0) {
+            if (this.dir === 0 && this.vel.y === 0) {
                 this.flipX(this.walkLeft);
                 this.vel.x += (this.walkLeft) ? -this.accel.x * me.timer.tick : this.accel.x * me.timer.tick;
-            } else if (this.dir === 1  &&  this.vel.y === 0) {
+            } else if (this.dir === 1 && this.vel.y === 0) {
                 this.flipX(0);
                 this.vel.x += (this.walkLeft) ? this.accel.x * me.timer.tick : this.accel.x * me.timer.tick;
             } else if (this.dir === 2) {
@@ -67,10 +67,10 @@ var EnemyEntity = me.ObjectEntity.extend({
 	
         // if enemy collides with wall, it starts moving in other direction
         // X-telje ja Y-telje kontrollid
-        if (this.vel.x === 0  &&  this.vel.y === 0) {
-            if (this.dir === 0  ||  this.dir === 1) {
+        if (this.vel.x === 0 && this.vel.y === 0) {
+            if (this.dir === 0 || this.dir === 1) {
                 // Muudetakse vastase liikumise suunda
-                this.dir =  Math.floor(Math.random() * 3) + 1;
+                this.dir = Math.floor(Math.random() * 3) + 1;
             } else {
                 this.dir = 0;
             }
@@ -87,9 +87,9 @@ var EnemyEntity = me.ObjectEntity.extend({
     },
 
     doomed: function() {
-	me.audio.play("moan");
-	this.alive = false;
-	this.setOpacity(0.4);
-	this.setVelocity(0, 0);
+    	me.audio.play("moan");
+    	this.alive = false;
+    	this.setOpacity(0.4);
+    	this.setVelocity(0, 0);
     }
 });
