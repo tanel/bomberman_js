@@ -56,9 +56,11 @@ var EnemyEntity = me.ObjectEntity.extend({
                 this.flipX(0);
                 this.vel.x += (this.walkLeft) ? this.accel.x * me.timer.tick : this.accel.x * me.timer.tick;
             } else if (this.dir === 2) {
-                this.vel.y += (this.walkLeft) ? this.accel.y * me.timer.tick : this.accel.y * me.timer.tick; // alla
+                // alla
+                this.vel.y += (this.walkLeft) ? this.accel.y * me.timer.tick : this.accel.y * me.timer.tick;
             } else if (this.dir === 3) {
-                this.vel.y += (this.walkLeft) ? -this.accel.y * me.timer.tick : this.accel.y * me.timer.tick; // yles
+                // yles
+                this.vel.y += (this.walkLeft) ? -this.accel.y * me.timer.tick : this.accel.y * me.timer.tick;
             }
         }
 
@@ -87,9 +89,9 @@ var EnemyEntity = me.ObjectEntity.extend({
     },
 
     doomed: function() {
-    	me.audio.play("moan");
-    	this.alive = false;
-    	this.setOpacity(0.4);
-    	this.setVelocity(0, 0);
+        me.audio.play("moan");
+        this.alive = false;
+        this.setOpacity(0.4);
+        this.setVelocity(0, 0);
     }
 });
