@@ -31,6 +31,8 @@ var Explosion = me.ObjectEntity.extend({
         if (this.currentRadius < this.bombRadius) {
             if (this.direction === "right") {
                 this.updateColRect(0, 32 * this.currentRadius, 0, 32);
+            } else if (this.direction === "left") {
+                this.updateColRect(0, 32 * -this.currentRadius, 0, 32);
             }
             this.currentRadius++;
         }
