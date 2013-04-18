@@ -28,10 +28,9 @@ var Explosion = me.ObjectEntity.extend({
             return false;
 
         // * this.currentRadius
-        console.log(this.currentRadius);
         if (this.currentRadius < this.bombRadius) {
             if (this.direction === "right") {
-                this.updateColRect(-1, 32 * this.currentRadius, -1, 32);
+                this.updateColRect(0, 32 * this.currentRadius, 0, 32);
             }
             this.currentRadius++;
         }
