@@ -18,13 +18,13 @@ var Explosion = me.ObjectEntity.extend({
 	this.laiendusY = -1;
 	switch (dir)
 	{
-	  case "L": laiendusX = -32; 
+	  case "L": this.laiendusX = -32; 
 	    break;
-	  case "R": laiendusX = 32; 
+	  case "R": this.laiendusX = 32; 
 	    break;
-	  case "U": laiendusY = 32; 
+	  case "U": this.laiendusY = 32; 
 	    break;
-	  case "D": laiendusY = -32; 
+	  case "D": this.laiendusY = -32; 
 	    break;
 	  default: console.log("Explosion direction Unknown!");
 	}
