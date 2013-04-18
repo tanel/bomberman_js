@@ -27,7 +27,7 @@ var Explosion = me.ObjectEntity.extend({
         if (! this.visible)
             return false;
 
-        // * this.currentRadius
+        // Laiendame plahvatust vastavalt plahvatuse suunale
         if (this.currentRadius < this.bombRadius) {
             if (this.direction === "right") {
                 this.updateColRect(0, 32 * this.currentRadius, 0, 32);
