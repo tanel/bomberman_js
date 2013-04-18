@@ -5,9 +5,8 @@ var Explosion = me.ObjectEntity.extend({
         settings.spritewidth = 32;
         settings.spriteheight = 32;
         settings.type = me.game.ACTION_OBJECT;
+        settings.name = "explosion";
         settings.collidable = true;
-        this.x = x;
-        this.y = y;
         this.parent(x, y, settings);
         this.bomb = settings.bomb;
         this.extTime = 70; // Laienemisaeg
@@ -43,18 +42,27 @@ var Explosion = me.ObjectEntity.extend({
 
         // Otsime entiteete, mis jäävad plahvatuse alasse.                       
         // Leitud entiteedid võib nö sodiks lasta.
-        var res = me.game.collide(this);
-        if (res) {
-            var row, col;
-            console.log('collision with: ', res.obj.name);
-            if (res.obj.type === me.game.ENEMY_OBJECT) {
-                if (res.obj.alive) {
-                    res.obj.doomed();
+        var mres = me.game.collide(this, true);
+        if (mres) {
+            for (var i = 0; i < mres.length; i++) {
+                var res = mres[i];
+                // Ignoreerime teisi plahvatuse juppe
+                if (res.obj.name === "explosion")
+                    continue;
+                // Meil huvitavad vaenalsed
+                if (res.obj.type === me.game.ENEMY_OBJECT) {
+                    if (res.obj.alive) {
+                        res.obj.doomed();
+                    }
+                // ning lõhutavad seinatükid
+                } else if (res.obj.type === me.game.ACTION_OBJECT) {
+                    console.dir(res.obj);
+                    var row = Math.round(res.x / 32);
+                    var col = Math.round(res.y / 32);
+                    me.game.currentLevel.clearTile(row, col);
+                } else {
+                    console.dir(res.obj);
                 }
-            } else if (res.obj.type === me.game.ACTION_OBJECT) {
-                row = Math.round(res.x / 32);
-                col = Math.round(res.y / 32);
-                me.game.currentLevel.clearTile(row, col);
             }
         }
 
