@@ -44,12 +44,12 @@ var BombEntity = me.ObjectEntity.extend({
             this.player.bombs = this.player.bombs - 1;
             var arkRight = new Explosion(this.pos.x, this.pos.y, {bomb: this}, "R");
             var arkLeft = new Explosion(this.pos.x, this.pos.y, {bomb: this}, "L");
-	    var arkUp = new Explosion(this.pos.x, this.pos.y, {bomb: this}, "U");
-	    var arkDown = new Explosion(this.pos.x, this.pos.y, {bomb: this}, "D");
+            var arkUp = new Explosion(this.pos.x, this.pos.y, {bomb: this}, "U");
+            var arkDown = new Explosion(this.pos.x, this.pos.y, {bomb: this}, "D");
             me.game.add(arkRight, 1000);
             me.game.add(arkLeft, 1000);
-	    me.game.add(arkUp, 1000);
-	    me.game.add(arkDown, 1000);
+            me.game.add(arkUp, 1000);
+            me.game.add(arkDown, 1000);
             me.game.sort();
             me.game.remove(this);
             this.parent();
