@@ -82,11 +82,11 @@ var Explosion = me.ObjectEntity.extend({
     },
 
     grow: function() {
-        var x = this.laiendusX * this.currentRadius;
-        var y = this.laiendusY * this.currentRadius;
-        console.log('x = ', x, 'y = ', y);
+        var w = this.laiendusX * this.currentRadius;
+        var h = this.laiendusY * this.currentRadius;
+        console.log('w = ', w, 'h = ', h);
 
-        this.updateColRect(-1, x,-1, y);
+        this.updateColRect(-1, w,-1, h);
         if (this.currentRadius < this.bombRadius) {
             this.currentRadius++;
         } 
