@@ -3,11 +3,17 @@
 (function () {
     "use strict";
 
-    //me.debug.renderHitBox = true;
-
     // bomberman on nö namespace, mille küljes asuvad
     // kõik mänguga seotud objektid, funktsioonid, ressursid jne.
     window.bomberman = {};
+
+    // Kui URLi lõppu brauseris lisada ?debug, siis kuvatakse igasugu debug infot.
+    if (window.location && window.location.href && (/debug/.test(window.location.href))) {
+        window.bomberman.debug = true;
+    }
+
+    me.debug.renderHitBox = window.bomberman.debug;
+
     // Mängu vajaminevate ressursside massiiv.
     // Leveli map ise on TMX formaadis, vt lisaks https://github.com/bjorn/tiled/wiki/TMX-Map-Format
     // Leveli mapi redigeerimiseks on vajalik Tiled Map Editor, vt http://www.mapeditor.org/
