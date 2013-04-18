@@ -82,9 +82,6 @@ var Explosion = me.ObjectEntity.extend({
     },
 
     grow: function() {
-        // Selgitus: mäng ühtlaselt jaotab laienemist saates algpunkti 16p tagasi
-        // ja kokku laiendades 32p. +16p on vaja selleks, et esimese ruuduga
-        // algpunkti tagasisaatmist ei toimuks.
         this.updateColRect(-1, this.laiendusX * this.currentRadius,-1, this.laiendusY * this.currentRadius);
         if (this.currentRadius < this.bombRadius) {
             this.currentRadius++;
