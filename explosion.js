@@ -33,6 +33,10 @@ var Explosion = me.ObjectEntity.extend({
                 this.updateColRect(0, 32 * this.currentRadius, 0, 32);
             } else if (this.direction === "left") {
                 this.updateColRect(0, 32 * -this.currentRadius, 0, 32);
+            } else if (this.direction === "up") {
+                this.updateColRect(0, 32, 0, 32 * -this.currentRadius);
+            } else if (this.direction === "down") {
+                this.updateColRect(0, 32, 0, 32 * this.currentRadius);
             }
             this.currentRadius++;
         }
