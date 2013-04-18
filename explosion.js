@@ -46,13 +46,11 @@ var Explosion = me.ObjectEntity.extend({
         var res = me.game.collide(this);
         if (res) {
             var row, col;
+            console.log('collision with: ', res.obj.name);
             if (res.obj.type === me.game.ENEMY_OBJECT) {
                 if (res.obj.alive) {
                     res.obj.doomed();
                 }
-                row = parseInt((res.x + this.pos.x) / 32, 10);
-                col = parseInt((res.y + this.pos.y) / 32, 10);
-                me.game.currentLevel.clearTile(row, col);
             } else if (res.obj.type === me.game.ACTION_OBJECT) {
                 row = Math.round(res.x / 32);
                 col = Math.round(res.y / 32);
