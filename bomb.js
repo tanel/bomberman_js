@@ -42,10 +42,10 @@ var BombEntity = me.ObjectEntity.extend({
 
         if (this.explodeAt < me.timer.getTime()) {
             this.player.bombs = this.player.bombs - 1;
-            var arkRight = new Explosion(this.pos.x, this.pos.y, {bomb: this}, R);
-            var arkLeft = new Explosion(this.pos.x, this.pos.y, {bomb: this}, L);
-	    var arkUp = new Explosion(this.pos.x, this.pos.y, {bomb: this}, U);
-	    var arkDown = new Explosion(this.pos.x, this.pos.y, {bomb: this}, D);
+            var arkRight = new Explosion(this.pos.x, this.pos.y, {bomb: this}, "R");
+            var arkLeft = new Explosion(this.pos.x, this.pos.y, {bomb: this}, "L");
+	    var arkUp = new Explosion(this.pos.x, this.pos.y, {bomb: this}, "U");
+	    var arkDown = new Explosion(this.pos.x, this.pos.y, {bomb: this}, "D");
             me.game.add(arkRight, 1000);
             me.game.add(arkLeft, 1000);
 	    me.game.add(arkUp, 1000);
