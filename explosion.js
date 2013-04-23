@@ -7,6 +7,8 @@ var Explosion = me.ObjectEntity.extend({
         settings.type = me.game.ACTION_OBJECT;
         settings.name = "explosion";
         settings.collidable = true;
+        this.x = x;
+        this.y = y;
         this.parent(x, y, settings);
         this.bomb = settings.bomb;
         this.extTime = 70; // Laienemisaeg
@@ -29,13 +31,13 @@ var Explosion = me.ObjectEntity.extend({
         // Laiendame plahvatust vastavalt plahvatuse suunale
         if (this.currentRadius < this.bombRadius) {
             if (this.direction === "right") {
-                this.updateColRect(0, 32 * this.currentRadius, 0, 32);
+                this.updateColRect(0, 32 * this.currentRadius + 32, 0, 32);
             } else if (this.direction === "left") {
                 this.updateColRect(0, 32 * -this.currentRadius, 0, 32);
             } else if (this.direction === "up") {
                 this.updateColRect(0, 32, 0, 32 * -this.currentRadius);
             } else if (this.direction === "down") {
-                this.updateColRect(0, 32, 0, 32 * this.currentRadius);
+                this.updateColRect(0, 32, 0, 32 * this.currentRadius + 32);
             }
             this.currentRadius++;
         }
@@ -57,8 +59,8 @@ var Explosion = me.ObjectEntity.extend({
                 // ning lõhutavad seinatükid
                 } else if (res.obj.type === me.game.ACTION_OBJECT) {
                     console.dir(res.obj);
-                    var row = Math.round(res.x / 32);
-                    var col = Math.round(res.y / 32);
+                    var row = Math.round((res.x + this.pos.x) / 32);
+                    var col = Math.round((res.y + this.pos.y) / 32);
                     me.game.currentLevel.clearTile(row, col);
                 } else {
                     console.dir(res.obj);
