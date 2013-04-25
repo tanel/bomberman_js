@@ -1,5 +1,5 @@
 
-// Vaenlase entity
+// Enemy
 var EnemyEntity = me.ObjectEntity.extend({
     init: function(x, y, settings) {
         // define this here instead of tiled
@@ -68,7 +68,7 @@ var EnemyEntity = me.ObjectEntity.extend({
         this.updateMovement();
 	
         // if enemy collides with wall, it starts moving in other direction
-        // X-telje ja Y-telje kontrollid
+        // X-axis and Y-axis check
         if (this.vel.x === 0 && this.vel.y === 0) {
             if (this.dir === 0 || this.dir === 1) {
                 // Muudetakse vastase liikumise suunda

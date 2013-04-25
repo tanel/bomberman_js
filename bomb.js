@@ -1,13 +1,13 @@
 
 var BombEntity = me.ObjectEntity.extend({
 
-    // Nimi
+    // Name
     name: "bomb",
     
-    // Mängija, kes pommi pani (vajalik, highscorei arvutusteks)
+    // Player who placed bomb (needed for highscore calculations)
     player: null,
 
-    // Millal pomm plahvatab
+    // When bomb detonates
     explodeAt: 0,
 
     init: function(x, y, settings) {
@@ -31,7 +31,7 @@ var BombEntity = me.ObjectEntity.extend({
 
         me.audio.play("fuse", false, null, 0.6);
 
-        // Paneme pommi n sek pärast plahvatama
+        // Timer when bomb explodes
         this.explodeAt = me.timer.getTime() + 1.5 * 1000;
     },
     

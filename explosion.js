@@ -16,10 +16,10 @@ var Explosion = me.ObjectEntity.extend({
         this.currentRadius = 1; // Hetkel kui palju plahvatus laienend on
         this.direction = direction;
 	
-        // Ajaarvamise algus :)
+        // Beginning of time counting :)
         this.startMoment = me.timer.getTime();
 	
-        // Kustutame selle n seki pärast
+        // del explosion after n seconds
         this.endTime = this.startMoment + (this.extTime * (this.bombRadius + 1));
     },
     
@@ -28,7 +28,7 @@ var Explosion = me.ObjectEntity.extend({
         if (! this.visible)
             return false;
 
-        // Laiendame plahvatust vastavalt plahvatuse suunale
+        // Extends explosion in proper direction
         if (this.currentRadius < this.bombRadius) {
             if (this.direction === "right") {
                 this.updateColRect(0, 32 * this.currentRadius + 32, 0, 32);
@@ -42,21 +42,21 @@ var Explosion = me.ObjectEntity.extend({
             this.currentRadius++;
         }
 
-        // Otsime entiteete, mis jäävad plahvatuse alasse.                       
-        // Leitud entiteedid võib nö sodiks lasta.
+        // Searches objects that are in explosion.                       
+        // and removes them.
         var mres = me.game.collide(this, true);
         if (mres) {
             for (var i = 0; i < mres.length; i++) {
                 var res = mres[i];
-                // Ignoreerime teisi plahvatuse juppe
+                // Ignoreing other explosion collisions
                 if (res.obj.name === "explosion")
                     continue;
-                // Meil huvitavad vaenalsed
+                // tells enemyes that they are doomed
                 if (res.obj.type === me.game.ENEMY_OBJECT) {
                     if (res.obj.alive) {
                         res.obj.doomed();
                     }
-                // ning lõhutavad seinatükid
+                // removes destructable walls
                 } else if (res.obj.type === me.game.ACTION_OBJECT) {
                     console.dir(res.obj);
                     var row = Math.round((res.x + this.pos.x) / 32);
