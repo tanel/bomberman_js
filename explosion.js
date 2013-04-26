@@ -47,6 +47,10 @@ var Explosion = me.ObjectEntity.extend({
         if (mres) {
             for (var i = 0; i < mres.length; i++) {
                 var res = mres[i];
+                // Ignore other explosion collisions
+                if (res.obj.name === "explosion")
+                    continue;
+
                 // tells enemies that they are doomed
                 if (res.obj.type === me.game.ENEMY_OBJECT) {
                     if (window.bomberman.debug) {
