@@ -42,26 +42,30 @@ var Explosion = me.ObjectEntity.extend({
             this.currentRadius++;
         }
 
-        // Searches objects that are in explosion.                       
-        // and removes them.
+        // Searches objects that are in explosion and removes them.
         var mres = me.game.collide(this, true);
         if (mres) {
             for (var i = 0; i < mres.length; i++) {
                 var res = mres[i];
-                // tells enemyes that they are doomed
+                // tells enemies that they are doomed
                 if (res.obj.type === me.game.ENEMY_OBJECT) {
+                    if (window.bomberman.debug) {
+                        console.log(res.obj.name);
+                    }
                     if (res.obj.alive) {
                         res.obj.doomed();
                     }
                 // removes destructable walls
                 } else if (res.obj.type === me.game.ACTION_OBJECT) {
-                    console.dir(res.obj);
+                    if (window.bomberman.debug) {
+                        console.log(res.obj.name);
+                    }
                     var row = Math.round((res.x + this.pos.x) / 32);
                     var col = Math.round((res.y + this.pos.y) / 32);
 		    console.dir(x);
                     me.game.currentLevel.clearTile(row, col);
                 } else {
-                    console.dir(res.obj);
+                    throw("Unexpected object type");
                 }
             }
         }
