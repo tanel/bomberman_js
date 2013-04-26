@@ -58,6 +58,7 @@ var Explosion = me.ObjectEntity.extend({
                     console.dir(res.obj);
                     var row = Math.round((res.x + this.pos.x) / 32);
                     var col = Math.round((res.y + this.pos.y) / 32);
+		    console.dir(x);
                     me.game.currentLevel.clearTile(row, col);
                 } else {
                     console.dir(res.obj);
