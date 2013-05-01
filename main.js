@@ -29,7 +29,7 @@
         name: "level1",
         type: "tmx",
         src: "data/level1.tmx"
-    }, {
+    }, {                                     // Graafika
         name: "gripe_run_right",
         type: "image",
         src: "data/sprite/gripe_run_right.png"
@@ -45,8 +45,8 @@
         name: "evil_run_right",
         type: "image",
         src: "data/sprite/evil_run_right.png"
-    }, {    
-	name: "moan",
+    }, {                                      // Audio
+	name: "moan",                         
         type: "audio",
         src: "data/audio/", channel: 1
     }, {    
@@ -57,6 +57,10 @@
 	name: "bomb",
         type: "audio",
         src: "data/audio/", channel: 1
+    }, {                                      // Fontid
+        name: "32x32_font",
+        type: "image",
+        src: "data/sprite/32x32_font.png"
     }];
 
     // Mäng ise
