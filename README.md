@@ -14,6 +14,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 Credits to:
 
 Mike Koenig - for making wonderful sounds and making them available with CC licence.
+MelonJS engine and all who have contributed to it.
 
 
 
