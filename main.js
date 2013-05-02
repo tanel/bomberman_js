@@ -109,6 +109,7 @@
             // Defineerime mängu state'ile vastavad vaated
             me.state.set(me.state.PLAY, new window.bomberman.playScreen());
             me.state.set(me.state.SCORE, new window.bomberman.playScreen());
+	    me.state.set(me.state.MENU, new window.bomberman.titleScreen());
 
             // Lisame entity pooli playeri ja vaenlase
             me.entityPool.add("mainPlayer", PlayerEntity);
@@ -127,7 +128,7 @@
             me.input.bindKey(me.input.KEY.ESC, "abort", true);
 
             // Määrame mängu state'iks PLAY.
-            me.state.change(me.state.PLAY);
+            me.state.change(me.state.MENU);
         }
     };
 
@@ -150,6 +151,64 @@
     });
 
     window.bomberman.scoreScreen = me.ScreenObject.extend({});
+    window.bomberman.titleScreen = me.ScreenObject.extend({
+    // constructor
+    init: function() {
+        this.parent(true);
+	
+	// title screen image
+        this.title = null;
+
+        this.font = null;
+        this.scrollerfont = null;
+        this.scrollertween = null;
+	this.scroller = "Press enter to play.";
+	this.scrollerpos = 320;
+    },
+
+    // reset function
+    onResetEvent: function() {
+        if (this.title == null) {
+            // init stuff if not yet done
+            this.title = me.loader.getImage("titlescreen");
+            // font to display the menu items
+            this.font = new me.BitmapFont("32x32_font", 32);
+            this.font.set("left");
+	    
+	    // set the scroller
+            this.scrollerfont = new me.BitmapFont("32x32_font", 32);
+            this.scrollerfont.set("left");
+	}
+	// reset to default value
+        this.scrollerpos = 320;
+	
+	// enable the keyboard
+        me.input.bindKey(me.input.KEY.ENTER, "enter", true);
+    },
+
+    // update function
+    update: function() {
+	// enter pressed ?
+        if (me.input.isKeyPressed('enter')) {
+            me.state.change(me.state.PLAY);
+        }
+        return true;
+    },
+
+    // draw function
+    draw: function(context) {
+	context.drawImage(this.title, 0, 0);
+	this.font.draw(context, "PRESS ENTER TO PLAY", 20, 240);
+	this.scrollerfont.draw(context, this.scroller, this.scrollerpos, 440);
+    },
+
+    // destroy function
+    onDestroyEvent: function() {
+	me.input.unbindKey(me.input.KEY.ENTER);
+    }
+
+    }); 
+
 
     // Kui leht on brauserisse laetud, hakkab mäng laadima
     window.onReady(function () {
