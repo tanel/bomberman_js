@@ -100,13 +100,16 @@
         // sest omistasime selle eelnevalt me.loader.onload'ile:
         loaded: function () {
 
-            // Ultracool üleminek mängu
+            // cool transition between gamestates
             me.state.transition("fade", "#000000", 200);
+	    
+	    // Disable transition for menu
+	    me.state.setTransition(me.state.MENU, false);
 
-            // Teeb framecounteri nähtavaks kui JS on enabled.
+            // Makes framecounter visible if browser has javascript support
             framecounter.setAttribute('style', 'visibility: visible');
 
-            // Defineerime mängu state'ile vastavad vaated
+            // Defines gamestate screens
             me.state.set(me.state.PLAY, new window.bomberman.playScreen());
             me.state.set(me.state.SCORE, new window.bomberman.playScreen());
 	    me.state.set(me.state.MENU, new window.bomberman.titleScreen());
@@ -115,7 +118,7 @@
             me.entityPool.add("mainPlayer", PlayerEntity);
             me.entityPool.add("enemyentity", EnemyEntity);
 
-            // Nullime default gravitatsiooni
+            // Lets disable default gravity
             me.sys.gravity = 0;
 
             // enable the keyboard
@@ -127,7 +130,7 @@
             me.input.bindKey(me.input.KEY.M, "music", true);
             me.input.bindKey(me.input.KEY.ESC, "abort", true);
 
-            // Määrame mängu state'iks PLAY.
+            // Set gamestate to MENU.
             me.state.change(me.state.MENU);
         }
     };
@@ -199,7 +202,6 @@
     draw: function(context) {
 	context.drawImage(this.title, 0, 0);
 	this.font.draw(context, "PRESS ENTER TO PLAY", 20, 240);
-	this.scrollerfont.draw(context, this.scroller, this.scrollerpos, 440);
     },
 
     // destroy function
