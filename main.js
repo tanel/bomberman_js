@@ -102,9 +102,6 @@
 
             // cool transition between gamestates
             me.state.transition("fade", "#000000", 200);
-	    
-	    // Disable transition for menu
-	    me.state.setTransition(me.state.MENU, false);
 
             // Makes framecounter visible if browser has javascript support
             framecounter.setAttribute('style', 'visibility: visible');
