@@ -34,6 +34,10 @@
         type: "image",
         src: "data/sprite/gripe_run_right.png"
     }, {
+        name: "titlescreen",
+        type: "image",
+        src: "data/title.png"
+    }, {
         name: "pomm_mini",
         type: "image",
         src: "data/sprite/pomm_mini.png"
