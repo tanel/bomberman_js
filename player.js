@@ -31,6 +31,13 @@ var PlayerEntity = me.ObjectEntity.extend({
         // maksimumkiirus
         this.maxVel.x = 2;
         this.maxVel.y = 2;
+        this.hp = 100;
+        this.endTime = 0;
+        this.isSet = 0;
+        this.score = 0;
+	
+        this.tag = new me.Font("Verdana", 15, "cyan");
+        this.tag.bold();
 
         // eemaldame whitespace'i playeri tile'i ümbert
         this.updateColRect(8, 20, 10, 18);
@@ -38,6 +45,12 @@ var PlayerEntity = me.ObjectEntity.extend({
         // set the display to follow our position on both axis
         me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
  
+    },
+    
+    draw: function(context) {
+        this.parent(context);
+        this.tag.draw(context, "Player HP: " + this.hp, 121, 21);
+        this.tag.draw(context, "Score: " + this.score, 536, 21);
     },
  
     update: function() {
@@ -88,7 +101,21 @@ var PlayerEntity = me.ObjectEntity.extend({
         if (res) {
             // Vaenlase puudutamine paneb flickerdama
             if (res.obj.type === me.game.ENEMY_OBJECT) {
-		if (res.obj.alive) this.flicker(45); // Halvatud vastased ei tee haiget
+                if (res.obj.alive) this.flicker(45); // killed enemies does not trigger player flickering
+		
+                if (this.isSet === 0 && this.alive) {
+                    this.hp = this.hp - 25; // decrease hitpoints
+                    this.endTime = me.timer.getTime() + 1000; // set end time (now + 1 second)
+                    this.isSet = 1; // end time was set
+		   
+                    if (this.hp === 0)
+                        this.alive = false;
+                    }
+                
+                if (this.isSet === 1 && this.endTime <= me.timer.getTime()) { // When waiting time is over
+                    this.isSet = 0;
+                }
+		
             } else if (res.obj.type === me.game.ACTION_OBJECT) {
                 // FIXME: powerupi puutumine peaks selle üles korjama ning powerupi sisse lülitama
             }
