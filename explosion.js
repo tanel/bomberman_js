@@ -15,6 +15,7 @@ var Explosion = me.ObjectEntity.extend({
         this.bombRadius = 6;
         this.currentRadius = 1; // Hetkel kui palju plahvatus laienend on
         this.direction = direction;
+        this.isSet = 0;
 	
         // Beginning of time counting :)
         this.startMoment = me.timer.getTime();
@@ -56,6 +57,18 @@ var Explosion = me.ObjectEntity.extend({
                     if (window.bomberman.debug) {
                         console.log(res.obj.name);
                     }
+		    
+                    if (this.isSet === 0 && res.obj.alive) { // And if enemy is alive	   
+                       var abc = me.game.getEntityByName("mainPlayer")[0]; // get main player object
+                       abc.score = abc.score + 10; // increase player score
+                       this.endTime = me.timer.getTime() + 100; // set end time (now + 100 millisecond)
+                       this.isSet = 1; // end time was set
+                    }
+		
+                    if (this.isSet === 1 && this.endTime <= me.timer.getTime()) { // When waiting time is over
+                       this.isSet = 0;
+                    }
+                    
                     if (res.obj.alive) {
                         res.obj.doomed();
                     }
