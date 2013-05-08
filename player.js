@@ -35,6 +35,7 @@ var PlayerEntity = me.ObjectEntity.extend({
         this.endTime = 0;
         this.isSet = 0;
         this.score = 0;
+        this.count = 6; // total number of players
 	
         this.tag = new me.Font("Verdana", 15, "cyan");
         this.tag.bold();
@@ -50,7 +51,9 @@ var PlayerEntity = me.ObjectEntity.extend({
     draw: function(context) {
         this.parent(context);
         this.tag.draw(context, "Player HP: " + this.hp, 121, 21);
-        this.tag.draw(context, "Score: " + this.score, 536, 21);
+        this.tag.draw(context, "Score: " + this.score, 530, 21);
+        if (this.count === 0)
+            this.tag.draw(context, "Stage cleared!", 310, 21);
     },
  
     update: function() {
