@@ -16,6 +16,9 @@ var Explosion = me.ObjectEntity.extend({
         this.currentRadius = 1; // Hetkel kui palju plahvatus laienend on
         this.direction = direction;
         this.isSet = 0;
+        this.count = 0;
+        this.colTime = 0;
+        this.colTime2 = 0;
 	
         // Beginning of time counting :)
         this.startMoment = me.timer.getTime();
@@ -59,19 +62,31 @@ var Explosion = me.ObjectEntity.extend({
                     }
 		    
                     if (this.isSet === 0 && res.obj.alive) { // And if enemy is alive	   
-                       var abc = me.game.getEntityByName("mainPlayer")[0]; // get main player object
-                       abc.score = abc.score + 10; // increase player score
-                       this.endTime = me.timer.getTime() + 100; // set end time (now + 100 millisecond)
-                       this.isSet = 1; // end time was set
+                       var player = me.game.getEntityByName("mainPlayer")[0]; // get main player object
+                       player.score = player.score + 10; // increase player score
+                       player.count--; // how many enemies have player already killed
+                       this.colTime = me.timer.getTime() + 100; // set end time (now + 100 millisecond)
+                       this.colTime2 = me.timer.getTime() + 2000;
+                       this.isSet = 0; // end time was set
+                       this.count++;
+                       if (this.count === 2)
+                           player.score = player.score + 5;
+                       else if (this.count === 3)
+                           player.score = player.score + 10;
                     }
 		
-                    if (this.isSet === 1 && this.endTime <= me.timer.getTime()) { // When waiting time is over
+                    if (this.isSet === 1 && this.colTime <= me.timer.getTime()) { // When waiting time is over
                        this.isSet = 0;
+                    }
+		    
+                    if (this.colTime2 <= me.timer.getTime()) { // When waiting time is over   Count should get 0 value after 2 seconds
+                        this.count = 0;
                     }
                     
                     if (res.obj.alive) {
                         res.obj.doomed();
                     }
+		    
                 // removes destructable walls
                 } else if (res.obj.type === me.game.ACTION_OBJECT) {
                     if (window.bomberman.debug) {
