@@ -40,7 +40,7 @@ var PlayerEntity = me.ObjectEntity.extend({
         this.tag = new me.Font("Verdana", 15, "cyan");
         this.tag.bold();
 
-        // eemaldame whitespace'i playeri tile'i ümbert (VÄLJA LÜLITATUD HETKEL KUNA NEED ARVUD EI SOBI 64X64)
+        // eemaldame whitespace'i playeri tile'i ümbert 
         this.updateColRect(7, 50, 10, 54);
  
         // set the display to follow our position on both axis
