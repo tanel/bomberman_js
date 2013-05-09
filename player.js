@@ -41,7 +41,7 @@ var PlayerEntity = me.ObjectEntity.extend({
         this.tag.bold();
 
         // eemaldame whitespace'i playeri tile'i ümbert (VÄLJA LÜLITATUD HETKEL KUNA NEED ARVUD EI SOBI 64X64)
-        // this.updateColRect(8, 20, 10, 18);
+        this.updateColRect(7, 50, 10, 54);
  
         // set the display to follow our position on both axis
         me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
