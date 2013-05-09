@@ -2,8 +2,8 @@ var Explosion = me.ObjectEntity.extend({
     init: function(x, y, settings, direction) {
         settings.image = "boom";
         me.audio.play("bomb", false, null, 0.6);
-        settings.spritewidth = 32;
-        settings.spriteheight = 32;
+        settings.spritewidth = 64;
+        settings.spriteheight = 64;
         settings.type = me.game.ACTION_OBJECT;
         settings.name = "explosion";
         settings.collidable = true;

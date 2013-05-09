@@ -3,8 +3,8 @@
 var EnemyEntity = me.ObjectEntity.extend({
     init: function(x, y, settings) {
         // define this here instead of tiled
-        settings.image = "evil_run_right";
-        settings.spritewidth = 32;
+        settings.image = "evil";
+        settings.spritewidth = 64;
 
         // call the parent constructor
         this.parent(x, y, settings);

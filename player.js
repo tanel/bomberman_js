@@ -20,8 +20,8 @@ var PlayerEntity = me.ObjectEntity.extend({
     init: function(x, y, settings) {
         // call the constructor
         // alternatiivne koht omaduste jaoks tiledi asemel
-        settings.image = "gripe_run_right";
-        settings.spritewidth = 32;
+        settings.image = "gripe";
+        settings.spritewidth = 64;
 
         this.parent(x, y, settings);
 	

@@ -13,9 +13,9 @@ var BombEntity = me.ObjectEntity.extend({
     init: function(x, y, settings) {
         // define this here instead of tiled
         settings.name = "bomb";
-        settings.image = "pomm_mini";
-        settings.spritewidth = 32;
-        settings.spriteheight = 32;
+        settings.image = "pomm";
+        settings.spritewidth = 64;
+        settings.spriteheight = 64;
         settings.type = me.game.ACTION_OBJECT;
         // this.parent() kutsub päritud init() funktsiooni 
         // välja, ning tolle sees võetakse mitmed väärtused

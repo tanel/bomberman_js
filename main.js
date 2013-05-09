@@ -18,37 +18,37 @@
     // Leveli map ise on TMX formaadis, vt lisaks https://github.com/bjorn/tiled/wiki/TMX-Map-Format
     // Leveli mapi redigeerimiseks on vajalik Tiled Map Editor, vt http://www.mapeditor.org/
     window.bomberman.resources = [{
-        name: "level1_tileset", // NB! oluline, et oleks sama nimega, mis TMX failis
+        name: "level1_tileset_64", // NB! oluline, et oleks sama nimega, mis TMX failis
         type: "image",
-        src: "data/level1_tileset.png"
+        src: "data/level1_tileset_64.png"
     }, {
-        name: "metatiles32x32", // NB! oluline, et oleks sama nimega, mis TMX failis
+        name: "metatiles64x64", // NB! oluline, et oleks sama nimega, mis TMX failis
         type: "image",
-        src: "data/metatiles32x32.png"
+        src: "data/metatiles64x64.png"
     }, {
         name: "level1",
         type: "tmx",
         src: "data/level1.tmx"
     }, {                                     // Graafika
-        name: "gripe_run_right",
+        name: "gripe",
         type: "image",
-        src: "data/sprite/gripe_run_right.png"
+        src: "data/sprite/gripe_64.png"
     }, {
         name: "titlescreen",
         type: "image",
         src: "data/title.png"
     }, {
-        name: "pomm_mini",
+        name: "pomm",
         type: "image",
-        src: "data/sprite/pomm_mini.png"
+        src: "data/sprite/pomm_64.png"
     }, {
         name: "boom",
         type: "image",
-        src: "data/sprite/prim_plahvatus.png" // Ajutine, teise plahvatuse pildiga on komplikatsioone
+        src: "data/sprite/plahvatus_64.png" // Ajutine, teise plahvatuse pildiga on komplikatsioone
     }, {
-        name: "evil_run_right",
+        name: "evil",
         type: "image",
-        src: "data/sprite/evil_run_right.png"
+        src: "data/sprite/evil_64.png"
     }, {                                      // Audio
 	name: "moan",                         
         type: "audio",
@@ -75,7 +75,7 @@
             // Video initsiliaseerimise parameetrid on:
             // wrapper, width, height, double_buffering, scale, maintainAspectRatio
             // (vt http://www.melonjs.org/docs/symbols/me.video.html#init)
-            if (!me.video.init('bombermanGame', 640, 480, false, 1.0, false)) {
+            if (!me.video.init('bombermanGame', 800, 600, false, 1.0, false)) {
                 alert("Teie veebilehitseja ei toeta HTML5 canvas tehnoloogiat. Ei saa jätkata :(");
                 return;
             }
@@ -162,7 +162,6 @@
         this.font = null;
         this.scrollerfont = null;
         this.scrollertween = null;
-	this.scroller = "Press enter to play.";
 	this.scrollerpos = 320;
     },
 

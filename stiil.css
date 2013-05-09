@@ -2,7 +2,7 @@ body {
   background-color: #000;
 }
 #info {
-  width: 640px;
+  width: 800px;
   image-rendering: -moz-crisp-edges;
   image-rendering: -o-crisp-edges;
   image-rendering: -webkit-optimize-contrast;
