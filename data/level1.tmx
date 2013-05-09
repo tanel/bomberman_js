@@ -12,7 +12,7 @@
   </tile>
   <tile id="1">
    <properties>
-    <property name="type" value="platvorm"/>
+    <property name="type" value="platform"/>
    </properties>
   </tile>
   <tile id="4">

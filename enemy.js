@@ -20,6 +20,9 @@ var EnemyEntity = me.ObjectEntity.extend({
         this.collidable = true;
         // make it a enemy object
         this.type = me.game.ENEMY_OBJECT;
+	
+	// collisionbox reduced to actual character not image size
+        this.updateColRect(7, 50, 10, 54);
     },
 
     // call by the engine when colliding with another object
