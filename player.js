@@ -31,6 +31,7 @@ var PlayerEntity = me.ObjectEntity.extend({
         // maksimumkiirus
         this.maxVel.x = 2;
         this.maxVel.y = 2;
+	// FIXME: what does hp mean? hewlett packard? should rename to something meaningful
         this.hp = 100;
         this.endTime = 0;
         this.isSet = 0;

@@ -15,9 +15,13 @@ var Explosion = me.ObjectEntity.extend({
         this.bombRadius = 6;
         this.currentRadius = 1; // Hetkel kui palju plahvatus laienend on
         this.direction = direction;
+	// FIXME: is this variable necessary?
         this.isSet = 0;
+        // FIXME: what does the count variable count? should rename
         this.count = 0;
+	// FIXME: what does the colTime mean?
         this.colTime = 0;
+	// FIXME: we should rename colTime2 to a something more meaningful
         this.colTime2 = 0;
 	
         // Beginning of time counting :)
