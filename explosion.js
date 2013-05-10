@@ -98,8 +98,6 @@ var Explosion = me.ObjectEntity.extend({
                     var row = Math.round((res.x + this.pos.x) / 32);
                     var col = Math.round((res.y + this.pos.y) / 32);
                     me.game.currentLevel.clearTile(row, col);
-                } else {
-                    throw("Unexpected object type");
                 }
             }
         }
