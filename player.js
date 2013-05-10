@@ -36,7 +36,8 @@ var PlayerEntity = me.ObjectEntity.extend({
         this.endTime = 0;
         this.isSet = 0;
         this.score = 0;
-        this.count = 6; // total number of players
+        // total number of players
+        this.count = 6;
 	
         this.tag = new me.Font("Verdana", 15, "cyan");
         this.tag.bold();
@@ -109,9 +110,8 @@ var PlayerEntity = me.ObjectEntity.extend({
 		
                 if (this.isSet === 0 && this.alive) {
                     this.hp = this.hp - 25; // decrease hitpoints
-                    this.endTime = me.timer.getTime() + 1000; // set end time (now + 1 second)
+                    this.endTime = me.timer.getTime() + 1000;
                     this.isSet = 1; // end time was set
-		   
                     if (this.hp === 0)
                         this.alive = false;
                     }

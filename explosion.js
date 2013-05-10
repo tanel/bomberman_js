@@ -64,12 +64,12 @@ var Explosion = me.ObjectEntity.extend({
                     if (window.bomberman.debug) {
                         console.log(res.obj.name);
                     }
-		    
-                    if (this.isSet === 0 && res.obj.alive) { // And if enemy is alive	   
-                       var player = me.game.getEntityByName("mainPlayer")[0]; // get main player object
-                       player.score = player.score + 10; // increase player score
-                       player.count--; // how many enemies have player already killed
-                       this.colTime = me.timer.getTime() + 100; // set end time (now + 100 millisecond)
+                    if (this.isSet === 0 && res.obj.alive) {
+                       var player = me.game.getEntityByName("mainPlayer")[0];
+                       player.score = player.score + 10;
+                       // how many enemies have player already killed
+                       player.count--;
+                       this.colTime = me.timer.getTime() + 100;
                        this.colTime2 = me.timer.getTime() + 2000;
                        this.isSet = 0; // end time was set
                        this.count++;
@@ -78,19 +78,18 @@ var Explosion = me.ObjectEntity.extend({
                        else if (this.count === 3)
                            player.score = player.score + 10;
                     }
-		
-                    if (this.isSet === 1 && this.colTime <= me.timer.getTime()) { // When waiting time is over
+                    // When waiting time is over
+                    if (this.isSet === 1 && this.colTime <= me.timer.getTime()) {
                        this.isSet = 0;
                     }
-		    
-                    if (this.colTime2 <= me.timer.getTime()) { // When waiting time is over   Count should get 0 value after 2 seconds
+                    // When waiting time is over   Count should get 0 value after 2 seconds
+                    if (this.colTime2 <= me.timer.getTime()) {
                         this.count = 0;
                     }
                     
                     if (res.obj.alive) {
                         res.obj.doomed();
                     }
-		    
                 // removes destructable walls
                 } else if (res.obj.type === me.game.ACTION_OBJECT) {
                     if (window.bomberman.debug) {

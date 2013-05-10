@@ -106,10 +106,10 @@
             // Makes framecounter visible if browser has javascript support
             framecounter.setAttribute('style', 'visibility: visible');
 
-            // Defines gamestate screens
+            // Define gamestate screens
             me.state.set(me.state.PLAY, new window.bomberman.playScreen());
             me.state.set(me.state.SCORE, new window.bomberman.playScreen());
-	    me.state.set(me.state.MENU, new window.bomberman.titleScreen());
+            me.state.set(me.state.MENU, new window.bomberman.titleScreen());
 
             // Lisame entity pooli playeri ja vaenlase
             me.entityPool.add("mainPlayer", PlayerEntity);
@@ -167,14 +167,13 @@
 
     // reset function
     onResetEvent: function() {
-        if (this.title == null) {
+        if (!this.title) {
             // init stuff if not yet done
             this.title = me.loader.getImage("titlescreen");
             // font to display the menu items
             this.font = new me.BitmapFont("32x32_font", 32);
             this.font.set("left");
-	    
-	    // set the scroller
+            // set the scroller
             this.scrollerfont = new me.BitmapFont("32x32_font", 32);
             this.scrollerfont.set("left");
 	}
