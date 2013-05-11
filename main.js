@@ -34,9 +34,9 @@
         type: "image",
         src: "data/sprite/gripe_64.png"
     }, {
-        name: "titlescreen",
+        name: "flame",
         type: "image",
-        src: "data/title.png"
+        src: "data/flame.png"
     }, {
         name: "pomm",
         type: "image",
@@ -169,7 +169,7 @@
     onResetEvent: function() {
         if (!this.title) {
             // init stuff if not yet done
-            this.title = me.loader.getImage("titlescreen");
+            this.title = me.loader.getImage("flame");
             // font to display the menu items
             this.font = new me.BitmapFont("32x32_font", 32);
             this.font.set("left");
@@ -195,7 +195,7 @@
 
     // draw function
     draw: function(context) {
-	context.drawImage(this.title, 0, 0);
+	context.drawImage(this.title, 0, 425);
 	this.font.draw(context, "PRESS ENTER TO PLAY", 20, 240);
     },
 
