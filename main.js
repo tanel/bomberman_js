@@ -171,8 +171,8 @@
             // init stuff if not yet done
             this.title = me.loader.getImage("flame");
             // font to display the menu items
-            this.font = new me.BitmapFont("32x32_font", 32);
-            this.font.set("left");
+	    this.titlefont = new me.Font("Fancy", 40, "yellow", "center");
+            this.font = new me.Font("Fancy", 20, "yellow", "center");
             // set the scroller
             this.scrollerfont = new me.BitmapFont("32x32_font", 32);
             this.scrollerfont.set("left");
@@ -196,7 +196,8 @@
     // draw function
     draw: function(context) {
 	context.drawImage(this.title, 0, 425);
-	this.font.draw(context, "PRESS ENTER TO PLAY", 20, 240);
+	this.font.draw(context, "PRESS ENTER TO PLAY", 400, 300);
+	this.titlefont.draw(context, "Bomberman", 400, 25);
     },
 
     // destroy function
