@@ -1,6 +1,7 @@
 
 // Enemy
 var EnemyEntity = me.ObjectEntity.extend({
+
     init: function(x, y, settings) {
         // define this here instead of tiled
         settings.image = "evil";
@@ -18,7 +19,8 @@ var EnemyEntity = me.ObjectEntity.extend({
 
         // make it collidable
         this.collidable = true;
-        // make it a enemy object
+
+        // make it an enemy object
         this.type = me.game.ENEMY_OBJECT;
 	
         // collisionbox reduced to actual character not image size
@@ -91,7 +93,7 @@ var EnemyEntity = me.ObjectEntity.extend({
         return false;
     },
 
-    doomed: function() {
+    die: function() {
         me.audio.play("moan");
         this.alive = false;
         this.setVelocity(0, 0);

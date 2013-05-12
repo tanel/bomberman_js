@@ -50,7 +50,11 @@
         type: "image",
         src: "data/sprite/evil_64.png"
     }, {
-        name: "moan",                         
+        name: "moan",
+        type: "audio",
+        src: "data/audio/", channel: 1
+    }, {
+        name: "scream",
         type: "audio",
         src: "data/audio/", channel: 1
     }, {    
