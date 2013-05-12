@@ -53,27 +53,10 @@ var Explosion = me.ObjectEntity.extend({
                     continue;
 
                 if (res.obj.type === me.game.ENEMY_OBJECT && res.obj.alive) {
-                    if (window.bomberman.debug) {
-                        console.log(res.obj.name);
-                    }
-                    if (res.obj.alive) {
-                        res.obj.die();
-                    }
+                    res.obj.die();
 
-                // removes destructable walls
-                } else if (res.obj.type === me.game.ACTION_OBJECT) {
-                    if (window.bomberman.debug) {
-                        console.log(res.obj.name);
-                    }
-                    /* FIXME: this is wrong:
-                    var row = Math.round((res.x + this.pos.x) / 32);
-                    var col = Math.round((res.y + this.pos.y) / 32);
-                    me.game.currentLevel.clearTile(row, col);
-                    */
-                } else if (res.obj.name == "mainplayer") {
-                    if (res.obj.alive) {
-                        res.obj.die();
-                    }
+                } else if (res.obj.name == "mainplayer" && res.obj.alive) {
+                    res.obj.die();
                 }
             }
         }
