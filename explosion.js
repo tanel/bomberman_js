@@ -67,8 +67,6 @@ var Explosion = me.ObjectEntity.extend({
                     if (this.isSet === 0 && res.obj.alive) {
                        var player = me.game.getEntityByName("mainPlayer")[0];
                        player.score = player.score + 10;
-                       // how many enemies have player already killed
-                       player.totalNumberOfEnemies--;
                        this.colTime = me.timer.getTime() + 100;
                        this.colTime2 = me.timer.getTime() + 2000;
                        this.isSet = 0; // end time was set

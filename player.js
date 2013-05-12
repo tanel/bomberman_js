@@ -42,8 +42,6 @@ var PlayerEntity = me.ObjectEntity.extend({
         this.isSet = 0;
         this.score = 0;
 
-        this.totalNumberOfEnemies = 6;
-	
         // eemaldame whitespace'i playeri tile'i ümbert 
         // Remove whitespace around the player tile.
         // Else it gets really hard for player to move; as the tile

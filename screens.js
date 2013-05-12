@@ -21,9 +21,6 @@ var PlayScreen = me.ScreenObject.extend({
     draw: function(context) {
         this.font.draw(context, "Player HP: " + window.bomberman.player.hp, 121, 21);
         this.font.draw(context, "Score: " + window.bomberman.player.score, 530, 21);
-        if (!this.totalNumberOfEnemies) {
-            this.font.draw(context, "Stage cleared!", 310, 21);
-        }
     }
 });
 
