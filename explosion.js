@@ -28,21 +28,19 @@ var Explosion = me.ObjectEntity.extend({
 
         // Extends explosion in proper direction
         if (this.currentRadius < this.bombRadius) {
-            var x = 0, w = 0, y = 0, h = 0;
+            var x = 0,
+            w = window.bomberman.spritewidth,
+            y = 0,
+            h = window.bomberman.spritewidth;
             if (this.direction === "right") {
                 w = window.bomberman.spritewidth * this.currentRadius + window.bomberman.spritewidth;
-                h = window.bomberman.spritewidth;
-                this.updateColRect(0, w, 0, h);
             } else if (this.direction === "left") {
-                w = window.bomberman.spritewidth * -this.currentRadius;
-                h = window.bomberman.spritewidth;
-                this.updateColRect(0, w, 0, h);
+                x = window.bomberman.spritewidth * -this.currentRadius;
+                w = window.bomberman.spritewidth * this.currentRadius;
             } else if (this.direction === "up") {
-                w = window.bomberman.spritewidth;
-                h = window.bomberman.spritewidth * -this.currentRadius;
-                this.updateColRect(0, w, 0, h);
+                y = window.bomberman.spritewidth * -this.currentRadius;
+                h = window.bomberman.spritewidth * this.currentRadius;
             } else if (this.direction === "down") {
-                w = window.bomberman.spritewidth;
                 h = window.bomberman.spritewidth * this.currentRadius + window.bomberman.spritewidth;
             }
             this.updateColRect(x, w, y, h);
