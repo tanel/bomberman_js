@@ -11,7 +11,6 @@ var PlayerEntity = me.ObjectEntity.extend({
     // Max lubatud pommide arv kaardil
     maxAllowedBombs: 3,
     
-    // Elud
     lives: 3,
     
     // Score
@@ -31,13 +30,14 @@ var PlayerEntity = me.ObjectEntity.extend({
         // maksimumkiirus
         this.maxVel.x = 2;
         this.maxVel.y = 2;
-	// FIXME: what does hp mean? hewlett packard? should rename to something meaningful
+        
+        // FIXME: what does hp mean? hewlett packard? should rename to something meaningful
         this.hp = 100;
         this.endTime = 0;
         this.isSet = 0;
         this.score = 0;
-        // total number of players
-        this.count = 6;
+
+        this.totalNumberOfEnemies = 6;
 	
         this.tag = new me.Font("Verdana", 15, "cyan");
         this.tag.bold();
@@ -47,15 +47,15 @@ var PlayerEntity = me.ObjectEntity.extend({
  
         // set the display to follow our position on both axis
         me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
- 
     },
     
     draw: function(context) {
         this.parent(context);
         this.tag.draw(context, "Player HP: " + this.hp, 121, 21);
         this.tag.draw(context, "Score: " + this.score, 530, 21);
-        if (this.count === 0)
+        if (!this.totalNumberOfEnemies) {
             this.tag.draw(context, "Stage cleared!", 310, 21);
+        }
     },
  
     update: function() {

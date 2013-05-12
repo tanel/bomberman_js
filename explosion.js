@@ -15,13 +15,13 @@ var Explosion = me.ObjectEntity.extend({
         this.bombRadius = 6;
         this.currentRadius = 1; // Hetkel kui palju plahvatus laienend on
         this.direction = direction;
-	// FIXME: is this variable necessary?
+        // FIXME: is this variable necessary?
         this.isSet = 0;
         // FIXME: what does the count variable count? should rename
         this.count = 0;
-	// FIXME: what does the colTime mean?
+        // FIXME: what does the colTime mean?
         this.colTime = 0;
-	// FIXME: we should rename colTime2 to a something more meaningful
+        // FIXME: we should rename colTime2 to a something more meaningful
         this.colTime2 = 0;
 	
         // Beginning of time counting :)
@@ -68,7 +68,7 @@ var Explosion = me.ObjectEntity.extend({
                        var player = me.game.getEntityByName("mainPlayer")[0];
                        player.score = player.score + 10;
                        // how many enemies have player already killed
-                       player.count--;
+                       player.totalNumberOfEnemies--;
                        this.colTime = me.timer.getTime() + 100;
                        this.colTime2 = me.timer.getTime() + 2000;
                        this.isSet = 0; // end time was set
@@ -82,7 +82,8 @@ var Explosion = me.ObjectEntity.extend({
                     if (this.isSet === 1 && this.colTime <= me.timer.getTime()) {
                        this.isSet = 0;
                     }
-                    // When waiting time is over   Count should get 0 value after 2 seconds
+                    // When waiting time is over
+                    // Count should get 0 value after 2 seconds
                     if (this.colTime2 <= me.timer.getTime()) {
                         this.count = 0;
                     }
