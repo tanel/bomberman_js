@@ -17,11 +17,8 @@ var Explosion = me.ObjectEntity.extend({
         this.currentRadius = 1;
         this.direction = direction;
 
-        // Beginning of time counting
-        this.startMoment = me.timer.getTime();
-	
         // Clear explosion after n seconds
-        this.endTime = this.startMoment + (this.extTime * (this.bombRadius + 1));
+        this.endTime = me.timer.getTime() + (this.extTime * (this.bombRadius + 1));
     },
     
     update: function() {
@@ -55,12 +52,10 @@ var Explosion = me.ObjectEntity.extend({
 
                 // Ignore other explosion collisions
                 if (res.obj.type === me.game.ENEMY_OBJECT && res.obj.alive) {
-                    console.loge('enemy will die');
                     res.obj.die();
                 }
 
                 if (res.obj.name == "mainplayer" && res.obj.alive) {
-                    console.log('mainplayer will die');
                     res.obj.die();
                 }
             }
