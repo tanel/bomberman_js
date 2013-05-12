@@ -52,7 +52,15 @@ var PlayerEntity = me.ObjectEntity.extend({
         // set the display to follow our position on both axis
         me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
     },
-    
+
+    onCollision: function(res, obj) {
+        if (obj.type === me.game.ENEMY_OBJECT && this.alive) {
+            this.die();
+        } else if (obj.type === me.game.ACTION_OBJECT) {
+            // FIXME: powerupi puutumine peaks selle üles korjama ning powerupi sisse lülitama
+        }
+    },
+
     update: function() {
         if (!this.alive) {
             return false;
@@ -94,16 +102,6 @@ var PlayerEntity = me.ObjectEntity.extend({
  
         // check & update player movement
         this.updateMovement();
-
-        // check for collision
-        var res = me.game.collide(this);
-        if (res) {
-            if (res.obj.type === me.game.ENEMY_OBJECT && this.alive) {
-                this.die();
-            } else if (res.obj.type === me.game.ACTION_OBJECT) {
-                // FIXME: powerupi puutumine peaks selle üles korjama ning powerupi sisse lülitama
-            }
-        }
 
         // update animation if necessary
         if (this.vel.x !== 0 || this.vel.y !== 0) {
