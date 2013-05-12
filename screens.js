@@ -73,6 +73,10 @@ var TitleScreen = me.ScreenObject.extend({
         return false;
     },
 
+    clearInfo: function(context) {
+        context.clearRect(0, 55, me.video.getWidth(), 200);
+    },
+
     // draw function
     draw: function(context) {
         context.drawImage(this.title, 0, 425);
@@ -81,10 +85,12 @@ var TitleScreen = me.ScreenObject.extend({
         this.font.draw(context, "PRESS V FOR INSTRUCTIONS", 400, 375);
         this.font.draw(context, "AND S FOR HIGHSCORES", 400, 400);
         if (this.instructions) {
+            this.clearInfo(context);
             this.font.draw(context, "YOUR MISSION IS TO KILL EVERYONE EXCEPT YOURSELF.", 400, 75);
             this.font.draw(context, "USE ARROWS TO MOVE AND X TO PLANT BOMB.", 400, 100);
             this.font.draw(context, "HAPPY HUNTING! AND TRY NOT TO BLOW YOURSELF UP...", 400, 125);
         } else if (this.score) {
+            this.clearInfo(context);
             this.font.draw(context, "SCORE IS TOTALLY AMAZING: 0 POINTS, WELL DONE!", 400, 100);
         }
     },
