@@ -10,8 +10,7 @@ var BombEntity = me.ObjectEntity.extend({
             name: "bomb",
             image: "bomb_animation",
             spritewidth: window.bomberman.spritewidth,
-            spriteheight: window.bomberman.spritewidth,
-            type: me.game.ACTION_OBJECT
+            spriteheight: window.bomberman.spritewidth
         };
 
         // this.parent() kutsub päritud init() funktsiooni 
