@@ -97,7 +97,12 @@ var EnemyEntity = me.ObjectEntity.extend({
     },
 
     die: function() {
-        me.audio.play("moan");
+        console.log("die");
+        if (Math.random() >= 0.5) {
+            me.audio.play("moan");
+        } else {
+            me.audio.play("wscream");
+        }
         this.alive = false;
         this.setVelocity(0, 0);
         this.flicker(60);

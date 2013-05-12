@@ -55,6 +55,10 @@
         type: "audio",
         src: "data/audio/", channel: 1
     }, {
+        name: "wscream",
+        type: "audio",
+        src: "data/audio/", channel: 1
+    }, {
         name: "scream",
         type: "audio",
         src: "data/audio/", channel: 1

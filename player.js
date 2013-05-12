@@ -100,6 +100,7 @@ var PlayerEntity = me.ObjectEntity.extend({
             var res = me.game.collide(this);
             if (res) {
                 if (res.obj.type === me.game.ENEMY_OBJECT && this.alive) {
+                    res.obj.win();
                     this.die();
                 } else if (res.obj.type === me.game.ACTION_OBJECT) {
                     // FIXME: powerupi puutumine peaks selle üles korjama ning powerupi sisse lülitama
