@@ -18,10 +18,6 @@ var PlayScreen = me.ScreenObject.extend({
         me.levelDirector.loadLevel("level1");
     },
 
-    onDestroyEvent: function () {
-        // FIXME: what to do, when the game is over
-    },
-
     draw: function(context) {
         this.font.draw(context, "Player HP: " + window.bomberman.player.hp, 121, 21);
         this.font.draw(context, "Score: " + window.bomberman.player.score, 530, 21);
@@ -42,25 +38,16 @@ var TitleScreen = me.ScreenObject.extend({
         // title screen image
         this.title = null;
 
-        this.font = null;
-        this.scrollerfont = null;
-        this.scrollertween = null;
-        this.scrollerpos = 320;
+        // font to display the menu items
+        this.titlefont = new me.Font("Cursive", 40, "yellow", "center");
+        this.font = new me.Font("Cursive", 20, "yellow", "center");
     },
 
     onResetEvent: function() {
         if (!this.title) {
             // init stuff if not yet done
             this.title = me.loader.getImage("flame");
-            // font to display the menu items
-            this.titlefont = new me.Font("Cursive", 40, "yellow", "center");
-            this.font = new me.Font("Cursive", 20, "yellow", "center");
-            // set the scroller
-            this.scrollerfont = new me.BitmapFont("32x32_font", 32);
-            this.scrollerfont.set("left");
         }
-        // reset to default value
-        this.scrollerpos = 320;
 
         // enable the keyboard
         me.input.bindKey(me.input.KEY.ENTER, "enter", true);
