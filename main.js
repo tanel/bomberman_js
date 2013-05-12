@@ -108,7 +108,6 @@
 
             // Define gamestate screens
             me.state.set(me.state.PLAY, new PlayScreen());
-            me.state.set(me.state.SCORE, new ScoreScreen());
             me.state.set(me.state.MENU, new TitleScreen());
 
             // Lisame entity pooli playeri ja vaenlase
