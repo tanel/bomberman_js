@@ -4,11 +4,21 @@
 // (vt http://www.melonjs.org/docs/symbols/me.ScreenObject.html)
 var PlayScreen = me.ScreenObject.extend({
 
+    // where lives will be rendered in-play
+    livesPlaceholder: null,
+
+    // and where score will be rendered in-play
+    scorePlaceholder: null,
+
     // constructor
     init: function(settings) {
         this.parent(true);
+
         this.font = new me.Font("Verdana", 15, "cyan");
         this.font.bold();
+
+        this.livesPlaceholder = document.getElementById("lives");
+        this.scorePlaceholder = document.getElementById("score");
     },
 
     onResetEvent: function () {
@@ -18,13 +28,14 @@ var PlayScreen = me.ScreenObject.extend({
         me.levelDirector.loadLevel("level1");
     },
 
-    draw: function(context) {
-        this.font.draw(context, "Player HP: " + window.bomberman.player.hp, 121, 21);
-        this.font.draw(context, "Score: " + window.bomberman.player.score, 530, 21);
+    update: function() {
+        this.livesPlaceholder.replaceChild(document.createTextNode(window.bomberman.player.lives),
+            this.livesPlaceholder.firstChild);
+        this.scorePlaceholder.replaceChild(document.createTextNode(window.bomberman.player.score),
+            this.scorePlaceholder.firstChild);
+        return true;
     }
 });
-
-var ScoreScreen = me.ScreenObject.extend({});
 
 var TitleScreen = me.ScreenObject.extend({
 

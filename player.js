@@ -2,9 +2,6 @@
 // Peategelase ehk mängija nn entity - PlayerEntity
 var PlayerEntity = me.ObjectEntity.extend({
 
-    // Nimi pommide omaja eristamiseks ja highscoreiks tulevikus
-    name: '',
-
     // Aktiivsete pommide arv kaardil
     bombs: 0,
     
@@ -36,15 +33,11 @@ var PlayerEntity = me.ObjectEntity.extend({
         this.maxVel.x = 2;
         this.maxVel.y = 2;
         
-        // FIXME: what does hp mean? hewlett packard? should rename to something meaningful
-        this.hp = 100;
         this.endTime = 0;
         this.isSet = 0;
-        this.score = 0;
 
-        // eemaldame whitespace'i playeri tile'i ümbert 
         // Remove whitespace around the player tile.
-        // Else it gets really hard for player to move; as the tile
+        // Else it gets really hard for player to move.
         // 
          /*
          * @param {int} x x offset (specify -1 to not change the width)
@@ -90,7 +83,8 @@ var PlayerEntity = me.ObjectEntity.extend({
                 this.bombs = this.bombs + 1;
                 var bomb = new BombEntity(this.pos.x, this.pos.y, {player: this});
                 me.game.add(bomb, 1000);
-                me.game.sort(); // ensure the object is properly displayed, vt http://www.melonjs.org/docs/symbols/me.game.html#add
+                // ensure the object is properly displayed, vt http://www.melonjs.org/docs/symbols/me.game.html#add
+                me.game.sort();
             }
         }
  
@@ -102,17 +96,18 @@ var PlayerEntity = me.ObjectEntity.extend({
         if (res) {
             if (res.obj.type === me.game.ENEMY_OBJECT) {
                 if (this.isSet === 0 && this.alive) {
-                    this.hp = this.hp - 25; // decrease hitpoints
+                    this.lives--;
                     this.endTime = me.timer.getTime() + 1000;
                     this.isSet = 1; // end time was set
-                    if (this.hp === 0)
+                    if (this.lives < 1) {
                         this.alive = false;
                     }
-                
+                }
+
                 if (this.isSet === 1 && this.endTime <= me.timer.getTime()) { // When waiting time is over
                     this.isSet = 0;
                 }
-		
+
             } else if (res.obj.type === me.game.ACTION_OBJECT) {
                 // FIXME: powerupi puutumine peaks selle üles korjama ning powerupi sisse lülitama
             }
