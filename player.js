@@ -85,8 +85,7 @@ var PlayerEntity = me.ObjectEntity.extend({
         if (me.input.isKeyPressed('setBomb')) {
             if (this.bombs < this.maxAllowedBombs) {
                 this.bombs++;
-                var bomb = new BombEntity(this.pos.x, this.pos.y, {player: this});
-                me.game.add(bomb, 1000);
+                me.game.add(new BombEntity(this.pos.x, this.pos.y), 1000);
                 // ensure the object is properly displayed, vt http://www.melonjs.org/docs/symbols/me.game.html#add
                 me.game.sort();
             }

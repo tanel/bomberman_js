@@ -1,38 +1,32 @@
 
 var BombEntity = me.ObjectEntity.extend({
 
-    // Player who placed bomb (needed for highscore calculations)
-    player: null,
-
     // When bomb detonates
     explodeAt: 0,
 
-    init: function(x, y, settings) {
+    init: function(x, y) {
         // define this here instead of tiled
-        settings.name = "bomb";
-        settings.image = "bomb_animation";
-        settings.spritewidth = window.bomberman.spritewidth;
-        settings.spriteheight = window.bomberman.spritewidth;
-        settings.type = me.game.ACTION_OBJECT;
+        settings = {
+            name: "bomb",
+            image: "bomb_animation",
+            spritewidth: window.bomberman.spritewidth,
+            spriteheight: window.bomberman.spritewidth,
+            type: me.game.ACTION_OBJECT
+        };
 
         // this.parent() kutsub päritud init() funktsiooni 
         // välja, ning tolle sees võetakse mitmed väärtused
         // just settings objektilt. vt melonJS lähtekoodi.
         this.parent(x, y, settings);
 
-        if (!settings.player) {
-            throw("Must set player with bomb settings!");
-        }
-        
-        this.player = settings.player;
         this.visible = true;
 
         me.audio.play("fuse", false, null, 0.6);
 
         // Timer when bomb explodes
         this.explodeAt = me.timer.getTime() + 1.5 * 1000;
-	
-        // adjust collisionbox to actual bomb not image size 
+
+        // adjust collisionbox to actual bomb not image size
         this.updateColRect(6, 44, 14, 44);
     },
     
@@ -43,8 +37,10 @@ var BombEntity = me.ObjectEntity.extend({
         }
 
         if (this.explodeAt < me.timer.getTime()) {
-            this.player.bombs = this.player.bombs - 1;
-            var settings = {bomb: this};
+            window.bomberman.player.bombs--;
+            var settings = {
+                bomb: this
+            };
             var explodeRight = new Explosion(this.pos.x, this.pos.y, settings, "right");
             var explodeLeft = new Explosion(this.pos.x, this.pos.y, settings, "left");
             var explodeUp = new Explosion(this.pos.x, this.pos.y, settings, "up");
