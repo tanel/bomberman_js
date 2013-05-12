@@ -1,5 +1,4 @@
 /*global window: false, alert: false, me: false */
-
 (function () {
     "use strict";
 
