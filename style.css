@@ -1,0 +1,31 @@
+body {
+  background-color: #000;
+}
+#info {
+  width: 800px;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -o-crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: optimize-contrast;
+}
+#framecounter {
+  position: absolute;
+  font-size: 20px;
+  font-family: Cursive;
+  color: #00FFFF;
+  visibility: hidden;
+}
+#lives {
+  position: absolute;
+  font-size: 20px;
+  font-family: Cursive;
+  color: #00FFFF;
+  visibility: hidden;
+}
+#score {
+  position: absolute;
+  font-size: 20px;
+  font-family: Cursive;
+  color: #00FFFF;
+  visibility: hidden;
+}
