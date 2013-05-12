@@ -18,15 +18,15 @@ var BombEntity = me.ObjectEntity.extend({
         // just settings objektilt. vt melonJS lähtekoodi.
         this.parent(x, y, settings);
 	
-	this.addAnimation ("walk", [0,1,2,3], 10);
-	this.setCurrentAnimation("walk");
+	this.addAnimation ("zzz", [0,1,2,3], 30);
+	this.setCurrentAnimation("zzz");
 
         this.visible = true;
 
         me.audio.play("fuse", false, null, 0.6);
 
         // Timer when bomb explodes
-        this.explodeAt = me.timer.getTime() + 1.5 * 1000;
+        this.explodeAt = me.timer.getTime() + 2.0 * 1000;
 
         // adjust collisionbox to actual bomb not image size
         this.updateColRect(6, 44, 14, 44);
