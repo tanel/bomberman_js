@@ -7,10 +7,11 @@ var PlayerEntity = me.ObjectEntity.extend({
     
     // Max lubatud pommide arv kaardil
     maxAllowedBombs: 3,
-    
+
+    // Number of lives left    
     lives: 3,
     
-    // Score
+    // Current game score
     score: 0,
  
     init: function(x, y, settings) {
@@ -25,6 +26,9 @@ var PlayerEntity = me.ObjectEntity.extend({
         settings.spritewidth = 64;
 
         this.parent(x, y, settings);
+
+        // make it collidable
+        this.collidable = true;
 	
         // set the default horizontal & vertical speed (accel vector)
         this.setVelocity(1, 1);
@@ -33,9 +37,6 @@ var PlayerEntity = me.ObjectEntity.extend({
         this.maxVel.x = 2;
         this.maxVel.y = 2;
         
-        this.endTime = 0;
-        this.isSet = 0;
-
         // Remove whitespace around the player tile.
         // Else it gets really hard for player to move.
         // 
@@ -53,6 +54,10 @@ var PlayerEntity = me.ObjectEntity.extend({
     },
     
     update: function() {
+        if (!this.alive) {
+            return false;
+        }
+
         if (me.input.isKeyPressed('left')) {
             // flip the sprite on horizontal axis
             this.flipX(true);
@@ -80,7 +85,7 @@ var PlayerEntity = me.ObjectEntity.extend({
         
         if (me.input.isKeyPressed('setBomb')) {
             if (this.bombs < this.maxAllowedBombs) {
-                this.bombs = this.bombs + 1;
+                this.bombs++;
                 var bomb = new BombEntity(this.pos.x, this.pos.y, {player: this});
                 me.game.add(bomb, 1000);
                 // ensure the object is properly displayed, vt http://www.melonjs.org/docs/symbols/me.game.html#add
@@ -94,20 +99,8 @@ var PlayerEntity = me.ObjectEntity.extend({
         // check for collision
         var res = me.game.collide(this);
         if (res) {
-            if (res.obj.type === me.game.ENEMY_OBJECT) {
-                if (this.isSet === 0 && this.alive) {
-                    this.lives--;
-                    this.endTime = me.timer.getTime() + 1000;
-                    this.isSet = 1; // end time was set
-                    if (this.lives < 1) {
-                        this.alive = false;
-                    }
-                }
-
-                if (this.isSet === 1 && this.endTime <= me.timer.getTime()) { // When waiting time is over
-                    this.isSet = 0;
-                }
-
+            if (res.obj.type === me.game.ENEMY_OBJECT && this.alive) {
+                this.die();
             } else if (res.obj.type === me.game.ACTION_OBJECT) {
                 // FIXME: powerupi puutumine peaks selle üles korjama ning powerupi sisse lülitama
             }
@@ -123,6 +116,12 @@ var PlayerEntity = me.ObjectEntity.extend({
         // else inform the engine we did not perform
         // any update (e.g. position, animation)
         return false;
+    },
+
+    die: function() {
+        me.audio.play("scream");
+        this.alive = false;
+        this.setVelocity(0, 0);
     }
- 
+
 });
