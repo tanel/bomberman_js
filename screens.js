@@ -77,7 +77,9 @@ var TitleScreen = me.ScreenObject.extend({
     draw: function(context) {
         context.drawImage(this.title, 0, 425);
         this.titlefont.draw(context, "BOMBERMAN", 400, 50);
-        this.font.draw(context, "PRESS ENTER TO PLAY", 400, 300);
+        this.font.draw(context, "PRESS ENTER TO PLAY", 400, 350);
+        this.font.draw(context, "PRESS V FOR INSTRUCTIONS", 400, 375);
+        this.font.draw(context, "AND S FOR HIGHSCORES", 400, 400);
         if (this.instructions) {
             this.font.draw(context, "YOUR MISSION IS TO KILL EVERYONE EXCEPT YOURSELF.", 400, 75);
             this.font.draw(context, "USE ARROWS TO MOVE AND X TO PLANT BOMB.", 400, 100);
