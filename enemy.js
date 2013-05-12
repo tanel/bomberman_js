@@ -67,26 +67,30 @@ var EnemyEntity = me.ObjectEntity.extend({
                 // yles
                 this.vel.y += (this.walkLeft) ? -this.accel.y * me.timer.tick : this.accel.y * me.timer.tick;
             }
-        }
 
-        // check and update movement
-        this.updateMovement();
-	
-        // if enemy collides with wall, it starts moving in other direction
-        // X-axis and Y-axis check
-        if (this.vel.x === 0 && this.vel.y === 0) {
-            if (this.dir === 0 || this.dir === 1) {
-                // Muudetakse vastase liikumise suunda
-                this.dir = Math.floor(Math.random() * 3) + 1;
-            } else {
-                this.dir = 0;
+            // check and update movement
+            this.updateMovement();
+
+            // if enemy collides with wall, it starts moving in other direction
+            // X-axis and Y-axis check
+            if (this.vel.x === 0 && this.vel.y === 0) {
+                if (this.dir === 0 || this.dir === 1) {
+                    // Muudetakse vastase liikumise suunda
+                    this.dir = Math.floor(Math.random() * 3) + 1;
+                } else {
+                    this.dir = 0;
+                }
             }
-        }
 
-        // update animation if necessary
-        if (this.vel.x !== 0 || this.vel.y !== 0) {
-            // update object animation
-            this.parent();
+            // update animation if necessary
+            if (this.vel.x !== 0 || this.vel.y !== 0) {
+                // update object animation
+                this.parent();
+                return true;
+            }
+
+        } else if (this.removeAt < me.timer.getTime()) {
+            this.visible = false;
             return true;
         }
 
@@ -94,8 +98,11 @@ var EnemyEntity = me.ObjectEntity.extend({
     },
 
     die: function() {
+        console.log("die");
         me.audio.play("moan");
         this.alive = false;
         this.setVelocity(0, 0);
+        this.flicker();
+        this.removeAt = me.timer.getTime() + 0.5 * 1000;
     }
 });

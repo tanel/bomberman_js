@@ -18,8 +18,8 @@ var BombEntity = me.ObjectEntity.extend({
         // just settings objektilt. vt melonJS lähtekoodi.
         this.parent(x, y, settings);
 	
-	this.addAnimation ("zzz", [0,1,2,3], 30);
-	this.setCurrentAnimation("zzz");
+        this.addAnimation ("zzz", [0,1,2,3], 30);
+        this.setCurrentAnimation("zzz");
 
         this.visible = true;
 
