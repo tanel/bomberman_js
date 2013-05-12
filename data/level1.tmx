@@ -59,9 +59,16 @@
     <property name="spritewidth" value="64"/>
    </properties>
   </object>
+  <object name="EnemyEntity" x="1152" y="64" width="64" height="64">
+   <properties>
+    <property name="collidable" value="true"/>
+    <property name="spriteheight" value="64"/>
+    <property name="spritewidth" value="64"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="entities" width="20" height="15">
-  <object name="mainPlayer" x="1152" y="64" width="64" height="64"/>
+  <object name="mainPlayer" x="64" y="64" width="64" height="64"/>
  </objectgroup>
  <layer name="collision" width="20" height="15" opacity="0">
   <data encoding="base64">
