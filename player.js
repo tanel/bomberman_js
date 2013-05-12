@@ -43,7 +43,17 @@ var PlayerEntity = me.ObjectEntity.extend({
         this.tag.bold();
 
         // eemaldame whitespace'i playeri tile'i ümbert 
-        this.updateColRect(7, 50, 10, 54);
+        // Remove whitespace around the player tile.
+        // Else it gets really hard for player to move; as the tile
+        // 
+         /*
+         * @param {int} x x offset (specify -1 to not change the width)
+         * @param {int} w width of the hit box
+         * @param {int} y y offset (specify -1 to not change the height)
+         * @param {int} h height of the hit box
+         */
+        //updateColRect : function(x, w, y, h)
+        this.updateColRect(15, 40, 15, 40);
  
         // set the display to follow our position on both axis
         me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
