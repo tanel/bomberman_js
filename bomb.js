@@ -17,6 +17,9 @@ var BombEntity = me.ObjectEntity.extend({
         // välja, ning tolle sees võetakse mitmed väärtused
         // just settings objektilt. vt melonJS lähtekoodi.
         this.parent(x, y, settings);
+	
+	this.addAnimation ("walk", [0,1,2,3], 10);
+	this.setCurrentAnimation("walk");
 
         this.visible = true;
 
@@ -34,6 +37,7 @@ var BombEntity = me.ObjectEntity.extend({
         if (! this.visible) {
             return false;
         }
+        this.parent(true);
 
         if (this.explodeAt < me.timer.getTime()) {
             window.bomberman.player.bombs--;
