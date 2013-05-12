@@ -56,9 +56,9 @@ var TitleScreen = me.ScreenObject.extend({
         this.font.draw(context, "AND S FOR HIGHSCORES", me.video.getWidth()/2, 400);
         if (this.activeScreen === "instructions") {
             this.clearInfo(context);
-            this.font.draw(context, "YOUR MISSION IS TO KILL EVERYONE EXCEPT YOURSELF.", me.video.getWidth()/2, 75);
-            this.font.draw(context, "USE ARROWS TO MOVE AND X TO PLANT BOMB.", me.video.getWidth()/2, 100);
-            this.font.draw(context, "HAPPY HUNTING! AND TRY NOT TO BLOW YOURSELF UP...", me.video.getWidth()/2, 125);
+            this.font.draw(context, "YOUR MISSION IS TO KILL EVERYONE EXCEPT YOURSELF.", me.video.getWidth()/2, 100);
+            this.font.draw(context, "USE ARROWS TO MOVE AND X TO PLANT BOMB.", me.video.getWidth()/2, 125);
+            this.font.draw(context, "HAPPY HUNTING! AND TRY NOT TO BLOW YOURSELF UP...", me.video.getWidth()/2, 150);
         } else if (this.activeScreen === "score") {
             this.clearInfo(context);
             this.font.draw(context, "SCORE IS TOTALLY AMAZING: 0 POINTS, WELL DONE!", me.video.getWidth()/2, 100);
