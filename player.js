@@ -86,13 +86,9 @@ var PlayerEntity = me.ObjectEntity.extend({
         }
 
         if (me.input.isKeyPressed('up')) {
-            // flip the sprite on horizontal axis
-            this.flipY(false);
             // update the entity velocity
             this.vel.y -= this.accel.y * me.timer.tick;
         } else if (me.input.isKeyPressed('down')) {
-            // unflip the sprite
-            this.flipY(false);
             // update the entity velocity
             this.vel.y += this.accel.y * me.timer.tick;
         } else {
