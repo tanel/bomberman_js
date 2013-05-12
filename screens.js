@@ -35,8 +35,7 @@ var TitleScreen = me.ScreenObject.extend({
         // title screen image
         this.title = null;
 	
-        this.instructions = false;
-        this.score = false;
+        this.activeScreen = null; // What data is being shown on screen
 
         // font to display the menu items
         this.titlefont = new me.Font("Cursive", 40, "yellow", "center");
@@ -60,13 +59,11 @@ var TitleScreen = me.ScreenObject.extend({
             me.state.change(me.state.PLAY);
             return true;
         } else if (me.input.isKeyPressed('instructions')) {
-            this.instructions = true;
-            this.score = false;
+            this.activeScreen = "instructions";
             console.log("Noob detected!");
             return true;
         } else if (me.input.isKeyPressed('score')) {
-            this.score = true;
-            this.instructions = false;
+            this.activeScreen = "score";
             console.log("Wannabe pro detected!"); 
             return true;
         } 
@@ -80,24 +77,25 @@ var TitleScreen = me.ScreenObject.extend({
     // draw function
     draw: function(context) {
         context.drawImage(this.title, 0, 425);
-        this.titlefont.draw(context, "BOMBERMAN", 400, 50);
-        this.font.draw(context, "PRESS ENTER TO PLAY", 400, 350);
-        this.font.draw(context, "PRESS V FOR INSTRUCTIONS", 400, 375);
-        this.font.draw(context, "AND S FOR HIGHSCORES", 400, 400);
-        if (this.instructions) {
+        this.titlefont.draw(context, "BOMBERMAN", me.video.getWidth()/2, 50);
+        this.font.draw(context, "PRESS ENTER TO PLAY", me.video.getWidth()/2, 350);
+        this.font.draw(context, "PRESS V FOR INSTRUCTIONS", me.video.getWidth()/2, 375);
+        this.font.draw(context, "AND S FOR HIGHSCORES", me.video.getWidth()/2, 400);
+        if (this.activeScreen === "instructions") {
             this.clearInfo(context);
-            this.font.draw(context, "YOUR MISSION IS TO KILL EVERYONE EXCEPT YOURSELF.", 400, 75);
-            this.font.draw(context, "USE ARROWS TO MOVE AND X TO PLANT BOMB.", 400, 100);
-            this.font.draw(context, "HAPPY HUNTING! AND TRY NOT TO BLOW YOURSELF UP...", 400, 125);
-        } else if (this.score) {
+            this.font.draw(context, "YOUR MISSION IS TO KILL EVERYONE EXCEPT YOURSELF.", me.video.getWidth()/2, 75);
+            this.font.draw(context, "USE ARROWS TO MOVE AND X TO PLANT BOMB.", me.video.getWidth()/2, 100);
+            this.font.draw(context, "HAPPY HUNTING! AND TRY NOT TO BLOW YOURSELF UP...", me.video.getWidth()/2, 125);
+        } else if (this.activeScreen === "score") {
             this.clearInfo(context);
-            this.font.draw(context, "SCORE IS TOTALLY AMAZING: 0 POINTS, WELL DONE!", 400, 100);
+            this.font.draw(context, "SCORE IS TOTALLY AMAZING: 0 POINTS, WELL DONE!", me.video.getWidth()/2, 100);
         }
     },
 
     onDestroyEvent: function() {
         me.input.unbindKey(me.input.KEY.ENTER);
         me.input.unbindKey(me.input.KEY.V);
+	me.input.unbindKey(me.input.KEY.S);
     }
 
 }); 
