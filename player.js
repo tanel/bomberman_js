@@ -104,10 +104,7 @@ var PlayerEntity = me.ObjectEntity.extend({
         // check for collision
         var res = me.game.collide(this);
         if (res) {
-            // Vaenlase puudutamine paneb flickerdama
             if (res.obj.type === me.game.ENEMY_OBJECT) {
-                if (res.obj.alive) this.flicker(45); // killed enemies does not trigger player flickering
-		
                 if (this.isSet === 0 && this.alive) {
                     this.hp = this.hp - 25; // decrease hitpoints
                     this.endTime = me.timer.getTime() + 1000;
