@@ -21,7 +21,7 @@ var EnemyEntity = me.ObjectEntity.extend({
         // make it a enemy object
         this.type = me.game.ENEMY_OBJECT;
 	
-	// collisionbox reduced to actual character not image size
+        // collisionbox reduced to actual character not image size
         this.updateColRect(7, 50, 10, 54);
     },
 
@@ -94,7 +94,6 @@ var EnemyEntity = me.ObjectEntity.extend({
     doomed: function() {
         me.audio.play("moan");
         this.alive = false;
-        this.setOpacity(0.4);
         this.setVelocity(0, 0);
     }
 });
