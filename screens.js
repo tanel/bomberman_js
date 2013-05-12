@@ -3,8 +3,14 @@
 // näiteks "Loading..", "High score", "ingame" ehk mäng ise ka.
 // (vt http://www.melonjs.org/docs/symbols/me.ScreenObject.html)
 var PlayScreen = me.ScreenObject.extend({
-    // Mängu state'i haldus kutsub seda funktsiooni välja,
-    // kui mängu state muutub.
+
+    // constructor
+    init: function(settings) {
+        this.parent(true);
+        this.font = new me.Font("Verdana", 15, "cyan");
+        this.font.bold();
+    },
+
     onResetEvent: function () {
         // levelDirector tegeleb leveli jaoks vajalike ressursside
         // laadimise ning haldamisega. Käseme tal level1 sisse laadida:
@@ -13,7 +19,15 @@ var PlayScreen = me.ScreenObject.extend({
     },
 
     onDestroyEvent: function () {
-        // FIXME: mida teha, kui mäng on lõppenud
+        // FIXME: what to do, when the game is over
+    },
+
+    draw: function(context) {
+        this.font.draw(context, "Player HP: " + window.bomberman.player.hp, 121, 21);
+        this.font.draw(context, "Score: " + window.bomberman.player.score, 530, 21);
+        if (!this.totalNumberOfEnemies) {
+            this.font.draw(context, "Stage cleared!", 310, 21);
+        }
     }
 });
 

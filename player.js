@@ -17,6 +17,11 @@ var PlayerEntity = me.ObjectEntity.extend({
     score: 0,
  
     init: function(x, y, settings) {
+        // Initialize player variable in the global bomberman
+        // namespace. So we can easily reference it, without
+        // passing it around all the time.
+        window.bomberman.player = this;
+
         // call the constructor
         // alternatiivne koht omaduste jaoks tiledi asemel
         settings.image = "gripe";
@@ -39,9 +44,6 @@ var PlayerEntity = me.ObjectEntity.extend({
 
         this.totalNumberOfEnemies = 6;
 	
-        this.tag = new me.Font("Verdana", 15, "cyan");
-        this.tag.bold();
-
         // eemaldame whitespace'i playeri tile'i ümbert 
         // Remove whitespace around the player tile.
         // Else it gets really hard for player to move; as the tile
@@ -59,17 +61,7 @@ var PlayerEntity = me.ObjectEntity.extend({
         me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
     },
     
-    draw: function(context) {
-        this.parent(context);
-        this.tag.draw(context, "Player HP: " + this.hp, 121, 21);
-        this.tag.draw(context, "Score: " + this.score, 530, 21);
-        if (!this.totalNumberOfEnemies) {
-            this.tag.draw(context, "Stage cleared!", 310, 21);
-        }
-    },
- 
     update: function() {
-
         if (me.input.isKeyPressed('left')) {
             // flip the sprite on horizontal axis
             this.flipX(true);
