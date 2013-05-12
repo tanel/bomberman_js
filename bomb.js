@@ -35,7 +35,7 @@ var BombEntity = me.ObjectEntity.extend({
         // Timer when bomb explodes
         this.explodeAt = me.timer.getTime() + 1.5 * 1000;
 	
-	// adjust collisionbox to actual bomb not image size 
+        // adjust collisionbox to actual bomb not image size 
         this.updateColRect(6, 44, 14, 44);
     },
     

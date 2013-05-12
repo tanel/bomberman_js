@@ -63,7 +63,6 @@ var PlayerEntity = me.ObjectEntity.extend({
             this.flipX(true);
             // update the entity velocity
             this.vel.x -= this.accel.x * me.timer.tick;
-			//this.vel.y -= this.accel.y * me.timer.tick;
         } else if (me.input.isKeyPressed('right')) {
             // unflip the sprite
             this.flipX(false);

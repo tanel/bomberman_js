@@ -65,6 +65,8 @@ var Explosion = me.ObjectEntity.extend({
             me.game.remove(this);
         }
 
+        // update object animation
+        this.parent();
         return true;
     }
 });
