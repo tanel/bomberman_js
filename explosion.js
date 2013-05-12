@@ -52,13 +52,7 @@ var Explosion = me.ObjectEntity.extend({
         if (mres) {
             for (var i = 0; i < mres.length; i++) {
                 var res = mres[i];
-
-                // Ignore other explosion collisions
-                if (res.obj.type === me.game.ENEMY_OBJECT && res.obj.alive) {
-                    res.obj.die();
-                }
-
-                if (res.obj.name == "mainplayer" && res.obj.alive) {
+                if (res.obj.alive && res.obj.die) {
                     res.obj.die();
                 }
             }
