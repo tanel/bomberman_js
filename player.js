@@ -54,63 +54,75 @@ var PlayerEntity = me.ObjectEntity.extend({
     },
     
     update: function() {
-        if (!this.alive) {
+        // Do nothing if not visible and no restart is scheduled.
+        if (!this.visible && !this.resetAt) {
             return false;
         }
 
-        if (me.input.isKeyPressed('left')) {
-            // flip the sprite on horizontal axis
-            this.flipX(true);
-            // update the entity velocity
-            this.vel.x -= this.accel.x * me.timer.tick;
-        } else if (me.input.isKeyPressed('right')) {
-            // unflip the sprite
-            this.flipX(false);
-            // update the entity velocity
-            this.vel.x += this.accel.x * me.timer.tick;
-        } else {
-            this.vel.x = 0;
-        }
-
-        if (me.input.isKeyPressed('up')) {
-            // update the entity velocity
-            this.vel.y -= this.accel.y * me.timer.tick;
-        } else if (me.input.isKeyPressed('down')) {
-            // update the entity velocity
-            this.vel.y += this.accel.y * me.timer.tick;
-        } else {
-            this.vel.y = 0;
-        }
-        
-        if (me.input.isKeyPressed('setBomb')) {
-            if (this.bombs < this.maxAllowedBombs) {
-                this.bombs++;
-                me.game.add(new BombEntity(this.pos.x, this.pos.y), 1000);
-                // ensure the object is properly displayed, vt http://www.melonjs.org/docs/symbols/me.game.html#add
-                me.game.sort();
+        if (this.alive) {
+            if (me.input.isKeyPressed('left')) {
+                // flip the sprite on horizontal axis
+                this.flipX(true);
+                // update the entity velocity
+                this.vel.x -= this.accel.x * me.timer.tick;
+            } else if (me.input.isKeyPressed('right')) {
+                // unflip the sprite
+                this.flipX(false);
+                // update the entity velocity
+                this.vel.x += this.accel.x * me.timer.tick;
+            } else {
+                this.vel.x = 0;
             }
-        }
- 
-        // check & update player movement
-        this.updateMovement();
 
-        // check for collision
-        var res = me.game.collide(this);
-        if (res) {
-            if (res.obj.type === me.game.ENEMY_OBJECT && this.alive) {
-                this.die();
-            } else if (res.obj.type === me.game.ACTION_OBJECT) {
-                // FIXME: powerupi puutumine peaks selle üles korjama ning powerupi sisse lülitama
+            if (me.input.isKeyPressed('up')) {
+                // update the entity velocity
+                this.vel.y -= this.accel.y * me.timer.tick;
+            } else if (me.input.isKeyPressed('down')) {
+                // update the entity velocity
+                this.vel.y += this.accel.y * me.timer.tick;
+            } else {
+                this.vel.y = 0;
             }
-        }
 
-        // update animation if necessary
-        if (this.vel.x !== 0 || this.vel.y !== 0) {
-            // update object animation
-            this.parent();
+            if (me.input.isKeyPressed('setBomb')) {
+                if (this.bombs < this.maxAllowedBombs) {
+                    this.bombs++;
+                    me.game.add(new BombEntity(this.pos.x, this.pos.y), 1000);
+                    // ensure the object is properly displayed, vt http://www.melonjs.org/docs/symbols/me.game.html#add
+                    me.game.sort();
+                }
+            }
+
+            // check & update player movement
+            this.updateMovement();
+
+            // check for collision
+            var res = me.game.collide(this);
+            if (res) {
+                if (res.obj.type === me.game.ENEMY_OBJECT && this.alive) {
+                    this.die();
+                } else if (res.obj.type === me.game.ACTION_OBJECT) {
+                    // FIXME: powerupi puutumine peaks selle üles korjama ning powerupi sisse lülitama
+                }
+            }
+
+            // update animation if necessary
+            if (this.vel.x !== 0 || this.vel.y !== 0) {
+                // update object animation
+                this.parent();
+                return true;
+            }
+
+        } else if (this.resetAt < me.timer.getTime()) {
+            me.game.reset();
+            me.state.change(me.state.PLAY);
+            return false;
+
+        } else if (this.removeAt < me.timer.getTime()) {
+            this.visible = false;
             return true;
         }
-         
+
         // else inform the engine we did not perform
         // any update (e.g. position, animation)
         return false;
@@ -120,6 +132,9 @@ var PlayerEntity = me.ObjectEntity.extend({
         me.audio.play("scream");
         this.alive = false;
         this.setVelocity(0, 0);
+        this.flicker(60);
+        this.removeAt = me.timer.getTime() + 2 * 1000;
+        this.resetAt = me.timer.getTime() + 2 * 1000;
     }
 
 });

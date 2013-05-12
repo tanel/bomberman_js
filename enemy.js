@@ -41,7 +41,6 @@ var EnemyEntity = me.ObjectEntity.extend({
 
     // manage the enemy movement
     update: function() {
-
         // do nothing if not visible
         if (!this.visible)
             return false;
@@ -98,11 +97,10 @@ var EnemyEntity = me.ObjectEntity.extend({
     },
 
     die: function() {
-        console.log("die");
         me.audio.play("moan");
         this.alive = false;
         this.setVelocity(0, 0);
-        this.flicker();
-        this.removeAt = me.timer.getTime() + 0.5 * 1000;
+        this.flicker(60);
+        this.removeAt = me.timer.getTime() + 1 * 1000;
     }
 });
