@@ -5,7 +5,7 @@ var EnemyEntity = me.ObjectEntity.extend({
     init: function(x, y, settings) {
         // define this here instead of tiled
         settings.image = "evil";
-        settings.spritewidth = 64;
+        settings.spritewidth = window.bomberman.spritewidth;
 
         // call the parent constructor
         this.parent(x, y, settings);

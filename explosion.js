@@ -3,8 +3,8 @@ var Explosion = me.ObjectEntity.extend({
         settings.image = "boom";
         me.audio.play("bomb", false, null, 0.6);
 
-        settings.spritewidth = 64;
-        settings.spriteheight = 64;
+        settings.spritewidth = window.bomberman.spritewidth;
+        settings.spriteheight = window.bomberman.spritewidth;
         settings.type = me.game.ACTION_OBJECT;
         settings.name = "explosion";
         settings.collidable = true;
@@ -32,13 +32,17 @@ var Explosion = me.ObjectEntity.extend({
         // Extends explosion in proper direction
         if (this.currentRadius < this.bombRadius) {
             if (this.direction === "right") {
-                this.updateColRect(0, 32 * this.currentRadius + 32, 0, 32);
+                this.updateColRect(0, window.bomberman.spritewidth * this.currentRadius + window.bomberman.spritewidth,
+                    0, window.bomberman.spritewidth);
             } else if (this.direction === "left") {
-                this.updateColRect(0, 32 * -this.currentRadius, 0, 32);
+                this.updateColRect(0, window.bomberman.spritewidth * -this.currentRadius,
+                    0, window.bomberman.spritewidth);
             } else if (this.direction === "up") {
-                this.updateColRect(0, 32, 0, 32 * -this.currentRadius);
+                this.updateColRect(0, window.bomberman.spritewidth,
+                    0, window.bomberman.spritewidth * -this.currentRadius);
             } else if (this.direction === "down") {
-                this.updateColRect(0, 32, 0, 32 * this.currentRadius + 32);
+                this.updateColRect(0, window.bomberman.spritewidth,
+                    0, window.bomberman.spritewidth * this.currentRadius + window.bomberman.spritewidth);
             }
             this.currentRadius++;
         }
@@ -48,14 +52,15 @@ var Explosion = me.ObjectEntity.extend({
         if (mres) {
             for (var i = 0; i < mres.length; i++) {
                 var res = mres[i];
+
                 // Ignore other explosion collisions
-                if (res.obj.name === "explosion")
-                    continue;
-
                 if (res.obj.type === me.game.ENEMY_OBJECT && res.obj.alive) {
+                    console.loge('enemy will die');
                     res.obj.die();
+                }
 
-                } else if (res.obj.name == "mainplayer" && res.obj.alive) {
+                if (res.obj.name == "mainplayer" && res.obj.alive) {
+                    console.log('mainplayer will die');
                     res.obj.die();
                 }
             }

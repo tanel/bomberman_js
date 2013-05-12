@@ -5,7 +5,9 @@
 
     // bomberman on nö namespace, mille küljes asuvad
     // kõik mänguga seotud objektid, funktsioonid, ressursid jne.
-    window.bomberman = {};
+    window.bomberman = {
+        spritewidth: 64
+    };
 
     // Kui URLi lõppu brauseris lisada ?debug, siis kuvatakse igasugu debug infot.
     if (window.location && window.location.href && (/debug/.test(window.location.href))) {

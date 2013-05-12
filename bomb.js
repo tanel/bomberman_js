@@ -14,9 +14,10 @@ var BombEntity = me.ObjectEntity.extend({
         // define this here instead of tiled
         settings.name = "bomb";
         settings.image = "pomm";
-        settings.spritewidth = 64;
-        settings.spriteheight = 64;
+        settings.spritewidth = window.bomberman.spritewidth;
+        settings.spriteheight = window.bomberman.spritewidth;
         settings.type = me.game.ACTION_OBJECT;
+
         // this.parent() kutsub päritud init() funktsiooni 
         // välja, ning tolle sees võetakse mitmed väärtused
         // just settings objektilt. vt melonJS lähtekoodi.

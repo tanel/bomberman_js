@@ -23,7 +23,7 @@ var PlayerEntity = me.ObjectEntity.extend({
         // call the constructor
         // alternatiivne koht omaduste jaoks tiledi asemel
         settings.image = "gripe";
-        settings.spritewidth = 64;
+        settings.spritewidth = window.bomberman.spritewidth;
 
         this.parent(x, y, settings);
 
