@@ -23,9 +23,9 @@
         type: "image",
         src: "data/level1_tileset_64.png"
     }, {
-        name: "metatiles64x64",
+        name: "kollisioon_64",
         type: "image",
-        src: "data/metatiles64x64.png"
+        src: "data/kollisioon_64.png"
     }, {
         name: "level1",
         type: "tmx",
