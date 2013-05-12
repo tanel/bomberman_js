@@ -90,7 +90,7 @@ var EnemyEntity = me.ObjectEntity.extend({
             }
 
         } else if (this.removeAt < me.timer.getTime()) {
-            this.visible = false;
+            me.game.remove(this);
             return true;
         }
 
