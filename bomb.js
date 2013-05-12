@@ -1,9 +1,6 @@
 
 var BombEntity = me.ObjectEntity.extend({
 
-    // Name
-    name: "bomb",
-    
     // Player who placed bomb (needed for highscore calculations)
     player: null,
 
@@ -13,7 +10,7 @@ var BombEntity = me.ObjectEntity.extend({
     init: function(x, y, settings) {
         // define this here instead of tiled
         settings.name = "bomb";
-        settings.image = "pomm";
+        settings.image = "bomb_animation";
         settings.spritewidth = window.bomberman.spritewidth;
         settings.spriteheight = window.bomberman.spritewidth;
         settings.type = me.game.ACTION_OBJECT;
@@ -41,8 +38,9 @@ var BombEntity = me.ObjectEntity.extend({
     
     update: function() {
         // do nothing if not visible
-        if (! this.visible)
+        if (! this.visible) {
             return false;
+        }
 
         if (this.explodeAt < me.timer.getTime()) {
             this.player.bombs = this.player.bombs - 1;

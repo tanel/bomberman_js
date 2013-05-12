@@ -39,7 +39,7 @@
         type: "image",
         src: "data/flame.png"
     }, {
-        name: "pomm",
+        name: "bomb_animation",
         type: "image",
         src: "data/sprite/pomm_64.png"
     }, {
