@@ -9,6 +9,9 @@ var Explosion = me.ObjectEntity.extend({
         settings.name = "explosion";
         settings.collidable = true;
 
+        this.explosionSize = (window.bomberman.spritewidth / 2);
+        this.explosionMargin = (window.bomberman.spritewidth - this.explosionSize) / 2;
+
         this.parent(x, y, settings);
 
         this.bomb = settings.bomb;
@@ -28,20 +31,20 @@ var Explosion = me.ObjectEntity.extend({
 
         // Extends explosion in proper direction
         if (this.currentRadius < this.bombRadius) {
-            var x = 0,
-            w = window.bomberman.spritewidth,
-            y = 0,
-            h = window.bomberman.spritewidth;
+            var x = this.explosionMargin,
+            w = this.explosionSize,
+            y = this.explosionMargin,
+            h = this.explosionSize;
             if (this.direction === "right") {
-                w = window.bomberman.spritewidth * this.currentRadius + window.bomberman.spritewidth;
+                w = (window.bomberman.spritewidth * this.currentRadius) + window.bomberman.spritewidth;
             } else if (this.direction === "left") {
-                x = window.bomberman.spritewidth * -this.currentRadius;
+                x = (window.bomberman.spritewidth * -this.currentRadius);
                 w = window.bomberman.spritewidth * this.currentRadius;
             } else if (this.direction === "up") {
                 y = window.bomberman.spritewidth * -this.currentRadius;
                 h = window.bomberman.spritewidth * this.currentRadius;
             } else if (this.direction === "down") {
-                h = window.bomberman.spritewidth * this.currentRadius + window.bomberman.spritewidth;
+                h = (window.bomberman.spritewidth * this.currentRadius) + window.bomberman.spritewidth;
             }
             this.updateColRect(x, w, y, h);
             this.currentRadius++;
