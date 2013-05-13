@@ -16,7 +16,7 @@ var Explosion = me.ObjectEntity.extend({
 
         this.bomb = settings.bomb;
         this.extTime = 70;
-        this.bombRadius = 6;
+        this.bombRadius = 3;
         this.currentRadius = 1;
         this.direction = direction;
 
