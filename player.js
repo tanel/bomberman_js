@@ -128,11 +128,21 @@ var PlayerEntity = me.ObjectEntity.extend({
             return;
         }
         me.audio.play("scream");
+
         this.alive = false;
         this.setVelocity(0, 0);
         this.flicker(60);
+
         this.removeAt = me.timer.getTime() + 2 * 1000;
         this.resetAt = me.timer.getTime() + 2 * 1000;
+
+        var livesLeft = me.game.HUD.getItemValue("lives");
+        if (livesLeft > 0) {
+            me.game.HUD.updateItemValue("lives", -1);
+        } else {
+            // No more lives left? Game over.
+            me.state.change(me.state.SCORE);
+        }
     }
 
 });

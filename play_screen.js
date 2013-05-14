@@ -28,6 +28,8 @@ var PlayScreen = me.ScreenObject.extend({
         if (!this.lives) {
             this.lives = new LivesObject(me.video.getWidth() - 200, 40);
             me.game.HUD.addItem("lives", this.lives);
+            // At beginning, player has 3 lives
+            me.game.HUD.setItemValue("lives", 3);
         }
     }
 });

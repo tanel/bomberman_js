@@ -111,6 +111,8 @@
             // Define gamestate screens
             me.state.set(me.state.PLAY, new PlayScreen());
             me.state.set(me.state.MENU, new TitleScreen());
+            me.state.set(me.state.USER, new HelpScreen());
+            me.state.set(me.state.SCORE, new ScoreScreen());
 
             // Lisame entity pooli playeri ja vaenlase
             me.entityPool.add("mainPlayer", PlayerEntity);
@@ -125,8 +127,11 @@
             me.input.bindKey(me.input.KEY.UP, "up");
             me.input.bindKey(me.input.KEY.DOWN, "down");
             me.input.bindKey(me.input.KEY.X, "setBomb", true);
-            me.input.bindKey(me.input.KEY.M, "music", true);
+
             me.input.bindKey(me.input.KEY.ESC, "abort", true);
+            me.input.bindKey(me.input.KEY.ENTER, "enter", true);
+            me.input.bindKey(me.input.KEY.V, "instructions", true);
+            me.input.bindKey(me.input.KEY.S, "score", true);
 
             // Set gamestate to MENU.
             me.state.change(me.state.MENU);
