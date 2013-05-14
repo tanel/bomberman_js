@@ -3,8 +3,18 @@ module.exports = function(grunt) {
 		pkg: grunt.file.readJSON('package.json'),
 		jshint: {
 			files: [
-				'gruntfile.js', 'main.js', 'enemy.js', 'explosion.js',
-				'player.js', 'bomb.js', 'play_screen.js', 'title_screen.js'
+				'bomb.js',
+				'enemy.js',
+				'explosion.js',
+				'gruntfile.js',
+				'help_screen.js',
+				'lives_object.js',
+				'main.js',
+				'player.js',
+				'play_screen.js',
+				'score_object.js',
+				'score_screen.js',
+				'title_screen.js'
 			]
 		}
 	});
