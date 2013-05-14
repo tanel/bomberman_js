@@ -31,11 +31,11 @@ var PlayerEntity = me.ObjectEntity.extend({
         this.collidable = true;
 	
         // set the default horizontal & vertical speed (accel vector)
-        this.setVelocity(0.07, 0.07);
+        this.setVelocity(0.15, 0.15);
 	
         // speed gets capped at 4
-        this.maxVel.x = 4;
-        this.maxVel.y = 4;
+        this.maxVel.x = 3;
+        this.maxVel.y = 3;
         
         // Remove whitespace around the player tile.
         // Else it gets really hard for player to move.
