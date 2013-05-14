@@ -129,6 +129,10 @@ var PlayerEntity = me.ObjectEntity.extend({
     },
 
     die: function() {
+        if (!this.alive) {
+            // Already dead
+            return;
+        }
         me.audio.play("scream");
         this.alive = false;
         this.setVelocity(0, 0);

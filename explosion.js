@@ -50,15 +50,18 @@ var Explosion = me.ObjectEntity.extend({
             this.currentRadius++;
         }
 
-        // Kill enemies and player if they collide with explosion.
+        // Kill enemies if they collide with explosion.
         var mres = me.game.collideType(this, me.game.ENEMY_OBJECT, true);
         if (mres) {
             for (var i = 0; i < mres.length; i++) {
-                var res = mres[i];
-                if (res.obj.alive && res.obj.die) {
-                    res.obj.die();
-                }
+                mres[i].obj.die();
             }
+        }
+
+        // Kill player, if it collides with explosion.
+        var res = me.game.collideType(this, me.game.NO_OBJECT);
+        if (res) {
+            res.obj.die();
         }
 
         // Clear tiles, if they collide

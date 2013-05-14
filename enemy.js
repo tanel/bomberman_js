@@ -97,6 +97,10 @@ var EnemyEntity = me.ObjectEntity.extend({
     },
 
     die: function() {
+        if (!this.alive) {
+            // Aready dead
+            return;
+        }
         if (Math.random() >= 0.5) {
             me.audio.play("moan");
         } else {
