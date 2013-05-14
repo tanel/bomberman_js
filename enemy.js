@@ -110,5 +110,7 @@ var EnemyEntity = me.ObjectEntity.extend({
         this.setVelocity(0, 0);
         this.flicker(60);
         this.removeAt = me.timer.getTime() + 1 * 1000;
+
+        me.game.HUD.updateItemValue("score", 10);
     }
 });

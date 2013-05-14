@@ -108,9 +108,6 @@
             // cool transition between gamestates
             me.state.transition("fade", "#000000", 200);
 
-            // Makes framecounter visible if browser has javascript support
-            framecounter.setAttribute('style', 'visibility: visible');
-
             // Define gamestate screens
             me.state.set(me.state.PLAY, new PlayScreen());
             me.state.set(me.state.MENU, new TitleScreen());
@@ -133,6 +130,15 @@
 
             // Set gamestate to MENU.
             me.state.change(me.state.MENU);
+
+            // add a default HUD to the game mngr (with no background)
+            me.game.addHUD(0,0, me.video.width, 50);
+
+            // add the "score" HUD item
+            me.game.HUD.addItem("score", new ScoreObject(300, 40));
+
+            // add the "lives" HUD item
+            me.game.HUD.addItem("lives", new LivesObject(100, 40));
         }
     };
 
