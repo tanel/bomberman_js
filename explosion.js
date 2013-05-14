@@ -50,8 +50,8 @@ var Explosion = me.ObjectEntity.extend({
             this.currentRadius++;
         }
 
-        // Searches objects that are in explosion and removes them.
-        var mres = me.game.collide(this, true);
+        // Kill enemies and player if they collide with explosion.
+        var mres = me.game.collideType(this, me.game.ENEMY_OBJECT, true);
         if (mres) {
             for (var i = 0; i < mres.length; i++) {
                 var res = mres[i];
@@ -60,6 +60,9 @@ var Explosion = me.ObjectEntity.extend({
                 }
             }
         }
+
+        // Clear tiles, if they collide
+        //var mres = me.game.collideType
 
         if (this.endTime <= me.timer.getTime()) {
             me.game.remove(this);
