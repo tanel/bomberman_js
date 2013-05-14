@@ -8,12 +8,6 @@ var PlayerEntity = me.ObjectEntity.extend({
     // Max lubatud pommide arv kaardil
     maxAllowedBombs: 3,
 
-    // Number of lives left    
-    lives: 3,
-    
-    // Current game score
-    score: 0,
- 
     init: function(x, y, settings) {
         // Initialize player variable in the global bomberman
         // namespace. So we can easily reference it, without

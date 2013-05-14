@@ -133,12 +133,6 @@
 
             // add a default HUD to the game mngr (with no background)
             me.game.addHUD(0,0, me.video.width, 50);
-
-            // add the "score" HUD item
-            me.game.HUD.addItem("score", new ScoreObject(300, 40));
-
-            // add the "lives" HUD item
-            me.game.HUD.addItem("lives", new LivesObject(100, 40));
         }
     };
 

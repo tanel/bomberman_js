@@ -4,21 +4,9 @@
 // (vt http://www.melonjs.org/docs/symbols/me.ScreenObject.html)
 var PlayScreen = me.ScreenObject.extend({
 
-    // where lives will be rendered in-play
-    livesPlaceholder: null,
-
-    // and where score will be rendered in-play
-    scorePlaceholder: null,
-
     // constructor
     init: function(settings) {
         this.parent(true);
-
-        this.font = new me.Font("Verdana", 15, "cyan");
-        this.font.bold();
-
-        this.livesPlaceholder = document.getElementById("lives");
-        this.scorePlaceholder = document.getElementById("score");
     },
 
     onResetEvent: function () {
@@ -26,13 +14,11 @@ var PlayScreen = me.ScreenObject.extend({
         // laadimise ning haldamisega. Käseme tal level1 sisse laadida:
         // (vt http://www.melonjs.org/docs/symbols/me.levelDirector.html)
         me.levelDirector.loadLevel("level1");
-    },
 
-    update: function() {
-        this.livesPlaceholder.replaceChild(document.createTextNode(window.bomberman.player.lives),
-            this.livesPlaceholder.firstChild);
-        this.scorePlaceholder.replaceChild(document.createTextNode(window.bomberman.player.score),
-            this.scorePlaceholder.firstChild);
-        return true;
+        // add the "score" HUD item
+        me.game.HUD.addItem("score", new ScoreObject(10, 40));
+
+        // add the "lives" HUD item
+        me.game.HUD.addItem("lives", new LivesObject(me.video.getWidth() - 200, 40));
     }
 });
