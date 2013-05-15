@@ -100,6 +100,9 @@ var PlayerEntity = me.ObjectEntity.extend({
 		    if (res.obj.name === "life") {
 			me.game.HUD.updateItemValue("lives", 1);
 		    }
+		    else if (res.obj.name === "coin") {
+			me.game.HUD.updateItemValue("score", 25);
+		    }
 		    else { 
 		        console.log("What is this, i win button maybe?");
 		    }

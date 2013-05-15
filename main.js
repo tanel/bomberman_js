@@ -47,6 +47,10 @@
         type: "image",
         src: "data/sprite/life_powerup.png"
     }, {
+        name: "coin",
+        type: "image",
+        src: "data/sprite/coin.png"
+    }, {
         name: "boom",
         type: "image",
         src: "data/sprite/plahvatus_64.png"
@@ -122,6 +126,7 @@
             me.entityPool.add("mainPlayer", PlayerEntity);
             me.entityPool.add("enemyentity", EnemyEntity);
 	    me.entityPool.add("life", Life_Powerup);
+	    me.entityPool.add("coin", Coin);
 
             // Lets disable default gravity
             me.sys.gravity = 0;

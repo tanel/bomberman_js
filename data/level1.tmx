@@ -24,6 +24,13 @@
     <property name="spritewidth" value="40"/>
    </properties>
   </object>
+  <object name="coin" x="265" y="524" width="44" height="40">
+   <properties>
+    <property name="collidable" value="true"/>
+    <property name="spriteheight" value="40"/>
+    <property name="spritewidth" value="40"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="enemy_entities" width="20" height="15">
   <object name="EnemyEntity" x="606" y="299" width="64" height="64">
