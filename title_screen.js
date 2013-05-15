@@ -38,11 +38,11 @@ var TitleScreen = me.ScreenObject.extend({
 
     // draw function
     draw: function(context) {
-        context.drawImage(this.flame, 0, 425);
-        this.titlefont.draw(context, "BOMBERMAN", me.video.getWidth()/2, 50);
-        this.font.draw(context, "PRESS ENTER TO PLAY", me.video.getWidth()/2, 350);
-        this.font.draw(context, "PRESS V FOR INSTRUCTIONS", me.video.getWidth()/2, 375);
-        this.font.draw(context, "AND S FOR HIGHSCORES", me.video.getWidth()/2, 400);
+        context.drawImage(this.flame, 0, me.video.getHeight() - 175);
+        this.titlefont.draw(context, "BOMBERMAN", me.video.getWidth() / 2, 50);
+        this.font.draw(context, "PRESS ENTER TO PLAY", me.video.getWidth() / 2, 350);
+        this.font.draw(context, "PRESS V FOR INSTRUCTIONS", me.video.getWidth() / 2, 375);
+        this.font.draw(context, "AND S FOR HIGHSCORES", me.video.getWidth() / 2, 400);
     },
 
     onDestroyEvent: function() {
