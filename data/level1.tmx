@@ -17,7 +17,7 @@
   </tile>
  </tileset>
  <objectgroup name="powerups" width="20" height="15">
-  <object name="life" x="200" y="202" width="47" height="51">
+  <object name="life" x="70" y="286" width="47" height="51">
    <properties>
     <property name="collidable" value="true"/>
     <property name="spriteheight" value="40"/>
