@@ -19,9 +19,5 @@ var Powerups = me.ObjectEntity.extend({
 	this.collidable = true;
 	
         this.visible = true;
-    },
-    bonus: function() {
-        type: "life";
-        return type;
     }
 });
