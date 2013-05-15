@@ -4,6 +4,7 @@ var ScoreScreen = me.ScreenObject.extend({
     // constructor
     init: function() {
         this.parent(true);
+	this.score = 0;
 
         this.font = new me.Font("Cursive", 20, "yellow", "center");
     },
@@ -12,7 +13,10 @@ var ScoreScreen = me.ScreenObject.extend({
         if (me.input.isKeyPressed('abort')) {
             me.state.change(me.state.MENU);
             return true;
-        } 
+	}
+	if (this.score != me.game.HUD.getItemValue("score")) {
+	    this.score =  me.game.HUD.getItemValue("score");
+	} 
         return false;
     },
 
@@ -23,7 +27,7 @@ var ScoreScreen = me.ScreenObject.extend({
     // draw function
     draw: function(context) {
         this.clearInfo(context);
-        this.font.draw(context, "SCORE IS TOTALLY AMAZING: 0 POINTS, WELL DONE!", me.video.getWidth()/2, 100);
+        this.font.draw(context, "SCORE IS TOTALLY AMAZING: " + this.score  + " POINTS, WELL DONE!", me.video.getWidth()/2, 100);
     }
 
 }); 
