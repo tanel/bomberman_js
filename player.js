@@ -97,15 +97,13 @@ var PlayerEntity = me.ObjectEntity.extend({
                     this.die();
                 } else if (res.obj.type === me.game.COLLECTABLE_OBJECT) {
                     console.log("yeesss!");
-		    if (res.obj.name === "life") {
-			me.game.HUD.updateItemValue("lives", 1);
-		    }
-		    else if (res.obj.name === "coin") {
-			me.game.HUD.updateItemValue("score", 25);
-		    }
-		    else { 
-		        console.log("What is this, i win button maybe?");
-		    }
+                    if (res.obj.name === "life") {
+                        me.game.HUD.updateItemValue("lives", 1);
+                    } else if (res.obj.name === "coin") {
+                        me.game.HUD.updateItemValue("score", 25);
+                    } else { 
+                        console.log("What is this, i win button maybe?");
+                    }
                 }
             }
 

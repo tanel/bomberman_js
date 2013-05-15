@@ -122,11 +122,12 @@
             me.state.set(me.state.USER, new HelpScreen());
             me.state.set(me.state.SCORE, new ScoreScreen());
 
-            // Lisame entity pooli playeri ja vaenlase
+            // Add entities to pool. They will be initialized
+            // according to map file.
             me.entityPool.add("mainPlayer", PlayerEntity);
             me.entityPool.add("enemyentity", EnemyEntity);
-	    me.entityPool.add("life", Life_Powerup);
-	    me.entityPool.add("coin", Coin);
+            me.entityPool.add("life", LifePowerupEntity);
+            me.entityPool.add("coin", CoinEntity);
 
             // Lets disable default gravity
             me.sys.gravity = 0;
