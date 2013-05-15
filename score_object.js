@@ -6,7 +6,7 @@ ScoreObject = me.HUD_Item.extend({
       // call the parent constructor
       this.parent(x, y);
       // create a font
-      this.font = new me.Font("Verdana", 30, "red");
+      this.font = new me.Font("Cursive", 30, "yellow");
    },
 
    draw: function (context, x, y) {
