@@ -121,7 +121,7 @@
             // Lisame entity pooli playeri ja vaenlase
             me.entityPool.add("mainPlayer", PlayerEntity);
             me.entityPool.add("enemyentity", EnemyEntity);
-	    me.entityPool.add("life", Powerups);
+	    me.entityPool.add("life", Life_Powerup);
 
             // Lets disable default gravity
             me.sys.gravity = 0;

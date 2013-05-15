@@ -1,4 +1,4 @@
-var Powerups = me.ObjectEntity.extend({
+var Life_Powerup = me.ObjectEntity.extend({
 
     init: function(x, y) {
         // define this here instead of tiled
