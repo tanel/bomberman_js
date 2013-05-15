@@ -137,7 +137,7 @@ var PlayerEntity = me.ObjectEntity.extend({
         this.resetAt = me.timer.getTime() + 2 * 1000;
 
         var livesLeft = me.game.HUD.getItemValue("lives");
-        if (livesLeft < 0) {
+        if (livesLeft > 0) {
             me.game.HUD.updateItemValue("lives", -1);
         } else {
             // No more lives left? Game over.
