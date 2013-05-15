@@ -43,6 +43,10 @@
         type: "image",
         src: "data/sprite/pomm_64.png"
     }, {
+        name: "life",
+        type: "image",
+        src: "data/sprite/life_powerup.png"
+    }, {
         name: "boom",
         type: "image",
         src: "data/sprite/plahvatus_64.png"
@@ -117,6 +121,7 @@
             // Lisame entity pooli playeri ja vaenlase
             me.entityPool.add("mainPlayer", PlayerEntity);
             me.entityPool.add("enemyentity", EnemyEntity);
+	    me.entityPool.add("life", Powerups);
 
             // Lets disable default gravity
             me.sys.gravity = 0;

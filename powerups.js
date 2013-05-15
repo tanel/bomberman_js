@@ -1,0 +1,19 @@
+var Powerups = me.ObjectEntity.extend({
+
+    init: function(x, y) {
+        // define this here instead of tiled
+        settings = {
+            name: "life",
+            image: "life",
+            spritewidth : window.bomberman.spritewidth,
+            spriteheight : window.bomberman.spriteheight,
+        };
+
+        // this.parent() kutsub päritud init() funktsiooni 
+        // välja, ning tolle sees võetakse mitmed väärtused
+        // just settings objektilt. vt melonJS lähtekoodi.
+        this.parent(x, y, settings);
+	
+        this.visible = true;
+    },
+});
