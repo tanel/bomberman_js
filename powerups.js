@@ -5,8 +5,8 @@ var Powerups = me.ObjectEntity.extend({
         settings = {
             name: "life",
             image: "life",
-            spritewidth : window.bomberman.spritewidth,
-            spriteheight : window.bomberman.spriteheight,
+            spritewidth : 40,
+            spriteheight : 40,
         };
 
         // this.parent() kutsub päritud init() funktsiooni 
