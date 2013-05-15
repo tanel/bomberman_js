@@ -95,8 +95,9 @@ var PlayerEntity = me.ObjectEntity.extend({
             if (res) {
                 if (res.obj.type === me.game.ENEMY_OBJECT && this.alive) {
                     this.die();
-                } else if (res.obj.type === me.game.ACTION_OBJECT) {
-                    // FIXME: powerupi puutumine peaks selle üles korjama ning powerupi sisse lülitama
+                } else if (res.obj.type === me.game.COLLECTABLE_OBJECT) {
+                    console.log("yeesss!");
+		    me.game.HUD.updateItemValue("lives", 1);
                 }
             }
 

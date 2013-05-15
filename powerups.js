@@ -14,6 +14,14 @@ var Powerups = me.ObjectEntity.extend({
         // just settings objektilt. vt melonJS lähtekoodi.
         this.parent(x, y, settings);
 	
+	this.type = me.game.COLLECTABLE_OBJECT;
+	
+	this.collidable = true;
+	
         this.visible = true;
     },
+    bonus: function() {
+        type: "life";
+        return type;
+    }
 });
