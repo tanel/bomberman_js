@@ -14,7 +14,8 @@ module.exports = function(grunt) {
 				'play_screen.js',
 				'score_object.js',
 				'score_screen.js',
-				'title_screen.js'
+				'title_screen.js',
+		                'powerups.js'
 			]
 		}
 	});
