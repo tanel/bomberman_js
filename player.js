@@ -131,6 +131,9 @@ var PlayerEntity = me.ObjectEntity.extend({
 	case "life":
 	    me.game.HUD.updateItemValue("lives", 1); 
 	break;
+	case "flamepower":
+	    me.game.HUD.updateItemValue("range", 1); 
+	break;
 	default:
           console.log("unknown powerup")
 	}

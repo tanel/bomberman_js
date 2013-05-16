@@ -47,6 +47,10 @@
         type: "image",
         src: "data/sprite/life_powerup.png"
     }, {
+        name: "flamepower",
+        type: "image",
+        src: "data/sprite/flame_icon.png"
+    }, {
         name: "coin",
         type: "image",
         src: "data/sprite/coin.png"
@@ -128,6 +132,7 @@
             me.entityPool.add("enemyentity", EnemyEntity);
             me.entityPool.add("life", LifePowerupEntity);
             me.entityPool.add("coin", CoinEntity);
+	    me.entityPool.add("flamepower", FlamePower);
 
             // Lets disable default gravity
             me.sys.gravity = 0;
