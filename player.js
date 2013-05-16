@@ -97,13 +97,7 @@ var PlayerEntity = me.ObjectEntity.extend({
                     this.die();
                 } else if (res.obj.type === me.game.COLLECTABLE_OBJECT) {
                     console.log("yeesss!");
-                    if (res.obj.name === "life") {
-                        me.game.HUD.updateItemValue("lives", 1);
-                    } else if (res.obj.name === "coin") {
-                        me.game.HUD.updateItemValue("score", 25);
-                    } else { 
-                        console.log("What is this, i win button maybe?");
-                    }
+                    this.bonus(res.obj.name);
                 }
             }
 
@@ -127,6 +121,19 @@ var PlayerEntity = me.ObjectEntity.extend({
         // else inform the engine we did not perform
         // any update (e.g. position, animation)
         return false;
+    },
+    bonus: function(bname) {
+        switch(bname)
+	{
+	case "coin":
+	    me.game.HUD.updateItemValue("score", 25); 
+	break;
+	case "life":
+	    me.game.HUD.updateItemValue("lives", 1); 
+	break;
+	default:
+          console.log("unknown powerup")
+	}
     },
 
     die: function() {
