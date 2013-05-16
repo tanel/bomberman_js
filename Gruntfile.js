@@ -16,7 +16,9 @@ module.exports = function(grunt) {
 				'score_screen.js',
 				'title_screen.js',
 				'coin_entity.js',
-				'life_powerup_entity.js'
+				'life_powerup_entity.js',
+		                'flame_entity.js',
+		                'range_object.js'
 			]
 		}
 	});
