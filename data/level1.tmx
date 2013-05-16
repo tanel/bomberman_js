@@ -17,14 +17,28 @@
   </tile>
  </tileset>
  <objectgroup name="powerups" width="20" height="15">
-  <object name="life" x="70" y="286" width="47" height="51">
+  <object name="life" x="1162" y="839" width="47" height="51">
    <properties>
     <property name="collidable" value="true"/>
     <property name="spriteheight" value="40"/>
     <property name="spritewidth" value="40"/>
    </properties>
   </object>
-  <object name="coin" x="265" y="524" width="44" height="40">
+  <object name="coin" x="72" y="773" width="44" height="40">
+   <properties>
+    <property name="collidable" value="true"/>
+    <property name="spriteheight" value="40"/>
+    <property name="spritewidth" value="40"/>
+   </properties>
+  </object>
+  <object name="coin" x="389" y="201" width="48" height="48">
+   <properties>
+    <property name="collidable" value="true"/>
+    <property name="spriteheight" value="40"/>
+    <property name="spritewidth" value="40"/>
+   </properties>
+  </object>
+  <object name="coin" x="1069" y="77" width="44" height="40">
    <properties>
     <property name="collidable" value="true"/>
     <property name="spriteheight" value="40"/>
