@@ -23,11 +23,12 @@ var Explosion = me.ObjectEntity.extend({
         // Clear explosion after n seconds
         this.endTime = me.timer.getTime() + (this.extTime * (this.bombRadius + 1));
     },
-    
+
     update: function() {
         // do nothing if not visible
-        if (! this.visible)
+        if (! this.visible) {
             return false;
+        }
 
         // Extends explosion in proper direction
         if (this.currentRadius < this.bombRadius) {
@@ -47,6 +48,7 @@ var Explosion = me.ObjectEntity.extend({
                 h = (window.bomberman.spritewidth * this.currentRadius) + window.bomberman.spritewidth;
             }
             this.updateColRect(x, w, y, h);
+            this.clearBreakingTiles(x, x+w, y, y+h);
             this.currentRadius++;
         }
 
@@ -64,15 +66,51 @@ var Explosion = me.ObjectEntity.extend({
             res.obj.die();
         }
 
-        // Clear tiles, if they collide
-        //var mres = me.game.collideType
-
         if (this.endTime <= me.timer.getTime()) {
+            this.clearBreakingTiles(this.left, this.right, this.top, this.bottom);
+            this.visible = false;
             me.game.remove(this);
         }
 
         // update object animation
         this.parent();
         return true;
+    },
+
+    isBreakingTile: function(tile) {
+        // If we already know which tile ID breaks on the collision map,
+        // compare to it and we're done
+        if (window.bomberman.knownBreakingTileId === tile.tileId) {
+            return true;
+        } else if (!window.bomberman.knownBreakingTileId) {
+            // Fetch tile properties
+            var props = me.game.collisionMap.tileset.getTileProperties(tile.tileId);
+            if (props && props.isBreakable) {
+                // Remember the breaking tile ID
+                window.bomberman.knownBreakingTileId = tile.tileId;
+                return true;
+            }
+        }
+        return false;
+    },
+
+    cleaBreakingTile: function(x, y) {
+        if (x > 0 && y > 0) {
+            var tile = me.game.collisionMap.getTile(x, y);
+            if (tile && this.isBreakingTile(tile)) {
+                me.game.currentLevel.clearTile(tile.col, tile.row);
+                var pixelCoords = new me.Vector2d(tile.col * window.bomberman.spritewidth, tile.row * window.bomberman.spritewidth);
+                var coin = new CoinEntity(pixelCoords.x, pixelCoords.y);
+                me.game.add(coin, 1000);
+                me.game.sort();
+            }
+        }
+    },
+
+    clearBreakingTiles: function(x, xw, y, yh) {
+        this.cleaBreakingTile(x, y);
+        this.cleaBreakingTile(x, yh);
+        this.cleaBreakingTile(xw, y);
+        this.cleaBreakingTile(xw, yh);
     }
 });
