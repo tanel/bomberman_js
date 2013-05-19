@@ -130,6 +130,7 @@ var PlayerEntity = me.ObjectEntity.extend({
         } else if (pickedUpItemName === "flamepower") {
             me.game.HUD.updateItemValue("range", 1);
         }
+        me.audio.play("soda_open");
     },
 
     die: function() {

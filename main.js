@@ -82,6 +82,10 @@
         name: "bomb",
         type: "audio",
         src: "data/audio/", channel: 1
+    }, {    
+        name: "soda_open",
+        type: "audio",
+        src: "data/audio/", channel: 1
     }];
 
     // Mäng ise
