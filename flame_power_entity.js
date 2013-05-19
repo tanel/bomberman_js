@@ -1,4 +1,4 @@
-var FlamePower = me.ObjectEntity.extend({
+var FlamePowerEntity = me.ObjectEntity.extend({
 
     init: function(x, y) {
         // define this here instead of tiled

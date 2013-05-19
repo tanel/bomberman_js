@@ -4,21 +4,21 @@ module.exports = function(grunt) {
 		jshint: {
 			files: [
 				'bomb.js',
+				'coin_entity.js',
 				'enemy.js',
 				'explosion.js',
+                'flame_power_entity.js',
 				'gruntfile.js',
 				'help_screen.js',
+				'life_powerup_entity.js',
 				'lives_object.js',
 				'main.js',
-				'player.js',
 				'play_screen.js',
+				'player.js',
+                'range_object.js',
 				'score_object.js',
 				'score_screen.js',
-				'title_screen.js',
-				'coin_entity.js',
-				'life_powerup_entity.js',
-		                'flame_entity.js',
-		                'range_object.js'
+				'title_screen.js'
 			]
 		}
 	});

@@ -132,7 +132,7 @@
             me.entityPool.add("enemyentity", EnemyEntity);
             me.entityPool.add("life", LifePowerupEntity);
             me.entityPool.add("coin", CoinEntity);
-	    me.entityPool.add("flamepower", FlamePower);
+            me.entityPool.add("flamepower", FlamePowerEntity);
 
             // Lets disable default gravity
             me.sys.gravity = 0;

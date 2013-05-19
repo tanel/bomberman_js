@@ -24,11 +24,12 @@ var PlayScreen = me.ScreenObject.extend({
             this.score = new ScoreObject(10, 40);
             me.game.HUD.addItem("score", this.score);
         }
+
         // add "bombs" counter HUD item
         if (!this.range) {
             this.range = new RangeObject(180, 40);
             me.game.HUD.addItem("range", this.range);
-	    // At beginning, player bombs have range of 2
+            // At beginning, player bombs have range of 2
             me.game.HUD.setItemValue("range", 2);
         }
 

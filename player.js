@@ -96,8 +96,7 @@ var PlayerEntity = me.ObjectEntity.extend({
                 if (res.obj.type === me.game.ENEMY_OBJECT && this.alive) {
                     this.die();
                 } else if (res.obj.type === me.game.COLLECTABLE_OBJECT) {
-                    console.log("yeesss!");
-                    this.bonus(res.obj.name);
+                    this.itemPickedUp(res.obj.name);
                 }
             }
 
@@ -122,21 +121,15 @@ var PlayerEntity = me.ObjectEntity.extend({
         // any update (e.g. position, animation)
         return false;
     },
-    bonus: function(bname) {
-        switch(bname)
-	{
-	case "coin":
-	    me.game.HUD.updateItemValue("score", 25); 
-	break;
-	case "life":
-	    me.game.HUD.updateItemValue("lives", 1); 
-	break;
-	case "flamepower":
-	    me.game.HUD.updateItemValue("range", 1); 
-	break;
-	default:
-          console.log("unknown powerup")
-	}
+
+    itemPickedUp: function(pickedUpItemName) {
+        if (pickedUpItemName === "coin") {
+            me.game.HUD.updateItemValue("score", 25);
+        } else if (pickedUpItemName === "life") {
+            me.game.HUD.updateItemValue("lives", 1);
+        } else if (pickedUpItemName === "flamepower") {
+            me.game.HUD.updateItemValue("range", 1);
+        }
     },
 
     die: function() {
