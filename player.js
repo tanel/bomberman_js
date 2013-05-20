@@ -81,7 +81,9 @@ var PlayerEntity = me.ObjectEntity.extend({
             if (me.input.isKeyPressed('setBomb')) {
                 if (this.bombs < this.maxAllowedBombs) {
                     this.bombs++;
-                    me.game.add(new BombEntity(this.pos.x, this.pos.y), 1000);
+                    // Position bomb exactly in the middle of a tile.
+                    var aligned = window.bomberman.alignPixelCoords(this.pos.x, this.pos.y);
+                    me.game.add(new BombEntity(aligned.x, aligned.y), 1000);
                     // ensure the object is properly displayed, vt http://www.melonjs.org/docs/symbols/me.game.html#add
                     me.game.sort();
                 }

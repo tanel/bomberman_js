@@ -6,7 +6,22 @@
     // kõik mänguga seotud objektid, funktsioonid, ressursid jne.
     window.bomberman = {
         spritewidth: 64,
-        knownBreakingTileId: null // this value wil be set later in the game, when it's needed
+        knownBreakingTileId: null, // this value wil be set later in the game, when it's needed
+        // Utility functions, taken from MelonJS source (they're private there):
+        pixelToTileCoords: function(x, y) {
+            return new me.Vector2d(x / this.spritewidth, y / this.spritewidth);
+        },
+        tileToPixelCoords: function(x, y) {
+            return new me.Vector2d(x * this.spritewidth, y * this.spritewidth);
+        },
+        alignPixelCoords: function(x, y) {
+            var tileCoords = this.pixelToTileCoords(x, y);
+            var pixelCoords = this.tileToPixelCoords(Math.round(tileCoords.x), Math.round(tileCoords.y));
+            return {
+                x: pixelCoords.x,
+                y: pixelCoords.y
+            };
+        }
     };
 
     // Kui URLi lõppu brauseris lisada ?debug, siis kuvatakse igasugu debug infot.
