@@ -100,8 +100,7 @@ var Explosion = me.ObjectEntity.extend({
             if (tile && this.isBreakingTile(tile)) {
                 me.game.currentLevel.clearTile(tile.col, tile.row);
                 var pixelCoords = new me.Vector2d(tile.col * window.bomberman.spritewidth, tile.row * window.bomberman.spritewidth);
-		this.foundItem(pixelCoords);
-                
+                this.foundItem(pixelCoords);
             }
         }
     },
@@ -112,6 +111,7 @@ var Explosion = me.ObjectEntity.extend({
         this.cleaBreakingTile(xw, y);
         this.cleaBreakingTile(xw, yh);
     },
+
     foundItem: function(pixelCoords) {
         // To-do: this method should contain what to drop when wall is destroyed and at which frequency
         var roll = Math.random();
