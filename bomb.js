@@ -1,9 +1,6 @@
 
 var BombEntity = me.ObjectEntity.extend({
 
-    // When bomb detonates
-    explodeAt: 0,
-
     init: function(x, y) {
         // define this here instead of tiled
         settings = {
@@ -41,19 +38,11 @@ var BombEntity = me.ObjectEntity.extend({
 
         if (this.explodeAt < me.timer.getTime()) {
             window.bomberman.player.bombs--;
-            var settings = {
-                bomb: this
-            };
-            var explodeRight = new Explosion(this.pos.x, this.pos.y, settings, "right");
-            var explodeLeft = new Explosion(this.pos.x, this.pos.y, settings, "left");
-            var explodeUp = new Explosion(this.pos.x, this.pos.y, settings, "up");
-            var explodeDown = new Explosion(this.pos.x, this.pos.y, settings, "down");
-            me.game.add(explodeRight, 1000);
-            me.game.add(explodeLeft, 1000);
-            me.game.add(explodeUp, 1000);
-            me.game.add(explodeDown, 1000);
-            me.game.sort();
+            var explosion = new Explosion(this.pos.x, this.pos.y);
+            me.game.add(explosion, 1000);
+            this.visible = false;
             me.game.remove(this);
+            me.game.sort();
             this.parent();
             return true;
         }

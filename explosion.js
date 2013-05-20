@@ -1,55 +1,28 @@
 var Explosion = me.ObjectEntity.extend({
-    init: function(x, y, settings, direction) {
-        settings.image = "boom";
+    init: function(x, y) {
         me.audio.play("bomb", false, null, 0.6);
 
-        settings.spritewidth = window.bomberman.spritewidth;
-        settings.spriteheight = window.bomberman.spritewidth;
-        settings.type = me.game.ACTION_OBJECT;
-        settings.name = "explosion";
-        settings.collidable = true;
-
-        this.explosionSize = (window.bomberman.spritewidth / 2);
-        this.explosionMargin = (window.bomberman.spritewidth - this.explosionSize) / 2;
+        var settings = {
+            image: "boom",
+            spritewidth: window.bomberman.spritewidth,
+            spriteheight: window.bomberman.spritewidth,
+            type: me.game.ACTION_OBJECT,
+            name: "explosion",
+            collidable: true
+        };
 
         this.parent(x, y, settings);
 
-        this.bomb = settings.bomb;
-        this.extTime = 70;
         this.bombRadius = me.game.HUD.getItemValue("range");
-        this.currentRadius = 1;
-        this.direction = direction;
 
-        // Clear explosion after n seconds
-        this.endTime = me.timer.getTime() + (this.extTime * (this.bombRadius + 1));
+        // Timer when explosion is hidden
+        this.clearAt = me.timer.getTime() + 0.5 * 1000;
     },
 
     update: function() {
         // do nothing if not visible
         if (! this.visible) {
             return false;
-        }
-
-        // Extends explosion in proper direction
-        if (this.currentRadius < this.bombRadius) {
-            var x = this.explosionMargin,
-            w = this.explosionSize,
-            y = this.explosionMargin,
-            h = this.explosionSize;
-            if (this.direction === "right") {
-                w = (window.bomberman.spritewidth * this.currentRadius) + window.bomberman.spritewidth;
-            } else if (this.direction === "left") {
-                x = (window.bomberman.spritewidth * -this.currentRadius);
-                w = window.bomberman.spritewidth * this.currentRadius;
-            } else if (this.direction === "up") {
-                y = window.bomberman.spritewidth * -this.currentRadius;
-                h = window.bomberman.spritewidth * this.currentRadius;
-            } else if (this.direction === "down") {
-                h = (window.bomberman.spritewidth * this.currentRadius) + window.bomberman.spritewidth;
-            }
-            this.updateColRect(x, w, y, h);
-            this.clearBreakingTiles(x, x+w, y, y+h);
-            this.currentRadius++;
         }
 
         // Kill enemies if they collide with explosion.
@@ -66,7 +39,7 @@ var Explosion = me.ObjectEntity.extend({
             res.obj.die();
         }
 
-        if (this.endTime <= me.timer.getTime()) {
+        if (this.clearAt < me.timer.getTime()) {
             this.clearBreakingTiles(this.left, this.right, this.top, this.bottom);
             this.visible = false;
             me.game.remove(this);
@@ -99,7 +72,7 @@ var Explosion = me.ObjectEntity.extend({
             var tile = me.game.collisionMap.getTile(x, y);
             if (tile && this.isBreakingTile(tile)) {
                 me.game.currentLevel.clearTile(tile.col, tile.row);
-                var pixelCoords = new me.Vector2d(tile.col * window.bomberman.spritewidth, tile.row * window.bomberman.spritewidth);
+                var pixelCoords = window.bomberman.tileToPixelCoords(tile.col, tile.row);
                 this.foundItem(pixelCoords);
             }
         }
