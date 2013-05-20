@@ -115,15 +115,14 @@ var Explosion = me.ObjectEntity.extend({
     foundItem: function(pixelCoords) {
         // To-do: this method should contain what to drop when wall is destroyed and at which frequency
         var roll = Math.random();
-	if (roll > 0.7) {
-	    var coin = new CoinEntity(pixelCoords.x, pixelCoords.y);
-	    me.game.add(coin, 1000);
-	    me.game.sort();
-	}
-	else if (roll < 0.1) {
-	    var flamepower = new FlamePowerEntity(pixelCoords.x, pixelCoords.y);
-	    me.game.add(flamepower, 1000);
-	    me.game.sort();
-	}
+        if (roll > 0.7) {
+            var coin = new CoinEntity(pixelCoords.x, pixelCoords.y);
+            me.game.add(coin, 1000);
+            me.game.sort();
+        } else if (roll < 0.1) {
+            var flamepower = new FlamePowerEntity(pixelCoords.x, pixelCoords.y);
+            me.game.add(flamepower, 1000);
+            me.game.sort();
+        }
     }
 });
