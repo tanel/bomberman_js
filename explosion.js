@@ -1,10 +1,12 @@
 var Explosion = me.ObjectEntity.extend({
     init: function(x, y, bombRadius, maxBombRadius, direction) {
-        me.audio.play("bomb", false, null, 0.6);
-
         this.currentBombRadius = bombRadius || 1;
         this.maxBombRadius = maxBombRadius || me.game.HUD.getItemValue("range");
         this.currentDirection = direction || new me.Vector2d(0, 0);
+
+        if (this.currentBombRadius === 1) {
+            me.audio.play("bomb", false, null, 0.6);
+        }
 
         var settings = {
             image: "boom",
@@ -17,8 +19,10 @@ var Explosion = me.ObjectEntity.extend({
 
         this.parent(x, y, settings);
 
-        // Timer when explosion is hidden
-        this.clearAt = me.timer.getTime() + 0.2 * 1000;
+        window.bomberman.clearBreakingTile(this.pos.x, this.pos.y);
+
+        this.expandAt = me.timer.getTime() + 0.1 * 1000;
+        this.clearAt = me.timer.getTime() + 0.4 * 1000;
     },
 
     update: function() {
@@ -42,23 +46,31 @@ var Explosion = me.ObjectEntity.extend({
         }
 
         if (this.clearAt < me.timer.getTime()) {
-            window.bomberman.clearBreakingTiles(this.left, this.right, this.top, this.bottom);
-            if (this.currentBombRadius <= this.maxBombRadius) {
-                // In first stage, expand in all 4 directions.
-                if (this.currentBombRadius === 1) {
-                    this.expand(new me.Vector2d(0, -1)); // one row up
-                    this.expand(new me.Vector2d(0, +1)); // one row down
-                    this.expand(new me.Vector2d(-1, 0)); // one col left
-                    this.expand(new me.Vector2d(+1, 0)); // one col right
-                } else {
-                    // After initial expansion in all 4 directions, continue
-                    // expanding in the current direction.
-                    this.expand(this.currentDirection);
-                }
-            }
             this.visible = false;
             me.game.remove(this);
             me.game.sort();
+        }
+
+        if (!this.expansionDone) {
+            if (this.expandAt < me.timer.getTime()) {
+                // Expand explosion, if possible
+                if (this.currentBombRadius <= this.maxBombRadius) {
+                    // First, expand in all 4 directions
+                    if (this.currentBombRadius === 1) {
+                        this.expand(new me.Vector2d(0, -1)); // one row up
+                        this.expand(new me.Vector2d(0, +1)); // one row down
+                        this.expand(new me.Vector2d(-1, 0)); // one col left
+                        this.expand(new me.Vector2d(+1, 0)); // one col right
+                    } else {
+                        // After initial expansion, keep expanding in current direction only
+                        this.expand(this.currentDirection);
+                    }
+                }
+                // Anyway, we're done with expanding
+                this.expansionDone = true;
+                me.game.sort();
+                return true;
+            }
         }
 
         return false;
@@ -69,6 +81,7 @@ var Explosion = me.ObjectEntity.extend({
         var col = tileCoords.x;
         var row = tileCoords.y;
         var coords = window.bomberman.tileToPixelCoords(col + direction.x, row + direction.y);
+        // FIXME: if there is a solid tile in that direction, stop
         var explosion = new Explosion(coords.x, coords.y, this.currentBombRadius + 1, this.maxBombRadius, direction);
         me.game.add(explosion, 1000);
     }

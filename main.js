@@ -40,7 +40,7 @@
             }
             return false;
         },
-        cleaBreakingTile: function(x, y) {
+        clearBreakingTile: function(x, y) {
             if (x > 0 && y > 0) {
                 var tile = me.game.collisionMap.getTile(x, y);
                 if (tile && this.isBreakingTile(tile)) {
@@ -49,12 +49,6 @@
                     this.tileBroken(pixelCoords);
                 }
             }
-        },
-        clearBreakingTiles: function(x, xw, y, yh) {
-            this.cleaBreakingTile(x, y);
-            this.cleaBreakingTile(x, yh);
-            this.cleaBreakingTile(xw, y);
-            this.cleaBreakingTile(xw, yh);
         },
         tileBroken: function(pixelCoords) {
             // To-do: this method should contain what to drop when wall is destroyed and at which frequency
