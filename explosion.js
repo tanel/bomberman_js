@@ -100,9 +100,8 @@ var Explosion = me.ObjectEntity.extend({
             if (tile && this.isBreakingTile(tile)) {
                 me.game.currentLevel.clearTile(tile.col, tile.row);
                 var pixelCoords = new me.Vector2d(tile.col * window.bomberman.spritewidth, tile.row * window.bomberman.spritewidth);
-                var coin = new CoinEntity(pixelCoords.x, pixelCoords.y);
-                me.game.add(coin, 1000);
-                me.game.sort();
+		this.foundItem(pixelCoords)
+                
             }
         }
     },
@@ -112,5 +111,13 @@ var Explosion = me.ObjectEntity.extend({
         this.cleaBreakingTile(x, yh);
         this.cleaBreakingTile(xw, y);
         this.cleaBreakingTile(xw, yh);
+    },
+    foundItem: function(pixelCoords) {
+        // To-do: this method should contain what to drop when wall is destroyed and at which frequency
+	    if (Math.random() > 0.5) {
+	    var coin = new CoinEntity(pixelCoords.x, pixelCoords.y);
+	    me.game.add(coin, 1000);
+	    me.game.sort();
+	}
     }
 });
