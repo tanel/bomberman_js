@@ -100,7 +100,7 @@ var Explosion = me.ObjectEntity.extend({
             if (tile && this.isBreakingTile(tile)) {
                 me.game.currentLevel.clearTile(tile.col, tile.row);
                 var pixelCoords = new me.Vector2d(tile.col * window.bomberman.spritewidth, tile.row * window.bomberman.spritewidth);
-		this.foundItem(pixelCoords)
+		this.foundItem(pixelCoords);
                 
             }
         }
@@ -123,7 +123,6 @@ var Explosion = me.ObjectEntity.extend({
 	    var flamepower = new FlamePowerEntity(pixelCoords.x, pixelCoords.y);
 	    me.game.add(flamepower, 1000);
 	    me.game.sort();
-	  
 	}
     }
 });
