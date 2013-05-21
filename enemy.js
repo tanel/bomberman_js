@@ -74,18 +74,15 @@ var EnemyEntity = me.ObjectEntity.extend({
                 if (this.dir === "left" || this.dir === "right") {
                     // Muudetakse vastase liikumise suunda
                     var roll = Math.floor(Math.random() * 3) + 1;
-	                if (roll === 0) {
-			    this.dir = "left";
-			}
-			else if (roll === 1) {
-			    this.dir = "right";
-			}
-			else if (roll === 2) {
-			    this.dir = "down";
-			}
-			else if (roll === 3) {
-			    this.dir = "up";
-			}
+                    if (roll === 0) {
+                        this.dir = "left";
+                    } else if (roll === 1) {
+                        this.dir = "right";
+                    } else if (roll === 2) {
+                        this.dir = "down";
+                    } else if (roll === 3) {
+                        this.dir = "up";
+                    }
                 } else {
                     this.dir = "left";
                 }
@@ -106,22 +103,23 @@ var EnemyEntity = me.ObjectEntity.extend({
 
         return false;
     },
+
     vision: function() {
         // creates rect sight infront of enemy, when player is within rect sight this.alarmed is set to true.  
         var xMulti = 0;
-	var yMulti = 0;
+        var yMulti = 0;
         if (this.dir === "left") {
-	    xMulti = 1;
-	} else if (this.dir === "right") {
-	    xMulti = -1;
-	} else if (this.dir === "down") {
-	    yMulti = -1;
-	} else if (this.dir === "up") {
-	    yMulti = 1;
-	}
+            xMulti = 1;
+        } else if (this.dir === "right") {
+            xMulti = -1;
+        } else if (this.dir === "down") {
+            yMulti = -1;
+        } else if (this.dir === "up") {
+            yMulti = 1;
+        }
         var sight = new me.Rect((this.pos.x + 64 * xMulti, this.pos.y + 64 * yMulti), 64, 64);
-	// FIXME: rect sight should check if it contains player and then set this.alarmed = true; before being removed
-	me.game.remove(sight);
+        // FIXME: rect sight should check if it contains player and then set this.alarmed = true; before being removed
+        me.game.remove(sight);
     },
 
     die: function() {
