@@ -31,10 +31,10 @@ var EnemyEntity = me.ObjectEntity.extend({
     // obj parameter corresponds to the other object (typically the player) touching this one
     onCollision: function(res, obj) {
         if (this.alive) {
-            if (this.dir === 0) {
-                this.dir = 1;
+            if (this.dir === "left") {
+                this.dir = "right";
             } else {
-                this.dir = 0;
+                this.dir = "left";
             }
         } 
     },
@@ -48,16 +48,16 @@ var EnemyEntity = me.ObjectEntity.extend({
         if (this.alive) {
             
             // make it walk
-            if (this.dir === 0 && this.vel.y === 0) {
+            if (this.dir === "left" && this.vel.y === 0) {
                 this.flipX(this.walkLeft);
                 this.vel.x += (this.walkLeft) ? -this.accel.x * me.timer.tick : this.accel.x * me.timer.tick;
-            } else if (this.dir === 1 && this.vel.y === 0) {
+            } else if (this.dir === "right" && this.vel.y === 0) {
                 this.flipX(0);
                 this.vel.x += (this.walkLeft) ? this.accel.x * me.timer.tick : this.accel.x * me.timer.tick;
-            } else if (this.dir === 2) {
+            } else if (this.dir === "down") {
                 // alla
                 this.vel.y += (this.walkLeft) ? this.accel.y * me.timer.tick : this.accel.y * me.timer.tick;
-            } else if (this.dir === 3) {
+            } else if (this.dir === "up") {
                 // yles
                 this.vel.y += (this.walkLeft) ? -this.accel.y * me.timer.tick : this.accel.y * me.timer.tick;
             }
@@ -68,11 +68,23 @@ var EnemyEntity = me.ObjectEntity.extend({
             // if enemy collides with wall, it starts moving in other direction
             // X-axis and Y-axis check
             if (this.vel.x === 0 && this.vel.y === 0) {
-                if (this.dir === 0 || this.dir === 1) {
+                if (this.dir === "left" || this.dir === "right") {
                     // Muudetakse vastase liikumise suunda
-                    this.dir = Math.floor(Math.random() * 3) + 1;
+                    var roll = Math.floor(Math.random() * 3) + 1;
+	                if (roll === 0) {
+			    this.dir = "left";
+			}
+			else if (roll === 1) {
+			    this.dir = "right";
+			}
+			else if (roll === 2) {
+			    this.dir = "down";
+			}
+			else if (roll === 3) {
+			    this.dir = "up";
+			}
                 } else {
-                    this.dir = 0;
+                    this.dir = "left";
                 }
             }
 
