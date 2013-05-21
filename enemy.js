@@ -13,7 +13,10 @@ var EnemyEntity = me.ObjectEntity.extend({
         // make him start from the right
         this.pos.x = x;
         this.walkLeft = true;
-
+	
+	// enemy can get alarmed when this.vision() tells that player is near
+        this.alarmed = false;
+	
         // walking & jumping speed
         this.setVelocity(1, 1);
 
@@ -87,6 +90,7 @@ var EnemyEntity = me.ObjectEntity.extend({
                     this.dir = "left";
                 }
             }
+            this.vision();
 
             // update animation if necessary
             if (this.vel.x !== 0 || this.vel.y !== 0) {
@@ -101,6 +105,23 @@ var EnemyEntity = me.ObjectEntity.extend({
         }
 
         return false;
+    },
+    vision: function() {
+        // creates rect sight infront of enemy, when player is within rect sight this.alarmed is set to true.  
+        var xMulti = 0;
+	var yMulti = 0;
+        if (this.dir === "left") {
+	    xMulti = 1;
+	} else if (this.dir === "right") {
+	    xMulti = -1;
+	} else if (this.dir === "down") {
+	    yMulti = -1;
+	} else if (this.dir === "up") {
+	    yMulti = 1;
+	}
+        var sight = new me.Rect((this.pos.x + 64 * xMulti, this.pos.y + 64 * yMulti), 64, 64);
+	// FIXME: rect sight should check if it contains player and then set this.alarmed = true; before being removed
+	me.game.remove(sight);
     },
 
     die: function() {
