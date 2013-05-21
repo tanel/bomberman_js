@@ -40,8 +40,34 @@
             }
             return false;
         },
+        // Tell apart if a tile is solid
+        knownSolidTileId: null, // cache value, we honestly don't know it yet
+        isSolidTile: function(vector2d) {
+            if (vector2d.x >= 0 && vector2d.y >= 0) {
+                var tile = me.game.collisionMap.getTile(vector2d.x, vector2d.y);
+                if (!tile) {
+                    return false;
+                }
+                // Following code checks if the tile is solid
+                // *and* caches the result, so it can later be
+                // reused for other tiles as well.
+                if (this.knownSolidTileId === tile.tileId) {
+                    return true;
+                } else if (!this.knownSolidTileId) {
+                    // Fetch tile properties
+                    var props = me.game.collisionMap.tileset.getTileProperties(tile.tileId);
+                    if (props && props.isSolid) {
+                        this.knownSolidTileId = tile.tileId;
+                        return true;
+                    }
+                }
+                return false;
+            } else {
+                return false;
+            }
+        },
         clearBreakingTile: function(x, y) {
-            if (x > 0 && y > 0) {
+            if (x >= 0 && y >= 0) {
                 var tile = me.game.collisionMap.getTile(x, y);
                 if (tile && this.isBreakingTile(tile)) {
                     me.game.currentLevel.clearTile(tile.col, tile.row);

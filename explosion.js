@@ -81,8 +81,9 @@ var Explosion = me.ObjectEntity.extend({
         var col = tileCoords.x;
         var row = tileCoords.y;
         var coords = window.bomberman.tileToPixelCoords(col + direction.x, row + direction.y);
-        // FIXME: if there is a solid tile in that direction, stop
-        var explosion = new Explosion(coords.x, coords.y, this.currentBombRadius + 1, this.maxBombRadius, direction);
-        me.game.add(explosion, 1000);
+        if (!window.bomberman.isSolidTile(coords)) {
+            var explosion = new Explosion(coords.x, coords.y, this.currentBombRadius + 1, this.maxBombRadius, direction);
+            me.game.add(explosion, 1000);
+        }
     }
 });
