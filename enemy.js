@@ -46,11 +46,6 @@ var EnemyEntity = me.ObjectEntity.extend({
             return false;
 
         if (this.alive) {
-            if (this.walkLeft && this.pos.x <= this.startX) {
-                this.walkLeft = false;
-            } else if (!this.walkLeft && this.pos.x >= this.endX) {
-                this.walkLeft = true;
-            }
             
             // make it walk
             if (this.dir === 0 && this.vel.y === 0) {
