@@ -96,7 +96,7 @@ var PlayerEntity = me.ObjectEntity.extend({
             var res = me.game.collide(this);
             if (res) {
                 if (res.obj.type === me.game.ENEMY_OBJECT && this.alive) {
-                    this.die();
+                    this.die("eaten");
                 } else if (res.obj.type === me.game.COLLECTABLE_OBJECT) {
                     this.itemPickedUp(res.obj.name);
                 }
@@ -135,17 +135,22 @@ var PlayerEntity = me.ObjectEntity.extend({
         me.audio.play("soda_open");
     },
 
-    die: function() {
+    die: function(reason) {
         if (!this.alive) {
             // Already dead
             return;
         }
         me.audio.play("scream");
-
+	
         this.alive = false;
         this.setVelocity(0, 0);
-        this.flicker(60);
-
+	if (reason === "exploded") {
+	    me.game.viewport.fadeIn("yellow", 2500);
+	}
+	else if (reason === "eaten") {
+	    this.flicker(60);
+	}
+        
         this.removeAt = me.timer.getTime() + 2 * 1000;
         this.resetAt = me.timer.getTime() + 2 * 1000;
 
@@ -153,6 +158,8 @@ var PlayerEntity = me.ObjectEntity.extend({
         if (livesLeft > 0) {
             me.game.HUD.updateItemValue("lives", -1);
         } else {
+	    // Report reason for death
+	    ScoreScreen.death = reason;
             // No more lives left? Game over.
             me.state.change(me.state.SCORE);
         }
