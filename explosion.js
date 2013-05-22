@@ -6,6 +6,7 @@ var Explosion = me.ObjectEntity.extend({
 
         if (this.currentBombRadius === 1) {
             me.audio.play("bomb", false, null, 0.6);
+            me.game.viewport.shake(5, 50, me.game.viewport.AXIS.BOTH);
         }
 
         var settings = {
@@ -42,8 +43,7 @@ var Explosion = me.ObjectEntity.extend({
         // Kill player, if it collides with explosion.
         var res = me.game.collideType(this, me.game.NO_OBJECT);
         if (res) {
-	    res.obj.die("exploded");
-            
+	       res.obj.die("exploded");
         }
 
         if (this.clearAt < me.timer.getTime()) {

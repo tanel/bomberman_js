@@ -137,20 +137,14 @@ var PlayerEntity = me.ObjectEntity.extend({
 
     die: function(reason) {
         if (!this.alive) {
-            // Already dead
             return;
         }
         me.audio.play("scream");
 	
         this.alive = false;
         this.setVelocity(0, 0);
-	if (reason === "exploded") {
-	    me.game.viewport.fadeIn("yellow", 2500);
-	    me.game.viewport.shake(10, 120, me.game.viewport.AXIS.BOTH);
-	}
-	else if (reason === "eaten") {
-	    this.flicker(60);
-	}
+        me.game.viewport.fadeIn("red", 2500);
+        this.flicker(60);
         
         this.removeAt = me.timer.getTime() + 2 * 1000;
         this.resetAt = me.timer.getTime() + 2 * 1000;
