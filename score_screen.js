@@ -26,7 +26,43 @@ var ScoreScreen = me.ScreenObject.extend({
     // draw function
     draw: function(context) {
         this.clearInfo(context);
-        this.font.draw(context, "SCORE IS TOTALLY AMAZING: " + this.score  + " POINTS, WELL DONE!", me.video.getWidth()/2, 100);
+        this.writeHiScore(me.game.HUD.getItemValue("score")); // save new high score
+        this.font.draw(context, "SCORE IS TOTALLY AMAZING: " + this.score  + " POINTS, WELL DONE! HIGH SCORE IS " + this.readHiScore(), me.video.getWidth()/2, 100);
+    },
+    
+    // write the hiscore in localstorage
+    writeHiScore : function (val) {
+    
+        if (me.sys.localStorage) {
+        
+            try {       
+                lval = this.readHiScore();
+                if (val > lval)
+                { 
+                    // save to database, "key", "value"
+                    localStorage.setItem("mefw_hiscore", val); 
+                }
+            } 
+            catch (e){
+                // sthg went wrong
+            }
+        }
+    },
+    
+    // read the hiscore from localstorage    
+    readHiScore: function () {
+            
+        if (me.sys.localStorage) {
+            
+            try {       
+                // get value from database
+                return (localStorage.getItem("mefw_hiscore") || 0);
+            } 
+            catch (e)
+            {
+                // sthg went wrong
+            }
+        }
+        return 0;
     }
-
 }); 
