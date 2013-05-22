@@ -42,7 +42,6 @@ var Explosion = me.ObjectEntity.extend({
         // Kill player, if it collides with explosion.
         var res = me.game.collideType(this, me.game.NO_OBJECT);
         if (res) {
-	    me.game.viewport.fadeIn("yellow", 2500);
 	    res.obj.die("exploded");
             
         }
