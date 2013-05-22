@@ -146,6 +146,7 @@ var PlayerEntity = me.ObjectEntity.extend({
         this.setVelocity(0, 0);
 	if (reason === "exploded") {
 	    me.game.viewport.fadeIn("yellow", 2500);
+	    me.game.viewport.shake(10, 120, me.game.viewport.AXIS.BOTH);
 	}
 	else if (reason === "eaten") {
 	    this.flicker(60);
@@ -158,8 +159,6 @@ var PlayerEntity = me.ObjectEntity.extend({
         if (livesLeft > 0) {
             me.game.HUD.updateItemValue("lives", -1);
         } else {
-	    // Report reason for death
-	    ScoreScreen.death = reason;
             // No more lives left? Game over.
             me.state.change(me.state.SCORE);
         }
