@@ -179,7 +179,7 @@
             // Video initsiliaseerimise parameetrid on:
             // wrapper, width, height, double_buffering, scale, maintainAspectRatio
             // (vt http://www.melonjs.org/docs/symbols/me.video.html#init)
-            if (!me.video.init('bombermanGame', 800, 600, false, 1.0, false)) {
+            if (!me.video.init('bombermanGame', 800, 600, true, 'auto')) {
                 alert("Teie veebilehitseja ei toeta HTML5 canvas tehnoloogiat. Ei saa jätkata :(");
                 return;
             }
