@@ -14,10 +14,7 @@ var EnemyEntity = me.ObjectEntity.extend({
         this.pos.x = x;
         this.walkLeft = true;
 	
-	// For sight testing purposes
-	this.font = new me.Font("Cursive", 30, "yellow");
-	
-	// enemy can get alarmed when this.vision() tells that player is near
+        // enemy can get alarmed when this.vision() tells that player is near
         this.alarmed = false;
 	
         // walking & jumping speed
@@ -26,17 +23,12 @@ var EnemyEntity = me.ObjectEntity.extend({
         // make it collidable
         this.collidable = true;
 	
-	//this.vision();
-
         // make it an enemy object
         this.type = me.game.ENEMY_OBJECT;
 	
         // collisionbox reduced to actual character not image size
         this.updateColRect(7, 50, 10, 54);
     },
-    //draw: function (context, sight) {
-      //this.font.draw(context, "X", this.pos.x, this.pos.y);
-    //},
 
     // call by the engine when colliding with another object
     // obj parameter corresponds to the other object (typically the player) touching this one
