@@ -207,8 +207,7 @@
         // Kui mäng on laetud, käivitab loader siinse funktsiooni,
         // sest omistasime selle eelnevalt me.loader.onload'ile:
         loaded: function () {
-	  
-	    me.sys.fps = 60;
+            me.sys.fps = 60;
 
             // cool transition between gamestates
             me.state.transition("fade", "#000000", 200);
