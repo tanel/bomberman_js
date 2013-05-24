@@ -41,7 +41,7 @@ var PlayerEntity = me.ObjectEntity.extend({
          * @param {int} h height of the hit box
          */
         //updateColRect : function(x, w, y, h)
-        this.updateColRect(15, 40, 15, 40);
+        this.updateColRect(7, 50, 10, 54);
  
         // set the display to follow our position on both axis
         me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
