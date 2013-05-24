@@ -99,7 +99,9 @@ var PlayerEntity = me.ObjectEntity.extend({
                     this.die("eaten");
                 } else if (res.obj.type === me.game.COLLECTABLE_OBJECT) {
                     this.itemPickedUp(res.obj.name);
-                }
+                } else if (res.obj.type === me.game.ACTION_OBJECT) { 
+		    res.obj.springed();
+		}
             }
 
             // update animation if necessary
