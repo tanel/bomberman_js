@@ -126,6 +126,10 @@
         type: "image",
         src: "data/sprite/pomm_64.png"
     }, {
+        name: "trap_animation",
+        type: "image",
+        src: "data/sprite/beartrap.png"
+    }, {
         name: "life",
         type: "image",
         src: "data/sprite/life_powerup.png"
