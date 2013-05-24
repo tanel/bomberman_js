@@ -96,12 +96,12 @@ var PlayerEntity = me.ObjectEntity.extend({
             var res = me.game.collide(this);
             if (res) {
                 if (res.obj.type === me.game.ENEMY_OBJECT && this.alive) {
-                    this.die("eaten");
+                    this.die();
                 } else if (res.obj.type === me.game.COLLECTABLE_OBJECT) {
                     this.itemPickedUp(res.obj.name);
                 } else if (res.obj.type === me.game.ACTION_OBJECT) { 
-		    res.obj.springed();
-		}
+                    res.obj.springed();
+                }
             }
 
             // update animation if necessary
@@ -137,7 +137,7 @@ var PlayerEntity = me.ObjectEntity.extend({
         me.audio.play("soda_open");
     },
 
-    die: function(reason) {
+    die: function() {
         if (!this.alive) {
             return;
         }

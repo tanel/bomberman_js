@@ -1,4 +1,3 @@
-/*global window: false, alert: false, me: false */
 (function () {
     "use strict";
 
@@ -225,7 +224,7 @@
             me.entityPool.add("life", LifePowerupEntity);
             me.entityPool.add("coin", CoinEntity);
             me.entityPool.add("flamepower", FlamePowerEntity);
-	    me.entityPool.add("beartrap", BearTrap);
+            me.entityPool.add("beartrap", BearTrap);
 
             // Lets disable default gravity
             me.sys.gravity = 0;
@@ -250,7 +249,6 @@
         }
     };
 
-    // Kui leht on brauserisse laetud, hakkab mäng laadima
     window.onReady(function () {
         window.bomberman.game.onload();
     });
