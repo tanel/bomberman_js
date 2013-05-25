@@ -98,7 +98,7 @@ var PlayerEntity = me.ObjectEntity.extend({
                 if (res.obj.type === me.game.ENEMY_OBJECT && this.alive) {
                     this.die();
                 } else if (res.obj.type === me.game.COLLECTABLE_OBJECT) {
-                    this.itemPickedUp(res.obj.name);
+                    res.obj.collect();
                 } else if (res.obj.type === me.game.ACTION_OBJECT) { 
                     res.obj.springed();
                 }
@@ -124,17 +124,6 @@ var PlayerEntity = me.ObjectEntity.extend({
         // else inform the engine we did not perform
         // any update (e.g. position, animation)
         return false;
-    },
-
-    itemPickedUp: function(pickedUpItemName) {
-        if (pickedUpItemName === "coin") {
-            me.game.HUD.updateItemValue("score", 25);
-        } else if (pickedUpItemName === "life") {
-            me.game.HUD.updateItemValue("lives", 1);
-        } else if (pickedUpItemName === "flamepower") {
-            me.game.HUD.updateItemValue("range", 1);
-        }
-        me.audio.play("soda_open");
     },
 
     die: function() {

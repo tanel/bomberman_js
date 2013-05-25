@@ -14,5 +14,10 @@ var LifePowerupEntity = me.ObjectEntity.extend({
         this.type = me.game.COLLECTABLE_OBJECT;
         this.collidable = true;
         this.visible = true;
+    },
+
+    collect: function() {
+        me.audio.play("soda_open");
+        me.game.HUD.updateItemValue("lives", 1);
     }
 });
