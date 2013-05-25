@@ -2,10 +2,7 @@
 // Peategelase ehk mängija nn entity - PlayerEntity
 var PlayerEntity = me.ObjectEntity.extend({
 
-    // Aktiivsete pommide arv kaardil
     bombs: 0,
-    
-    // Max lubatud pommide arv kaardil
     maxAllowedBombs: 3,
 
     init: function(x, y, settings) {
