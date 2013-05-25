@@ -94,7 +94,7 @@ var PlayerEntity = me.ObjectEntity.extend({
                     this.die();
                 } else if (res.obj.type === me.game.COLLECTABLE_OBJECT) {
                     res.obj.collect();
-                } else if (res.obj.type === me.game.ACTION_OBJECT) { 
+                } else if (res.obj.type === me.game.ACTION_OBJECT && res.obj.startAction) { 
                     res.obj.startAction();
                 }
             }

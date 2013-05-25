@@ -4,6 +4,7 @@ var PlayScreen = me.ScreenObject.extend({
     score: null,
     lives: null,
     range: null,
+    timeHudItem: null,
 
     init: function(settings) {
         this.parent(true);
@@ -12,26 +13,30 @@ var PlayScreen = me.ScreenObject.extend({
     onResetEvent: function () {
         me.levelDirector.loadLevel("level1");
 
-        // add the "score" HUD item
+        // Split HUD into 4 sectors
+        var sectorWidth = me.video.getWidth() / 4, hudItemWidth = 50;
+
         if (!this.score) {
-            this.score = new ScoreObject(10, 40);
+            this.score = new ScoreObject(0 * sectorWidth, hudItemWidth);
             me.game.HUD.addItem("score", this.score);
         }
 
-        // add "bombs" counter HUD item
         if (!this.range) {
-            this.range = new RangeObject(180, 40);
+            this.range = new RangeObject(1 * sectorWidth, hudItemWidth);
             me.game.HUD.addItem("range", this.range);
-            // At beginning, player bombs have range of 2
             me.game.HUD.setItemValue("range", 2);
         }
 
-        // add the "lives" HUD item
         if (!this.lives) {
-            this.lives = new LivesObject(350, 40);
+            this.lives = new LivesObject(2 * sectorWidth, hudItemWidth);
             me.game.HUD.addItem("lives", this.lives);
-            // At beginning, player has 3 lives
             me.game.HUD.setItemValue("lives", 3);
+        }
+
+        if (!this.timeHudItem) {
+            this.lives = new TimeHudItem(3 * sectorWidth, hudItemWidth);
+            me.game.HUD.addItem("time", this.lives);
+            me.game.HUD.setItemValue("time", 60);
         }
     }
 });
