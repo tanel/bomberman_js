@@ -36,7 +36,8 @@ var PlayScreen = me.ScreenObject.extend({
         if (!this.timeHudItem) {
             this.lives = new TimeHudItem(3 * sectorWidth, hudItemWidth);
             me.game.HUD.addItem("time", this.lives);
-            me.game.HUD.setItemValue("time", 60);
         }
+
+        me.game.add(new TimeoutEntity(60));
     }
 });
