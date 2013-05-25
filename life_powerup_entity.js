@@ -1,7 +1,6 @@
 var LifePowerupEntity = me.ObjectEntity.extend({
 
     init: function(x, y) {
-        // define this here instead of tiled
         settings = {
             name: "life",
             image: "life",

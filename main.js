@@ -1,8 +1,6 @@
 (function () {
     "use strict";
 
-    // bomberman on nö namespace, mille küljes asuvad
-    // kõik mänguga seotud objektid, funktsioonid, ressursid jne.
     window.bomberman = {
         spritewidth: 64,
         // Utility functions, taken from MelonJS source (they're private there):
@@ -76,30 +74,25 @@
             }
         },
         tileBroken: function(pixelCoords) {
-            // To-do: this method should contain what to drop when wall is destroyed and at which frequency
-            var roll = Math.random();
+            var roll = Math.random(), entity = null;
             if (roll > 0.7) {
-                var coin = new CoinEntity(pixelCoords.x, pixelCoords.y);
-                me.game.add(coin, 1000);
-                me.game.sort();
+                entity = new CoinEntity(pixelCoords.x, pixelCoords.y);
             } else if (roll < 0.1) {
-                var flamepower = new FlamePowerEntity(pixelCoords.x, pixelCoords.y);
-                me.game.add(flamepower, 1000);
+                entity = new FlamePowerEntity(pixelCoords.x, pixelCoords.y);
+            }
+            if (entity) {
+                me.game.add(entity, 1000);
                 me.game.sort();
             }
         }
     };
 
-    // Kui URLi lõppu brauseris lisada ?debug, siis kuvatakse igasugu debug infot.
     if (window.location && window.location.href && (/debug/.test(window.location.href))) {
         window.bomberman.debug = true;
     }
 
     me.debug.renderHitBox = window.bomberman.debug;
 
-    // Mängu vajaminevate ressursside massiiv.
-    // Leveli map ise on TMX formaadis, vt lisaks https://github.com/bjorn/tiled/wiki/TMX-Map-Format
-    // Leveli mapi redigeerimiseks on vajalik Tiled Map Editor, vt http://www.mapeditor.org/
     window.bomberman.resources = [{
         name: "level1_tileset_64",
         type: "image",
@@ -174,37 +167,22 @@
         src: "data/audio/", channel: 1
     }];
 
-    // Mäng ise
     window.bomberman.game = {
 
-        // Alustame mängu laadimist
         onload: function () {
-            // Video initsiliaseerimise parameetrid on:
-            // wrapper, width, height, double_buffering, scale, maintainAspectRatio
-            // (vt http://www.melonjs.org/docs/symbols/me.video.html#init)
             if (!me.video.init('bombermanGame', 800, 600, true, 'auto')) {
                 alert("Teie veebilehitseja ei toeta HTML5 canvas tehnoloogiat. Ei saa jätkata :(");
                 return;
             }
 
-            // MelonJS loader proovib audiofaile laadida sellest järjekorras: mp3, ogg.
-            // Kui veebilehitsejal puuduvad sobivad audio codec'id, siis mängul heli puudub
-            // (vt http://www.melonjs.org/docs/symbols/me.audio.html#init)
             me.audio.init("mp3");
-            // loader tegeleb mängu ressursside laadimisega. Kui ta on laadimisega
-            // valmis saanud, siis tahame, et ta käivitaks meie funktsiooni "loaded":
-            // (vt http://www.melonjs.org/docs/symbols/me.loader.html)
             me.loader.onload = this.loaded.bind(this);
 
-            // Alustame mängule vajalike ressursside laadimist:
             me.loader.preload(window.bomberman.resources);
 
-            // Kuniks mängu ressursid laevad, kuvame "Loading.." lehe kasutajale.
             me.state.change(me.state.LOADING);
         },
 
-        // Kui mäng on laetud, käivitab loader siinse funktsiooni,
-        // sest omistasime selle eelnevalt me.loader.onload'ile:
         loaded: function () {
             me.sys.fps = 60;
 

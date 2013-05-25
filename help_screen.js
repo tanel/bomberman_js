@@ -1,7 +1,6 @@
 
 var HelpScreen = me.ScreenObject.extend({
 
-    // constructor
     init: function() {
         this.parent(true);
         this.font = new me.Font("Cursive", 20, "yellow", "center");

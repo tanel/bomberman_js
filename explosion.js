@@ -1,4 +1,5 @@
 var Explosion = me.ObjectEntity.extend({
+
     init: function(x, y, bombRadius, maxBombRadius, direction) {
         this.currentBombRadius = bombRadius || 1;
         this.maxBombRadius = maxBombRadius || me.game.HUD.getItemValue("range");
@@ -27,7 +28,6 @@ var Explosion = me.ObjectEntity.extend({
     },
 
     update: function() {
-        // do nothing if not visible
         if (! this.visible) {
             return false;
         }

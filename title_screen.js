@@ -36,7 +36,6 @@ var TitleScreen = me.ScreenObject.extend({
         return false;
     },
 
-    // draw function
     draw: function(context) {
         context.drawImage(this.flame, 0, me.video.getHeight() - 175);
         this.titlefont.draw(context, "BOMBERMAN", me.video.getWidth() / 2, 50);
@@ -50,5 +49,4 @@ var TitleScreen = me.ScreenObject.extend({
         me.input.unbindKey(me.input.KEY.V);
         me.input.unbindKey(me.input.KEY.S);
     }
-
 }); 

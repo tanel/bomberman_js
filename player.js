@@ -1,5 +1,4 @@
 
-// Peategelase ehk mängija nn entity - PlayerEntity
 var PlayerEntity = me.ObjectEntity.extend({
 
     bombs: 0,
@@ -12,7 +11,6 @@ var PlayerEntity = me.ObjectEntity.extend({
         window.bomberman.player = this;
 
         // call the constructor
-        // alternatiivne koht omaduste jaoks tiledi asemel
         settings.image = "gripe";
         settings.spritewidth = window.bomberman.spritewidth;
 

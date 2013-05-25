@@ -2,7 +2,6 @@
 var BombEntity = me.ObjectEntity.extend({
 
     init: function(x, y) {
-        // define this here instead of tiled
         settings = {
             name: "bomb",
             image: "bomb_animation",
@@ -10,9 +9,6 @@ var BombEntity = me.ObjectEntity.extend({
             spriteheight: window.bomberman.spriteheight
         };
 
-        // this.parent() kutsub päritud init() funktsiooni 
-        // välja, ning tolle sees võetakse mitmed väärtused
-        // just settings objektilt. vt melonJS lähtekoodi.
         this.parent(x, y, settings);
 	
         this.addAnimation ("zzz", [0,1,2,3], 30);
@@ -30,7 +26,6 @@ var BombEntity = me.ObjectEntity.extend({
     },
     
     update: function() {
-        // do nothing if not visible
         if (! this.visible) {
             return false;
         }
@@ -43,7 +38,6 @@ var BombEntity = me.ObjectEntity.extend({
             this.visible = false;
             me.game.remove(this);
             me.game.sort();
-            this.parent();
             return true;
         }
 

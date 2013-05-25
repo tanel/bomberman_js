@@ -57,10 +57,8 @@ var EnemyEntity = me.ObjectEntity.extend({
                 this.flipX(0);
                 this.vel.x += (this.walkLeft) ? this.accel.x * me.timer.tick : this.accel.x * me.timer.tick;
             } else if (this.dir === "down") {
-                // alla
                 this.vel.y += (this.walkLeft) ? this.accel.y * me.timer.tick : this.accel.y * me.timer.tick;
             } else if (this.dir === "up") {
-                // yles
                 this.vel.y += (this.walkLeft) ? -this.accel.y * me.timer.tick : this.accel.y * me.timer.tick;
             }
 
@@ -71,7 +69,6 @@ var EnemyEntity = me.ObjectEntity.extend({
             // X-axis and Y-axis check
             if (this.vel.x === 0 && this.vel.y === 0) {
                 if (this.dir === "left" || this.dir === "right") {
-                    // Muudetakse vastase liikumise suunda
                     var roll = Math.floor(Math.random() * 3) + 1;
                     if (roll === 0) {
                         this.dir = "left";
