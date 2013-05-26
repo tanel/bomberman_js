@@ -12,6 +12,8 @@ var BearTrap = me.ObjectEntity.extend({
 
         this.parent(x, y, settings);
 	
+	this.x = x;
+	this.y = y;
         this.addAnimation("ready", [0], 30);
         this.addAnimation("springed", [1,2,3], 30);
         this.setCurrentAnimation("ready");
@@ -26,7 +28,16 @@ var BearTrap = me.ObjectEntity.extend({
         }
 
         if (this.springAt < me.timer.getTime()) {
-            // FIXME: spring the trap
+	    var playerX =  window.bomberman.player.pos.x;
+	    console.log (window.bomberman.player.pos.x);
+	    var playerY =  window.bomberman.player.pos.y;
+            var trapTile = window.bomberman.pixelToTileCoords(this.x, this.y);
+	    var playerTile = window.bomberman.pixelToTileCoords(playerX, playerY);
+	    console.log(trapTile);
+	    console.log(playerTile);
+	    if (traptile === playertile) {
+	        window.bomberman.player.die();
+	    }
             return true;
         }
 
@@ -34,6 +45,7 @@ var BearTrap = me.ObjectEntity.extend({
     },
 
     startAction: function() {
+        console.log("action started");
         if (!this.actionStarted) {
             this.setCurrentAnimation("springed");
             this.springAt = me.timer.getTime() + 2.0 * 1000;
