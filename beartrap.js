@@ -15,7 +15,7 @@ var BearTrap = me.ObjectEntity.extend({
         this.x = x;
         this.y = y;
         this.addAnimation("ready", [0], 30);
-        this.addAnimation("springed", [1,2,3], 30);
+        this.addAnimation("springed", [1,2,3], 25);
         this.setCurrentAnimation("ready");
         this.collidable = true;
         this.actionStarted = false;
@@ -35,12 +35,12 @@ var BearTrap = me.ObjectEntity.extend({
             var playerTile = window.bomberman.pixelToTileCoords(playerX, playerY);
             console.log(trapTile);
             console.log(playerTile);
-            if (traptile === playertile) {
+            if (trapTile && playerTile && trapTile.equals(playerTile)) {
                 window.bomberman.player.die();
             }
             return true;
         }
-        return false;
+        this.parent(true);
     },
 
     startAction: function() {
