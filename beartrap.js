@@ -15,7 +15,7 @@ var BearTrap = me.ObjectEntity.extend({
         this.x = x;
         this.y = y;
         this.addAnimation("ready", [0], 30);
-        this.addAnimation("springed", [1,2,3], 25);
+        this.addAnimation("springed", [1,2,3], 40);
         this.setCurrentAnimation("ready");
         this.collidable = true;
         this.actionStarted = false;
