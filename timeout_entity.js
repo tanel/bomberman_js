@@ -2,7 +2,6 @@
 var TimeoutEntity = me.ObjectEntity.extend({
 
     init: function(seconds) {
-        console.log('TimeoutEntity init');
         this.collidable = false;
         this.visible = false;
         this.timeoutAt = me.timer.getTime() + seconds * 1000;
