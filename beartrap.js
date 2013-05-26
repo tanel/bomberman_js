@@ -38,6 +38,8 @@ var BearTrap = me.ObjectEntity.extend({
             if (trapTile && playerTile && trapTile.equals(playerTile)) {
                 window.bomberman.player.die();
             }
+            this.actionStarted = false;
+	    this.setCurrentAnimation("ready");
             return true;
         }
         this.parent(true);
