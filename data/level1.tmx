@@ -103,7 +103,28 @@
     <property name="spritewidth" value="64"/>
    </properties>
   </object>
-  <object name="BearTrap" x="204" y="265" width="40" height="42">
+  <object name="BearTrap" x="191" y="257" width="64" height="64">
+   <properties>
+    <property name="collidable" value="true"/>
+    <property name="spriteheight" value="64"/>
+    <property name="spritewidth" value="64"/>
+   </properties>
+  </object>
+  <object name="BearTrap" x="319" y="511" width="64" height="64">
+   <properties>
+    <property name="collidable" value="true"/>
+    <property name="spriteheight" value="64"/>
+    <property name="spritewidth" value="64"/>
+   </properties>
+  </object>
+  <object name="BearTrap" x="897" y="319" width="64" height="64">
+   <properties>
+    <property name="collidable" value="true"/>
+    <property name="spriteheight" value="64"/>
+    <property name="spritewidth" value="64"/>
+   </properties>
+  </object>
+  <object name="BearTrap" x="958" y="768" width="64" height="64">
    <properties>
     <property name="collidable" value="true"/>
     <property name="spriteheight" value="64"/>
