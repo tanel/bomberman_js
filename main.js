@@ -5,10 +5,10 @@
         spritewidth: 64,
         // Utility functions, taken from MelonJS source (they're private there):
         pixelToTileCoords: function(x, y) {
-            return new me.Vector2d(x / this.spritewidth, y / this.spritewidth);
+            return new me.Vector2d(Math.round(x / this.spritewidth), Math.round(y / this.spritewidth));
         },
         tileToPixelCoords: function(x, y) {
-            return new me.Vector2d(x * this.spritewidth, y * this.spritewidth);
+            return new me.Vector2d(Math.round(x * this.spritewidth), Math.round(y * this.spritewidth));
         },
         // Align pixel coordinates to tile
         alignPixelCoords: function(x, y) {
