@@ -29,17 +29,14 @@ var BearTrap = me.ObjectEntity.extend({
 
         if (this.springAt < me.timer.getTime()) {
             var playerX =  window.bomberman.player.pos.x;
-            console.log (window.bomberman.player.pos.x);
             var playerY =  window.bomberman.player.pos.y;
             var trapTile = window.bomberman.pixelToTileCoords(this.x, this.y);
             var playerTile = window.bomberman.pixelToTileCoords(playerX, playerY);
-            console.log(trapTile);
-            console.log(playerTile);
             if (trapTile && playerTile && trapTile.equals(playerTile)) {
                 window.bomberman.player.die();
             }
             this.actionStarted = false;
-	    this.setCurrentAnimation("ready");
+            this.setCurrentAnimation("ready");
             return true;
         }
         this.parent(true);
@@ -48,7 +45,6 @@ var BearTrap = me.ObjectEntity.extend({
     startAction: function() {
         if (!this.actionStarted) {
             this.actionStarted = true;
-            console.log("action started");
             this.setCurrentAnimation("springed");
             this.springAt = me.timer.getTime() + 2.0 * 1000;
         }
