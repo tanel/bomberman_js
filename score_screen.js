@@ -22,7 +22,7 @@ var ScoreScreen = me.ScreenObject.extend({
         this.clearInfo(context);
         this.writeHiScoreToLocalStorage(me.game.HUD.getItemValue("score"));
         var score = me.game.HUD.getItemValue("score");
-        this.font.draw(context, "SCORE IS TOTALLY AMAZING: " + score  + " POINTS, WELL DONE! HIGH SCORE IS " + this.readHiScore(), me.video.getWidth()/2, 100);
+        this.font.draw(context, "SCORE IS TOTALLY AMAZING: " + score  + " POINTS, WELL DONE! HIGH SCORE IS " + this.readHiScoreFromLocalStorage(), me.video.getWidth()/2, 100);
     },
     
     writeHiScoreToLocalStorage: function (score) {
