@@ -46,6 +46,7 @@ var BearTrap = me.ObjectEntity.extend({
         if (!this.actionStarted) {
             this.actionStarted = true;
             this.setCurrentAnimation("springed");
+	    this.setAnimationFrame(0);
             this.springAt = me.timer.getTime() + 2.0 * 1000;
         }
     }
