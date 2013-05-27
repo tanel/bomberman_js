@@ -86,7 +86,7 @@ var EnemyEntity = me.ObjectEntity.extend({
 
             // update animation if necessary
             if (this.vel.x !== 0 || this.vel.y !== 0) {
-	        this.lookForPlayer();
+                this.lookForPlayer();
                 // update object animation
                 this.parent();
                 return true;
@@ -104,25 +104,26 @@ var EnemyEntity = me.ObjectEntity.extend({
     lookForPlayer: function() {
         // Proof of concept
         var playerDistance =  this.distanceTo(window.bomberman.player);
-	var playerDirection =  this.angleTo(window.bomberman.player);
-	var angle = "unknown";
+        var playerDirection =  this.angleTo(window.bomberman.player);
+        var angle = "unknown";
         // 0 corresponds to right
-	if (Math.abs(playerDirection) < 0.75) {
-	    angle = "right";
-	// -1.5 corresponds to up
-	} else if (playerDirection > -0.75 && playerDirection > -2.25) {
-	    angle = "up";
-	// -3.0 corresponds to left
-	} else if (playerDirection > -2.25 && playerDirection > -3.75) {
-	    angle = "left";
-	// 1.5 corresponds to down
-	} else if (playerDirection > 0.75 && playerDirection > 2.25) {
-	    angle = "down";
-	if (playerDistance < 125) {
-	    console.log(playerDirection + " " + angle);
-	    this.alarmed = true;
-	    this.setVelocity(1, 1);
-	}
+        if (Math.abs(playerDirection) < 0.75) {
+            angle = "right";
+        // -1.5 corresponds to up
+        } else if (playerDirection > -0.75 && playerDirection > -2.25) {
+            angle = "up";
+        // -3.0 corresponds to left
+        } else if (playerDirection > -2.25 && playerDirection > -3.75) {
+            angle = "left";
+        // 1.5 corresponds to down
+        } else if (playerDirection > 0.75 && playerDirection > 2.25) {
+            angle = "down";
+        }
+        if (playerDistance < 125) {
+            console.log(playerDirection + " " + angle);
+            this.alarmed = true;
+            this.setVelocity(1, 1);
+        }
     },
 
     die: function() {
