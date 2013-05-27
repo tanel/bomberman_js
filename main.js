@@ -182,14 +182,15 @@
 
             me.state.change(me.state.LOADING);
         },
-        mapSettings: function () {
-	    var roll = Math.random();
-	    if (roll > 0.5) {
-	        me.entityPool.add("SpawnPoint1", PlayerEntity);
-	    } else if (roll <= 0.5) {
-	        me.entityPool.add("SpawnPoint2", PlayerEntity);
-	    }
-	},
+
+        selectSpawnPoint: function () {
+            var roll = Math.random();
+            if (roll > 0.5) {
+                me.entityPool.add("SpawnPoint1", PlayerEntity);
+            } else {
+                me.entityPool.add("SpawnPoint2", PlayerEntity);
+            }
+        },
 
         loaded: function () {
             me.sys.fps = 60;
@@ -210,7 +211,8 @@
             me.entityPool.add("coin", CoinEntity);
             me.entityPool.add("flamepower", FlamePowerEntity);
             me.entityPool.add("beartrap", BearTrap);
-	    this.mapSettings();
+
+            this.selectSpawnPoint();
 
             // Lets disable default gravity
             me.sys.gravity = 0;
