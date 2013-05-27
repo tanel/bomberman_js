@@ -86,6 +86,7 @@ var EnemyEntity = me.ObjectEntity.extend({
 
             // update animation if necessary
             if (this.vel.x !== 0 || this.vel.y !== 0) {
+	        this.lookForPlayer();
                 // update object animation
                 this.parent();
                 return true;
@@ -101,18 +102,12 @@ var EnemyEntity = me.ObjectEntity.extend({
 
     // creates rect sight infront of enemy, when player is within rect sight this.alarmed is set to true.  
     lookForPlayer: function() {
-        var x = 0, y = 0;
-        if (this.dir === "left") {
-            x = 1;
-        } else if (this.dir === "right") {
-            x = -1;
-        } else if (this.dir === "down") {
-            y = -1;
-        } else if (this.dir === "up") {
-            y = 1;
-        }
-        var sight = new me.Rect((this.pos.x + 64 * x, this.pos.y + 64 * y), 64, 64);
-        // FIXME: rect sight should check if it contains player and then set this.alarmed = true; before being removed
+        // Proof of concept
+        var playerDistance =  this.distanceTo(window.bomberman.player);
+	if (playerDistance < 200) {
+	    console.log("freshmeat");
+	    this.alarmed = true;
+	}
     },
 
     die: function() {
