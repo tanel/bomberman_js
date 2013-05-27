@@ -104,9 +104,9 @@ var EnemyEntity = me.ObjectEntity.extend({
     lookForPlayer: function() {
         // Proof of concept
         var playerDistance =  this.distanceTo(window.bomberman.player);
-	if (playerDistance < 200) {
-	    console.log("freshmeat");
+	if (playerDistance < 125) {
 	    this.alarmed = true;
+	    this.setVelocity(2.2, 2.2);
 	}
     },
 
