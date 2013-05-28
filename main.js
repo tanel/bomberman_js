@@ -184,8 +184,7 @@
         },
 
         loaded: function () {
-            // Fps is 40 to improve performance on lower end systems
-            me.sys.fps = 40;
+            me.sys.fps = 60;
 
             // cool transition between gamestates
             me.state.transition("fade", "#000000", 200);
