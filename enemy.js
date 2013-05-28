@@ -104,29 +104,29 @@ var EnemyEntity = me.ObjectEntity.extend({
         // Proof of concept
         var playerDistance =  Math.round(this.distanceTo(window.bomberman.player));
         var playerDirectionAtan2 =  this.angleTo(window.bomberman.player);
-	// This is to convert atan2 values to degrees
-	var angle = Math.round(playerDirectionAtan2 * (180 / Math.PI));
-	if (angle <= -1) { 
-	    angle = 180 - angle; 
-	}
+        // This is to convert atan2 values to degrees
+        var angle = Math.round(playerDirectionAtan2 * (180 / Math.PI));
+        if (angle <= -1) { 
+            angle = 180 - angle;
+        }
         var playerDirection = "unknown";
-	// 15 degree neutralzone between playerDirections
-	var nZone = 15;
-        if (angle < 45 - nZone || angle > 315 + nZone) {
+        // 15 degree neutralzone between playerDirections
+        var neutralZone = 15;
+        if (angle < 45 - neutralZone || angle > 315 + neutralZone) {
             playerDirection = "right";
-        } else if (angle > 45 + nZone && angle < 135 - nZone) {
+        } else if (angle > 45 + neutralZone && angle < 135 - neutralZone) {
             playerDirection = "down";
-        } else if (angle > 135 + nZone  && angle < 225 - nZone) {
+        } else if (angle > 135 + neutralZone  && angle < 225 - neutralZone) {
             playerDirection = "left";
-        } else if (angle > 225 + nZone && angle < 315 - nZone) {
+        } else if (angle > 225 + neutralZone && angle < 315 - neutralZone) {
             playerDirection = "up";
         }
         if (playerDistance < 150) { // for testing
-	    console.log("playerDir: " + playerDirection + " angle: " + angle + " distance: " + playerDistance + " enemyDir: " + this.dir);
-	}  
-	if (playerDistance < 125 && playerDirection == this.dir) {
+            console.log("playerDir: " + playerDirection + " angle: " + angle + " distance: " + playerDistance + " enemyDir: " + this.dir);
+        }  
+        if (playerDistance < 125 && playerDirection == this.dir) {
             this.alarmed = true; // enemy is close enough to player
-            this.setVelocity(2.0, 2.0); // increase enemy`s velocity
+            this.setVelocity(2.0, 2.0);
         }
     },
 

@@ -193,7 +193,7 @@
         },
 
         loaded: function () {
-	    // Fps is 40 to improve performance on lower end systems
+            // Fps is 40 to improve performance on lower end systems
             me.sys.fps = 40;
 
             // cool transition between gamestates
