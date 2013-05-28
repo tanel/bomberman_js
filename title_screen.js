@@ -25,18 +25,16 @@ var TitleScreen = me.ScreenObject.extend({
     update: function() {
         if (me.input.isKeyPressed('enter')) {
             me.state.change(me.state.PLAY);
-            return true;
         } else if (me.input.isKeyPressed('instructions')) {
             me.state.change(me.state.USER);
-            return true;
         } else if (me.input.isKeyPressed('score')) {
             me.state.change(me.state.SCORE);
-            return true;
         } else if (me.input.isKeyPressed('abort')) {
             me.state.change(me.state.MENU);
-            return true;
-        } 
-        return false;
+        } else {
+            return false;
+        }
+        return true;
     },
 
     draw: function(context) {
