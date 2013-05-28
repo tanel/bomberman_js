@@ -14,10 +14,9 @@ var TitleScreen = me.ScreenObject.extend({
 
     onResetEvent: function() {
         if (!this.flame) {
-            // init stuff if not yet done
             this.flame = me.loader.getImage("flame");
-	}
-	me.input.bindKey(me.input.KEY.ESC, "abort", true);
+        }
+        me.input.bindKey(me.input.KEY.ESC, "abort", true);
         me.input.bindKey(me.input.KEY.ENTER, "enter", true);
         me.input.bindKey(me.input.KEY.V, "instructions", true);
         me.input.bindKey(me.input.KEY.S, "score", true);
