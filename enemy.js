@@ -112,11 +112,11 @@ var EnemyEntity = me.ObjectEntity.extend({
         var angle = "unknown";
         if (playerDirection < 45.00 || playerDirection > 315.00) {
             angle = "right";
-        } else if (playerDirection > 45.00 && playerDirection > 135.00) {
+        } else if (playerDirection > 45.00 && playerDirection < 135.00) {
             angle = "up";
-        } else if (playerDirection > 135.00 && playerDirection > 225.00) {
+        } else if (playerDirection > 135.00 && playerDirection < 225.00) {
             angle = "left";
-        } else if (playerDirection > 225.00 && playerDirection > 315.00) {
+        } else if (playerDirection > 225.00 && playerDirection < 315.00) {
             angle = "down";
         }
         if (playerDistance < 125) {
