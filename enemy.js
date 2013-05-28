@@ -103,24 +103,24 @@ var EnemyEntity = me.ObjectEntity.extend({
     lookForPlayer: function() {
         // Proof of concept
         var playerDistance =  this.distanceTo(window.bomberman.player);
-        var playerDirectionRad =  this.angleTo(window.bomberman.player);
-	var playerDirectionDeg = playerDirectionRad * 180 / Math.PI;
+        var playerDirectionAtan2 =  this.angleTo(window.bomberman.player);
+	// This is to convert atan2 values to degrees
+	var playerDirection = playerDirectionAtan2 * (180 / Math.PI);
+	if (playerDirection < 0) { 
+	    playerDirection = 180 - playerDirection; 
+	}
         var angle = "unknown";
-        // 0 corresponds to right
-        if (playerDirectionDeg < 45 && playerDirectionDeg > 315) {
+        if (playerDirection < 45.00 || playerDirection > 315.00) {
             angle = "right";
-        // -1.5 corresponds to up
-        } else if (playerDirectionDeg > 45 && playerDirectionDeg > 135) {
+        } else if (playerDirection > 45.00 && playerDirection > 135.00) {
             angle = "up";
-        // -3.0 corresponds to left
-        } else if (playerDirectionDeg > 135 && playerDirectionDeg > 225) {
+        } else if (playerDirection > 135.00 && playerDirection > 225.00) {
             angle = "left";
-        // 1.5 corresponds to down
-        } else if (playerDirectionDeg > 225 && playerDirectionDeg > 315) {
+        } else if (playerDirection > 225.00 && playerDirection > 315.00) {
             angle = "down";
         }
         if (playerDistance < 125) {
-            console.log(playerDirectionDeg + " " + angle);
+            console.log(playerDirection + " " + angle);
             this.alarmed = true; // enemy is close enough to player
             this.setVelocity(1, 1); // increase enemy`s velocity
         }
