@@ -111,7 +111,7 @@ var EnemyEntity = me.ObjectEntity.extend({
 	}
         var playerDirection = "unknown";
 	// 10 degrees neutralzone between playerDirections
-        if (angle < 40 || angle > 310) {
+        if (angle < 40 || angle > 320) {
             playerDirection = "right";
         } else if (angle > 50 && angle < 130) {
             playerDirection = "down";
@@ -121,10 +121,10 @@ var EnemyEntity = me.ObjectEntity.extend({
             playerDirection = "up";
         }
         if (playerDistance < 150) { // for testing
-	    console.log("pDir: " + playerDirection + " enemyDir: "+ this.dir + " distance: " + playerDistance + " angle: " + angle);
+	    console.log("playerDir: " + playerDirection + " angle: " + angle + " distance: " + playerDistance + " enemyDir: " + this.dir);
 	} else if (playerDistance < 125 && playerDirection == this.dir) {
             this.alarmed = true; // enemy is close enough to player
-            this.setVelocity(1.5, 1.5); // increase enemy`s velocity
+            this.setVelocity(2.0, 2.0); // increase enemy`s velocity
         }
     },
 
