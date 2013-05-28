@@ -122,7 +122,8 @@ var EnemyEntity = me.ObjectEntity.extend({
         }
         if (playerDistance < 150) { // for testing
 	    console.log("playerDir: " + playerDirection + " angle: " + angle + " distance: " + playerDistance + " enemyDir: " + this.dir);
-	} else if (playerDistance < 125 && playerDirection == this.dir) {
+	}  
+	if (playerDistance < 125 && playerDirection == this.dir) {
             this.alarmed = true; // enemy is close enough to player
             this.setVelocity(2.0, 2.0); // increase enemy`s velocity
         }
