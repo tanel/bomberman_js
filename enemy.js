@@ -1,4 +1,3 @@
-
 // Enemy
 var EnemyEntity = me.ObjectEntity.extend({
 
@@ -51,7 +50,7 @@ var EnemyEntity = me.ObjectEntity.extend({
             
             // make it walk
             if (this.dir === "left" && this.vel.y === 0) {
-                this.flipX(this.walkLeft);
+                this.flipX(this.walkLeft); // if enemy is moving left (this.walkLeft is 1), then flip enemy on X-axis
                 this.vel.x += (this.walkLeft) ? -this.accel.x * me.timer.tick : this.accel.x * me.timer.tick;
             } else if (this.dir === "right" && this.vel.y === 0) {
                 this.flipX(0);
@@ -121,8 +120,8 @@ var EnemyEntity = me.ObjectEntity.extend({
         }
         if (playerDistance < 125) {
             console.log(playerDirection + " " + angle);
-            this.alarmed = true;
-            this.setVelocity(1, 1);
+            this.alarmed = true; // enemy is close enough to player
+            this.setVelocity(1, 1); // increase enemy`s velocity
         }
     },
 
@@ -137,10 +136,10 @@ var EnemyEntity = me.ObjectEntity.extend({
             me.audio.play("wscream");
         }
         this.alive = false;
-        this.setVelocity(0, 0);
-        this.flicker(60);
-        this.removeAt = me.timer.getTime() + 1 * 1000;
+        this.setVelocity(0, 0); // set velocity to 0
+        this.flicker(60); // enemy will start flickering
+        this.removeAt = me.timer.getTime() + 1 * 1000; // set time for removing enemy object
 
-        me.game.HUD.updateItemValue("score", 10);
+        me.game.HUD.updateItemValue("score", 10); // increase score
     }
 });
