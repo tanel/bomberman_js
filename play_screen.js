@@ -19,6 +19,8 @@ var PlayScreen = me.ScreenObject.extend({
     },
 
     onResetEvent: function () {
+        me.game.HUD.visible = true;
+
         me.levelDirector.loadLevel("level1");
 
         // Split HUD into 4 sectors

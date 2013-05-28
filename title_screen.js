@@ -13,6 +13,7 @@ var TitleScreen = me.ScreenObject.extend({
     },
 
     onResetEvent: function() {
+        me.game.HUD.visible = false;
         if (!this.flame) {
             this.flame = me.loader.getImage("flame");
         }
