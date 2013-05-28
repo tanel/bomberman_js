@@ -10,6 +10,14 @@ var PlayScreen = me.ScreenObject.extend({
         this.parent(true);
     },
 
+    update: function() {
+        if (me.input.isKeyPressed('abort')) {
+            me.state.change(me.state.MENU);
+            return true;
+        }
+        return false;
+    },
+
     onResetEvent: function () {
         me.levelDirector.loadLevel("level1");
 
