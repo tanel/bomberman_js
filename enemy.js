@@ -102,27 +102,29 @@ var EnemyEntity = me.ObjectEntity.extend({
     // creates rect sight infront of enemy, when player is within rect sight this.alarmed is set to true.  
     lookForPlayer: function() {
         // Proof of concept
-        var playerDistance =  this.distanceTo(window.bomberman.player);
+        var playerDistance =  Math.round(this.distanceTo(window.bomberman.player));
         var playerDirectionAtan2 =  this.angleTo(window.bomberman.player);
 	// This is to convert atan2 values to degrees
-	var playerDirection = Math.round(playerDirectionAtan2 * (180 / Math.PI));
-	if (playerDirection <= -1) { 
-	    playerDirection = 180 - playerDirection; 
+	var angle = Math.round(playerDirectionAtan2 * (180 / Math.PI));
+	if (angle <= -1) { 
+	    angle = 180 - angle; 
 	}
-        var angle = "unknown";
-        if (playerDirection < 45 || playerDirection > 315) {
-            angle = "right";
-        } else if (playerDirection > 45 && playerDirection < 135) {
-            angle = "down";
-        } else if (playerDirection > 135 && playerDirection < 225) {
-            angle = "left";
-        } else if (playerDirection > 225 && playerDirection < 315) {
-            angle = "up";
+        var playerDirection = "unknown";
+	// 10 degrees neutralzone between playerDirections
+        if (angle < 40 || angle > 310) {
+            playerDirection = "right";
+        } else if (angle > 50 && angle < 130) {
+            playerDirection = "down";
+        } else if (angle > 140 && angle < 220) {
+            playerDirection = "left";
+        } else if (angle > 230 && angle < 310) {
+            playerDirection = "up";
         }
-        if (playerDistance < 125) {
-            console.log(playerDirection + " " + angle);
+        if (playerDistance < 150) { // for testing
+	    console.log("pDir: " + playerDirection + " enemyDir: "+ this.dir + " distance: " + playerDistance + " angle: " + angle);
+	} else if (playerDistance < 125 && playerDirection == this.dir) {
             this.alarmed = true; // enemy is close enough to player
-            this.setVelocity(1, 1); // increase enemy`s velocity
+            this.setVelocity(1.5, 1.5); // increase enemy`s velocity
         }
     },
 
