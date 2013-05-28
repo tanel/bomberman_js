@@ -121,9 +121,11 @@ var EnemyEntity = me.ObjectEntity.extend({
         } else if (angle > 225 + neutralZone && angle < 315 - neutralZone) {
             playerDirection = "up";
         }
-        if (playerDistance < 150) { // for testing
-            console.log("playerDir: " + playerDirection + " angle: " + angle + " distance: " + playerDistance + " enemyDir: " + this.dir);
-        }  
+        if (window.bomberman.debug) {
+            if (playerDistance < 150) {
+                console.log("playerDir: " + playerDirection + " angle: " + angle + " distance: " + playerDistance + " enemyDir: " + this.dir);
+            }
+        }
         if (playerDistance < 125 && playerDirection == this.dir) {
             this.alarmed = true; // enemy is close enough to player
             this.setVelocity(2.0, 2.0);
