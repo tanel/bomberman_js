@@ -105,18 +105,18 @@ var EnemyEntity = me.ObjectEntity.extend({
         var playerDistance =  this.distanceTo(window.bomberman.player);
         var playerDirectionAtan2 =  this.angleTo(window.bomberman.player);
 	// This is to convert atan2 values to degrees
-	var playerDirection = playerDirectionAtan2 * (180 / Math.PI);
+	var playerDirection = Math.round(playerDirectionAtan2 * (180 / Math.PI));
 	if (playerDirection <= -1) { 
 	    playerDirection = 180 - playerDirection; 
 	}
         var angle = "unknown";
-        if (playerDirection < 45.00 || playerDirection > 315.00) {
+        if (playerDirection < 45 || playerDirection > 315) {
             angle = "right";
-        } else if (playerDirection > 45.00 && playerDirection < 135.00) {
+        } else if (playerDirection > 45 && playerDirection < 135) {
             angle = "down";
-        } else if (playerDirection > 135.00 && playerDirection < 225.00) {
+        } else if (playerDirection > 135 && playerDirection < 225) {
             angle = "left";
-        } else if (playerDirection > 225.00 && playerDirection < 315.00) {
+        } else if (playerDirection > 225 && playerDirection < 315) {
             angle = "up";
         }
         if (playerDistance < 125) {
