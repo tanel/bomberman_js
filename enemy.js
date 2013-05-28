@@ -110,14 +110,15 @@ var EnemyEntity = me.ObjectEntity.extend({
 	    angle = 180 - angle; 
 	}
         var playerDirection = "unknown";
-	// 10 degrees neutralzone between playerDirections
-        if (angle < 40 || angle > 320) {
+	// 15 degree neutralzone between playerDirections
+	var nZone = 15;
+        if (angle < 45 - nZone || angle > 315 + nZone) {
             playerDirection = "right";
-        } else if (angle > 50 && angle < 130) {
+        } else if (angle > 45 + nZone && angle < 135 - nZone) {
             playerDirection = "down";
-        } else if (angle > 140 && angle < 220) {
+        } else if (angle > 135 + nZone  && angle < 225 - nZone) {
             playerDirection = "left";
-        } else if (angle > 230 && angle < 310) {
+        } else if (angle > 225 + nZone && angle < 315 - nZone) {
             playerDirection = "up";
         }
         if (playerDistance < 150) { // for testing
