@@ -1,4 +1,3 @@
-
 var BearTrap = me.ObjectEntity.extend({
 
     init: function(x, y) {
@@ -24,14 +23,14 @@ var BearTrap = me.ObjectEntity.extend({
     
     update: function() {
         if (! this.visible) {
-            return false;
+            return false; // return false if beartrap is not visible
         }
 
         if (this.springAt < me.timer.getTime()) {
-            var playerX =  window.bomberman.player.pos.x;
-            var playerY =  window.bomberman.player.pos.y;
-            var trapTile = window.bomberman.pixelToTileCoords(this.x, this.y);
-            var playerTile = window.bomberman.pixelToTileCoords(playerX, playerY);
+            var playerX = window.bomberman.player.pos.x; // get player position on x-axis
+            var playerY = window.bomberman.player.pos.y; // get player position on y-axis
+            var trapTile = window.bomberman.pixelToTileCoords(this.x, this.y); // get tile (BearTrap`s x and y coordinates will be used)
+            var playerTile = window.bomberman.pixelToTileCoords(playerX, playerY); // get tile (player`s x and y coordinates will be used)
             if (trapTile && playerTile && trapTile.equals(playerTile)) {
                 window.bomberman.player.die();
             }
