@@ -143,7 +143,6 @@
   </data>
  </layer>
  <objectgroup name="entities" width="20" height="15">
-  <object name="SpawnPoint1" x="64" y="65" width="64" height="64"/>
-  <object name="SpawnPoint2" x="1152" y="574" width="64" height="64"/>
+  <object name="mainPlayer" x="64" y="64" width="64" height="64"/>
  </objectgroup>
 </map>

@@ -183,15 +183,6 @@
             me.state.change(me.state.LOADING);
         },
 
-        selectSpawnPoint: function () {
-            var roll = Math.random();
-            if (roll > 0.5) {
-                me.entityPool.add("SpawnPoint1", PlayerEntity);
-            } else {
-                me.entityPool.add("SpawnPoint2", PlayerEntity);
-            }
-        },
-
         loaded: function () {
             // Fps is 40 to improve performance on lower end systems
             me.sys.fps = 40;
@@ -207,13 +198,12 @@
 
             // Add entities to pool. They will be initialized
             // according to map file.
+            me.entityPool.add("mainPlayer", PlayerEntity);
             me.entityPool.add("enemyentity", EnemyEntity);
             me.entityPool.add("life", LifePowerupEntity);
             me.entityPool.add("coin", CoinEntity);
             me.entityPool.add("flamepower", FlamePowerEntity);
             me.entityPool.add("beartrap", BearTrap);
-
-            this.selectSpawnPoint();
 
             // Lets disable default gravity
             me.sys.gravity = 0;
