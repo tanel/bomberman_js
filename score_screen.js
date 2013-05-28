@@ -19,10 +19,10 @@ var ScoreScreen = me.ScreenObject.extend({
 
     draw: function(context) {
         this.clearInfo(context);
-        this.writeHiScoreToLocalStorage(me.game.HUD.getItemValue("score")); // save current score into database
-        var score = me.game.HUD.getItemValue("score"); // get current score
-        // draw current score and high score (using readHiScoreFromLocalStorage())
-        this.font.draw(context, "SCORE IS TOTALLY AMAZING: " + score  + " POINTS, WELL DONE! HIGH SCORE IS " + this.readHiScoreFromLocalStorage(), me.video.getWidth()/2, 100);
+        this.writeHiScoreToLocalStorage(me.game.HUD.getItemValue("score"));
+        var score = me.game.HUD.getItemValue("score");
+        this.font.draw(context, "SCORE IS TOTALLY AMAZING: " + score  + " POINTS, WELL DONE! HIGH SCORE IS " + this.readHiScoreFromLocalStorage(),
+            me.video.getWidth()/2, 100);
     },
     
     writeHiScoreToLocalStorage: function (score) {
@@ -36,7 +36,7 @@ var ScoreScreen = me.ScreenObject.extend({
     
     readHiScoreFromLocalStorage: function () {
         if (me.sys.localStorage) {
-            return (localStorage.getItem("hiscore") || 0); // return 0 if hiscore cannot be found from the database
+            return (localStorage.getItem("hiscore") || 0);
         }
         return 0;
     }
