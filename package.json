@@ -5,5 +5,9 @@
     "grunt": "~0.4.1",
     "grunt-contrib-jshint": "~0.1.1",
     "connect": "~2.7.10"
+  },
+  "engines": {
+  	"node": "0.8.12",
+  	"npm": "1.1.63"
   }
 }
