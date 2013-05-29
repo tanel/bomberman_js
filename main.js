@@ -165,6 +165,10 @@
         name: "soda_open",
         type: "audio",
         src: "data/audio/", channel: 1
+    }, {    
+        name: "32x32_font",
+        type: "image",
+        src: "data/sprite/32x32_font.png"
     }];
 
     window.bomberman.game = {
