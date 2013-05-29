@@ -8,9 +8,12 @@ var ScoreScreen = me.ScreenObject.extend({
     update: function() {        
         if (me.input.isKeyPressed('abort')) {
             me.state.change(me.state.MENU);
-            return true;
+        } else if (me.input.isKeyPressed('enter')) {
+            me.state.change(me.state.MENU);
+        } else {
+            return false;
         }
-        return false;
+        return true;
     },
 
     clearInfo: function(context) {
