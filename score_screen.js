@@ -28,8 +28,8 @@ var ScoreScreen = me.ScreenObject.extend({
         this.writeHiScoreToLocalStorage(me.game.HUD.getItemValue("score"), me.game.HUD.getItemValue("playerName")); // save current score into database
         var score = me.game.HUD.getItemValue("score"); // get current score
         
-        this.font.draw(context, "NAME", 460 + add, 270);
-        this.font.draw(context, "SCORE", 670 + add, 270);
+        this.font.draw(context, "NAME", 460, 270);
+        this.font.draw(context, "SCORE", 670, 270);
         this.font.draw(context, "1.   " + this.readNameFromLocalStorage(), 440, 350);
         this.font.draw(context, "" + this.readHiScoreFromLocalStorage(), 615, 350);
         this.font.draw(context, "2.   " + this.readNameFromLocalStorage(), 440, 380);
