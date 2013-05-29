@@ -1,7 +1,5 @@
 var ScoreScreen = me.ScreenObject.extend({
     
-    pname: null,
-        
     init: function() {
         this.parent(true);
         this.font = new me.BitmapFont("32x32_font", 32);
@@ -62,34 +60,9 @@ var ScoreScreen = me.ScreenObject.extend({
 
     readNameFromLocalStorage: function () {
         if (me.sys.localStorage) {
-            
-            /*
-            for (var i = 0; i < 3; i++) {
-		// FIXME: localStorage.getItem("hiscore" + i); ?
-                localStorage.getItem("hiscore1");
-                localStorage.getItem("hiscore2");
-                localStorage.getItem("hiscore3");
-
-                switch (i) {
-    			    case 0:
-					    // 
-					    localStorage.getItem("hiscore1");
-					    return 1;
-				    case 1:
-					    // 
-					    localStorage.getItem("hiscore1");
-					    return 1;
-				    case 2:
-					    // 
-					    localStorage.getItem("hiscore1");
-					    return 1;
-                }
-            }
-            */
-            return (localStorage.getItem("name1") || 0);
+            return (localStorage.getItem("name1") || "");
         }
-        return 0;
+        return "";
     }
-    
     
 }); 
