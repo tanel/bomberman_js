@@ -49,12 +49,12 @@ var PlayScreen = me.ScreenObject.extend({
             this.timeHudItem = new TimeHudItem(3 * sectorWidth + x, y);
             me.game.HUD.addItem("time", this.timeHudItem);
         }
-        
+                
         if (!this.playerName) {
-            this.playerName = new NameObject(3 * sectorWidth, hudItemWidth);
+            this.playerName = new NameObject(3 * sectorWidth + x, y);
             me.game.HUD.addItem("playerName", this.playerName);
         }
-        
+
         me.game.add(new TimeoutEntity(60));
     }
 });
