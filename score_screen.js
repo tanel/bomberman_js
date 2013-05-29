@@ -25,8 +25,8 @@ var ScoreScreen = me.ScreenObject.extend({
             me.game.HUD.setItemValue("playerName", nimi);
         }
         this.clearInfo(context);
-        this.writeHiScoreToLocalStorage(me.game.HUD.getItemValue("score"), me.game.HUD.getItemValue("playerName")); // save current score into database
-        var score = me.game.HUD.getItemValue("score"); // get current score
+        this.writeHiScoreToLocalStorage(me.game.HUD.getItemValue("score"), me.game.HUD.getItemValue("playerName"));
+        var score = me.game.HUD.getItemValue("score");
         
         this.font.draw(context, "NAME", 460, 270);
         this.font.draw(context, "SCORE", 670, 270);
@@ -55,7 +55,7 @@ var ScoreScreen = me.ScreenObject.extend({
     
     readHiScoreFromLocalStorage: function () {
         if (me.sys.localStorage) {
-            return (localStorage.getItem("hiscore1") || 0); // return 0 if hiscore cannot be found from the database
+            return (localStorage.getItem("hiscore1") || 0);
         }
         return 0;
     },
@@ -65,10 +65,11 @@ var ScoreScreen = me.ScreenObject.extend({
             
             /*
             for (var i = 0; i < 3; i++) {
+		// FIXME: localStorage.getItem("hiscore" + i); ?
                 localStorage.getItem("hiscore1");
                 localStorage.getItem("hiscore2");
                 localStorage.getItem("hiscore3");
-                
+
                 switch (i) {
     			    case 0:
 					    // 
@@ -85,7 +86,7 @@ var ScoreScreen = me.ScreenObject.extend({
                 }
             }
             */
-            return (localStorage.getItem("name1") || 0); // return 0 if name cannot be found from the database
+            return (localStorage.getItem("name1") || 0);
         }
         return 0;
     }
