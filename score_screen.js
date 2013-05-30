@@ -32,11 +32,15 @@ var ScoreScreen = me.ScreenObject.extend({
 
         this.font.draw(context, "NAME", 460, 270);
         this.font.draw(context, "SCORE", 670, 270);
-        this.font.draw(context, "1.   " + this.readNameFromLocalStorage(1), 615, 350);
+        
+        this.font.draw(context, "1.", 305, 350);
+        this.font.draw(context, this.readNameFromLocalStorage(1), 490, 350);
         this.font.draw(context, "" + this.readHiScoreFromLocalStorage(1), 615, 350);
-        this.font.draw(context, "2.   " + this.readNameFromLocalStorage(2), 440, 380);
+        this.font.draw(context, "2.", 305, 380);
+        this.font.draw(context, this.readNameFromLocalStorage(2), 490, 380);
         this.font.draw(context, "" + this.readHiScoreFromLocalStorage(2), 615, 380);
-        this.font.draw(context, "3.   " + this.readNameFromLocalStorage(3), 440, 410);
+        this.font.draw(context, "3.", 305, 410);
+        this.font.draw(context, this.readNameFromLocalStorage(3), 490, 410);
         this.font.draw(context, "" + this.readHiScoreFromLocalStorage(3), 615, 410);
 	
         console.log(" Name 1: " + this.readNameFromLocalStorage(1) + " Name 2: " + this.readNameFromLocalStorage(2) +" Name 3: " + this.readNameFromLocalStorage(3));	
@@ -74,7 +78,7 @@ var ScoreScreen = me.ScreenObject.extend({
 
     readNameFromLocalStorage: function (number) {
         if (me.sys.localStorage) {
-            return (localStorage.getItem("name" + number) || '-');
+            return (localStorage.getItem("name" + number) || '-   ');
         }
         return 0;
     }
