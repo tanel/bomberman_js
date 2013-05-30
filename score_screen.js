@@ -16,6 +16,7 @@ var ScoreScreen = me.ScreenObject.extend({
         return true;
     },
 
+
     clearInfo: function(context) {
         context.clearRect(0, 55, me.video.getWidth(), 200);
     },
@@ -24,48 +25,58 @@ var ScoreScreen = me.ScreenObject.extend({
         if (! me.game.HUD.getItemValue("playerName")) {
             var nimi = prompt("Enter your name:");
             me.game.HUD.setItemValue("playerName", nimi);
-        }
-        this.clearInfo(context);
-        this.writeHiScoreToLocalStorage(me.game.HUD.getItemValue("score"), me.game.HUD.getItemValue("playerName"));
         var score = me.game.HUD.getItemValue("score");
-        
+            this.clearInfo(context);
+            this.writeHiScoreToLocalStorage(me.game.HUD.getItemValue("score"), me.game.HUD.getItemValue("playerName"));
+        }
+
         this.font.draw(context, "NAME", 460, 270);
         this.font.draw(context, "SCORE", 670, 270);
-        this.font.draw(context, "1.   " + this.readNameFromLocalStorage(), 440, 350);
-        this.font.draw(context, "" + this.readHiScoreFromLocalStorage(), 615, 350);
-        this.font.draw(context, "2.   " + this.readNameFromLocalStorage(), 440, 380);
-        this.font.draw(context, "" + this.readHiScoreFromLocalStorage(), 615, 380);
-        this.font.draw(context, "3.   " + this.readNameFromLocalStorage(), 440, 410);
-        this.font.draw(context, "" + this.readHiScoreFromLocalStorage(), 615, 410);
+        this.font.draw(context, "1.   " + this.readNameFromLocalStorage(1), 615, 350);
+        this.font.draw(context, "" + this.readHiScoreFromLocalStorage(1), 615, 350);
+        this.font.draw(context, "2.   " + this.readNameFromLocalStorage(2), 440, 380);
+        this.font.draw(context, "" + this.readHiScoreFromLocalStorage(2), 615, 380);
+        this.font.draw(context, "3.   " + this.readNameFromLocalStorage(3), 440, 410);
+        this.font.draw(context, "" + this.readHiScoreFromLocalStorage(3), 615, 410);
+	
+        console.log(" Name 1: " + this.readNameFromLocalStorage(1) + " Name 2: " + this.readNameFromLocalStorage(2) +" Name 3: " + this.readNameFromLocalStorage(3));	
     },
     
     writeHiScoreToLocalStorage: function (score, name) {
         if (me.sys.localStorage) {
-            var previous = this.readHiScoreFromLocalStorage();
+
+            var minimum = 9999;
+            var min_id = 0;
+            // get smallest high score
+            for (var i = 1; i < 4; i++) {
+                var next_val = this.readHiScoreFromLocalStorage(i);
+
+                if (next_val < minimum) {
             
-            for (var i = 0; i < 3; i++) {
-                
+                    minimum = next_val;
+                    min_id = i;
+                }
             }
-            
-            if (score > previous) {
-                localStorage.setItem("hiscore1", score);
-                localStorage.setItem("name1", name);
-            }     
+                    
+            if (score > minimum ) {		
+                localStorage.setItem("hiscore" + min_id, score); // use id of the minimum high score
+                localStorage.setItem("name" + min_id, name);       
+            }
         }
     },
     
-    readHiScoreFromLocalStorage: function () {
+    readHiScoreFromLocalStorage: function (number) {
         if (me.sys.localStorage) {
-            return (localStorage.getItem("hiscore1") || 0);
+            return (localStorage.getItem("hiscore" + number) || 0);
         }
         return 0;
     },
 
-    readNameFromLocalStorage: function () {
+    readNameFromLocalStorage: function (number) {
         if (me.sys.localStorage) {
-            return (localStorage.getItem("name1") || "");
+            return (localStorage.getItem("name" + number) || '-');
         }
-        return "";
+        return 0;
     }
     
 }); 
