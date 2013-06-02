@@ -21,7 +21,11 @@ var Explosion = me.ObjectEntity.extend({
 
         this.parent(x, y, settings);
 
-        window.bomberman.clearBreakingTile(this.pos.x, this.pos.y);
+        if (window.bomberman.clearBreakingTile(this.pos.x, this.pos.y)) {
+            // After clearing a breakable tile,
+            // we want the explosion to stop expanding.
+            this.expansionDone = true;
+        }
 
         this.expandAt = me.timer.getTime() + 0.1 * 1000;
         this.clearAt = me.timer.getTime() + 0.4 * 1000;

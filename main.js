@@ -63,6 +63,7 @@
                 return false;
             }
         },
+        // Returns true if a tile was actually cleared.
         clearBreakingTile: function(x, y) {
             if (x >= 0 && y >= 0) {
                 var tile = me.game.collisionMap.getTile(x, y);
@@ -70,8 +71,10 @@
                     me.game.currentLevel.clearTile(tile.col, tile.row);
                     var pixelCoords = this.tileToPixelCoords(tile.col, tile.row);
                     this.tileBroken(pixelCoords);
+                    return true;
                 }
             }
+            return false;
         },
         tileBroken: function(pixelCoords) {
             var roll = Math.random(), entity = null;
